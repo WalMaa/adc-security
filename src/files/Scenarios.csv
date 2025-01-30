@@ -1,0 +1,39 @@
+ID;VULNERABILITY;DESCRIPTION
+V1;Communication channels not adequately protected;Channels (carrying classified/sensitive corporate data) not subject to security procedures (encryption devices) or not physically inaccessible (e.g. connections with accessible data cables, to which interception tools can be connected)
+V2;Uncontrolled changes to the operating system;Possible unauthorized/controlled insertion by technical personnel of procedures/functions within the operating system that disable or damage security procedures
+V3;Uncontrolled changes to the application software;Possible changes to procedures and application programs not documented by system administrators/programmers
+V4;Failure to periodically check the procedures installed on the system;Operation to be implemented in order to identify programs/procedures not foreseen by the system project, inserted subsequently without authorization
+V5;"Exploiting operating system ""holes""";"Exploitation, for illicit purposes, of operating system ""bugs"""
+V6;Insufficient error detection;System errors (which could affect the security features of the system) not evaluated or underestimated in their importance
+V7;Untested software applications;Use of programs that are not adequately tested and certified
+V8;Inadequate logical access control;The system/network does not provide valid user accounting procedures, thus allowing data theft, damage and modification
+V9;Non-existent logical access procedures;The system is open to logical access by anyone, it does not provide any type of protection
+V10;Incorrect input/output procedures;System errors related to I/O operations that can lead to data loss
+V11;Errors in programs;Unintentional application malfunctions that may compromise information security
+V12;Untested emergency procedures;Procedures to be implemented in case of emergency, not sufficiently tested and which may lead to loss of information and its confidentiality
+V13;Lack of emergency procedures;Lack of security procedures regarding: saving, destroying information, backing up on different media, closing of the premises containing the system and/or data
+V14;Inadequate supervision;Insufficient control of users and their access to the system
+V15;Ignorance of safety procedures;The staff is not aware of the security procedures and regulations and acts in a way that could compromise security (e.g. giving their password to a colleague)
+V16;Untrained staff;Incorrect use of applications (which handle classified data) by inadequately trained personnel, resulting in the deletion/modification/insertion of sensitive data and information
+V17;Misuse of information by end users;Disclosure, alteration, destruction of information for unlawful purposes
+V18;Improper manipulation of mass storage devices;Improper handling of magnetic/optical media containing system data/software, which may lead to loss/modification of stored data
+V19;Changing system hardware configuration;Modification of hardware devices (addition, modification, deletion) which must be subject to periodic inventory and control
+V20;Lack of software to control hardware configurations;Lack of software that regularly checks the presence and functioning of the hardware devices that make up the system
+V21;Insufficient separation of logical work areas;The operating system does not provide secure separation systems for the separation between logical work areas
+V22;Changing system software configuration;Modification of programs and procedures (modification, deletion) which must be subject to updating, periodic control of installation of updates)
+V23;Unauthorized software applications;Presence on the system of unforeseen/authorized programs that can perform actions that are harmful to security (e.g. programs installed by users without authorization)
+V24;Abandoned waste material;Abandoned sheets, tables, magnetic media that can be used to obtain useful information to gain access to a system
+V25;Insufficient information surveillance;Unmonitored data, available on video, on printouts, on magnetic media, accessible by unauthorized personnel
+V26;Inadequate fire protection;Lack of a specific fire protection system to safeguard the system and the data contained within it (e.g. fireproof safes and automatic shutdown system)
+V27;Inadequate flood protection;Lack of a specific anti-flooding system to safeguard the system and the data contained within it (e.g. watertight bulkheads)
+V28;Inadequate high temperature protection;Inadequate temperature monitoring and cooling of electronic devices
+V29;Unstable power supply;Lack of adequate automatic control systems for stabilization and continuity on UPS systems
+V30;Electromagnetic emanations;Equipment not adequately protected from compromising electromagnetic emissions.
+V31;Hardware devices that are not physically locked;Lack of security systems that prevent the removal of peripherals (hard drives, cards, tapes)
+V32;Inadequate access control to the CED area;The control of staff and visitors is not rigorous
+V33;Lack of access control to the CED area;There is no targeted control (personal, electronic, physical)
+V34;System not protected from lightning;There are no lightning rods in the infrastructure
+V35;System not protected from electrostatic charges;The system is not protected from electrical charges by means of earthing arresters.
+V36;No control over system clock;It is not possible to prevent access to the system clock through the use of unauthorized procedures.
+V37;Hardware device malfunction;A peripheral or device, following a malfunction or failure, compromises the security of the system, allowing access to unauthorized individuals
+V38;System not protected from explosions;The data center area containing the company's sensitive/classified information is not adequately protected from explosions
