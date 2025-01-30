@@ -1,0 +1,1667 @@
+﻿Threat-Vulnerability Relationship Matrix,,,,,,,
+,,,,,,,
+THREAT ID,THREAT,VULNERABILITY ID,VULNERABILITY,VTHE,COUNTERMEASURE ID,COUNTERMEASURE,TECHNICAL NATURE
+M1,Queuing access,V8,Inadequate logical access control,4,s1,Identification and authentication,X
+,,,,,s1.1,Password is not displayed on screen as you type,X
+,,,,,s1.2,The password is case sensitive.,X
+,,,,,s1.3,Password requires special characters,X
+,,,,,s1.4,Password must contain at least one numeric character,X
+,,,,,s1.5,Password must contain at least one alphabetic character,X
+,,,,,s1.6,The password must not contain more than three consecutive numbers or letters,X
+,,,,,s1.7,The password must not contain more than two consecutive identical numbers or letters,X
+,,,,,s1.8,New passwords must always be entered twice to verify correct typing.,X
+,,,,,s1.9,Encryption of passwords in transit on the network,X
+,,,,,s1.10,Encryption of passwords stored on the host,X
+,,,,,s1.11,Access blocked after n failed login attempts,X
+,,,,,s1.12,Time-limited access,X
+,,,,,s1.13,Viewing Last Login Messages,X
+,,,,,s1.14,Disabling system messages,X
+,,,,,s1.15,Periodic password change request,X
+,,,,,s1.16,Request for a different password from the previous one each time it is changed,X
+,,,,,s1.17,Creation of pronounceable passwords by the system,X
+,,,,,s1.18,Password expiration control,X
+,,,,,s1.19,Minimum password length assignment,X
+,,,,,s1.20,Consecutive request for multiple passwords after entering userid,X
+,,,,,s1.21,Check new user-generated passwords,X
+,,,,,s1.22,Stop requesting the userid for a certain period of time after n failed login attempts,X
+,,,,,s1.23,Identification of a user with a unique personal code,X
+,,,,,s1.24,Inactive terminals lock the screen or log off after a predetermined period of time,X
+,,,,,s1.25,Proxy account routing,X
+,,,,,s1.26,User account routing,X
+,,,,,s1.27,"The system does not warn the user that the userid is incorrect and still allows the password to be entered. After the password has been entered, it generically communicates that access has not been permitted",X
+,,,,,s9,"Implementation of ""discretionary access control""",X
+,,,,,s10,"Implementation of ""mandatory access control""",X
+,,V19,Changing system hardware configuration,1,pr21,Hardware and software inventory,
+,,,,,pr26,Configuration Management,
+,,,,,pr26.1,Assigning a unique identifier to each entry,
+,,,,,pr26.2,Developing a Configuration Management Plan,
+,,,,,pr26.3,Recording all changes to a system's configuration,
+,,,,,pr26.4,Implementing a configuration control plan,
+,,,,,pr26.5,Life cycle assurance,
+,,,,,s8,Software for controlling hardware operation,X
+,,,,,s8.1,CPU Operation Check,X
+,,,,,s8.2,CPU Usage Monitoring,X
+,,,,,s8.3,Monitor system memory usage,X
+,,,,,s8.4,Disk Activity Monitor,X
+,,,,,s8.5,Network activity and traffic monitoring,X
+,,,,,s8.6,Compiling network activity statistics,X
+,,,,,s8.7,System Disk Performance Check,X
+,,,,,s8.8,Remote systems monitoring,X
+,,,,,s8.9,Software for UPS management and server shutdown even in the absence of the system administrator,X
+,,,,,s8.10,Hardware diagnostic software,X
+,,V22,Changing system software configuration,1,pr9,Software development/update control,
+,,,,,pr9.1,Setting the gold standard for software development,
+,,,,,pr9.2,"Maintain a log of software changes, implementations, and the reasons for those changes",
+,,,,,pr9.3,Definition of system security features,
+,,,,,pr9.4,Establish control measures to ensure that approval and verification procedures are not circumvented,
+,,,,,pr9.5,Assignment of authorized personnel to develop safety procedures,
+,,,,,pr9.6,Perform file access controls for analysts and programmers,
+,,,,,pr9.7,"Periodically check software libraries, verify correspondence between source programs and objects",
+,,,,,pr9.8,Functional tests on the correct functioning of safety procedures,
+,,,,,pr9.9,Functional testing of security procedure vulnerabilities,
+,,,,,pr9.10,Simulations of system errors that can reduce the effectiveness of the measures taken,
+,,,,,pr9.11,System Penetration Test,
+,,,,,pr9.12,"Identify all possible ""trap doors"" and use them to check the risk of penetration",
+,,,,,pr9.13,Formal demonstrations of how the software works,
+,,,,,pr21,Hardware and software inventory,
+,,,,,pr26,Configuration Management,
+,,,,,pr26.1,Assigning a unique identifier to each entry,
+,,,,,pr26.2,Developing a Configuration Management Plan,
+,,,,,pr26.3,Recording all changes to a system's configuration,
+,,,,,pr26.4,Implementing a configuration control plan,
+,,,,,pr26.5,Life cycle assurance,
+,,,,,s7,Software for controlling system hardware/software configurations,X
+,,,,,s7.1,Central Processing Unit Configuration Control,X
+,,,,,s7.2,Check communication ports connected to the network,X
+M2,Power supply,V29,Unstable power supply,1,h6,"Protection from surges, falls, and power failures",X
+,,,,,h6.1,UPS,X
+,,,,,h6.2,Voltage stabilizers,X
+,,,,,h6.3,Emergency batteries,X
+,,,,,h6.4,Line filters,X
+,,,,,h6.5,Circuits for isolated earth connections from apparatus to apparatus,X
+,,,,,h6.6,Pipes near the CED electrically grounded or in PVC,X
+,,V35,System not protected from electrostatic charges,1,h15,Anti-static protections,X
+,,,,,h15.1,Adoption of antistatic operator chairs,X
+,,,,,h15.2,Ground connections,X
+M3,Flooding,V12,Untested emergency procedures,1,pr6,Emergency plan,
+,,,,,pr6.1,Procedure manual to be provided to the personnel in charge,
+,,,,,pr6.2,Placement of emergency procedure summary tables (including emergency and management telephone numbers),
+,,,,,pr6.3,Establish rules to verify that an emergency situation actually exists,
+,,,,,pr6.4,Procedure for recovering damaged data,
+,,,,,pr6.5,Presence of a checklist for emergency procedures,
+,,,,,pr6.6,Procedures for repairing or replacing malfunctioning or defective hardware,
+,,,,,pr6.7,Emergency data deletion/destruction procedures,
+,,,,,pr6.8,Locking backups in fireproof safes,
+,,,,,pr6.9,Obligation to contact the Security Officer,
+,,,,,pr6.10,Obligation to contact any external support services,
+,,,,,pr6.11,"Computer shutdown plan, air conditioning systems, electrical systems",
+,,,,,pr6.12,"Periodic review of the emergency plan, with any updates or changes",
+,,,,,pr6.13,Test and simulate emergency procedures at least once every six months,
+,,V27,Inadequate flood protection,3,f1,"CED area isolation, with separate location, to minimize damage from water or fire",
+,,,,,f2,Arrangement of an alternative data processing center area at least on the first floor/level for flood protection,
+,,,,,f8,Environmental parameter control,
+,,,,,f8.4,Flood control with sensors positioned above and below the raised floor,
+,,,,,f8.6,Humidity control,
+,,,,,f8.7,Audible and visual alarm in case of fire or flood,
+,,,,,f12,Anti-flooding measures,
+,,,,,f12.1,Automatic water system shutdown,
+,,,,,f12.2,Manual water system shutdown,
+,,,,,f12.3,Watertight bulkheads,
+,,,,,f12.4,Anti-flooding pumps,
+,,,,,f12.5,Drainage outlets,
+M4,Asynchronous attack,V3,Uncontrolled changes to the application software,2,pr9,Software development/update control,
+,,,,,pr9.1,Setting the gold standard for software development,
+,,,,,pr9.2,"Maintain a log of software changes, implementations, and the reasons for those changes",
+,,,,,pr9.3,Definition of system security features,
+,,,,,pr9.4,Establish control measures to ensure that approval and verification procedures are not circumvented,
+,,,,,pr9.5,Assignment of authorized personnel to develop safety procedures,
+,,,,,pr9.6,Perform file access controls for analysts and programmers,
+,,,,,pr9.7,"Periodically check software libraries, verify correspondence between source programs and objects",
+,,,,,pr9.8,Functional tests on the correct functioning of safety procedures,
+,,,,,pr9.9,Functional testing of security procedure vulnerabilities,
+,,,,,pr9.10,Simulations of system errors that can reduce the effectiveness of the measures taken,
+,,,,,pr9.11,System Penetration Test,
+,,,,,pr9.12,"Identify all possible ""trap doors"" and use them to check the risk of penetration",
+,,,,,pr9.13,Formal demonstrations of how the software works,
+,,,,,pr22,Assigning access to application software and operating system according to need-to-know and qualification,
+,,,,,s9,"Implementation of ""discretionary access control""",X
+,,,,,s10,"Implementation of ""mandatory access control""",X
+,,V4,Failure to periodically check the procedures installed on the system,3,pr21,Hardware and software inventory,
+,,,,,pr26,Configuration Management,
+,,,,,pr26.1,Assigning a unique identifier to each entry,
+,,,,,pr26.2,Developing a Configuration Management Plan,
+,,,,,pr26.3,Recording all changes to a system's configuration,
+,,,,,pr26.4,Implementing a configuration control plan,
+,,,,,pr26.5,Life cycle assurance,
+,,,,,s7,Software for controlling system hardware/software configurations,X
+,,,,,s7.1,Central Processing Unit Configuration Control,X
+,,,,,s7.2,Check communication ports connected to the network,X
+,,,,,s11,Trusted path,X
+,,,,,s13,RAM resident application control program,X
+,,,,,s14,Antivirus applications,X
+,,,,,s14.1,Control of major operating system calls or specific malicious actions via TSR procedures,X
+,,,,,s14.2,"Programs for scanning files, identifying the virus strain, identifying the type of infection, deleting infected files",X
+,,V7,Untested software applications,2,pr9,Software development/update control,
+,,,,,pr9.1,Setting the gold standard for software development,
+,,,,,pr9.2,"Maintain a log of software changes, implementations, and the reasons for those changes",
+,,,,,pr9.3,Definition of system security features,
+,,,,,pr9.4,Establish control measures to ensure that approval and verification procedures are not circumvented,
+,,,,,pr9.5,Assignment of authorized personnel to develop safety procedures,
+,,,,,pr9.6,Perform file access controls for analysts and programmers,
+,,,,,pr9.7,"Periodically check software libraries, verify correspondence between source programs and objects",
+,,,,,pr9.8,Functional tests on the correct functioning of safety procedures,
+,,,,,pr9.9,Functional testing of security procedure vulnerabilities,
+,,,,,pr9.10,Simulations of system errors that can reduce the effectiveness of the measures taken,
+,,,,,pr9.11,System Penetration Test,
+,,,,,pr9.12,"Identify all possible ""trap doors"" and use them to check the risk of penetration",
+,,,,,pr9.13,Formal demonstrations of how the software works,
+,,V23,Unauthorized software applications,2,pe3,Instructions on safety and personnel management,
+,,,,,pe3.1,Motivate staff to follow the company's safety policy,
+,,,,,pe3.2,Educate staff on possible threats and how to limit their extent by implementing mitigation measures.,
+,,,,,pe3.3,"Maintain constant attention to safety regulations by adopting posters, circular letters, educational videos",
+,,,,,pe3.4,Avoid situations of discontent on the part of employees,
+,,,,,pe3.5,Regularly review staff safety training,
+,,,,,pe3.6,Keep staff informed of safety news,
+,,,,,pe3.7,Maintain a climate of serenity within the company,
+,,,,,pe5,Establish a user support staff to perform security checks and provide assistance with security issues,
+,,,,,pr21,Hardware and software inventory,
+,,,,,pr22,Assigning access to application software and operating system according to need-to-know and qualification,
+,,,,,pr26,Configuration Management,
+,,,,,pr26.1,Assigning a unique identifier to each entry,
+,,,,,pr26.2,Developing a Configuration Management Plan,
+,,,,,pr26.3,Recording all changes to a system's configuration,
+,,,,,pr26.4,Implementing a configuration control plan,
+,,,,,pr26.5,Life cycle assurance,
+,,V21,Insufficient separation of logical work areas,2,s3,Logical work area separation,X
+,,,,,s3.1,RAM memory area separation,X
+,,,,,s3.2,Partitioning work areas on mass storage devices,X
+,,,,,s3.3,"CPU operation in ""protected mode""",X
+,,,,,s4,Reusing objects,X
+,,,,,s4.1,Erasing blocks or pages of memory before they are allocated to another program or data,X
+,,,,,s4.2,Erase disk blocks when a file is deleted or before they are allocated to a new file,X
+,,,,,s4.3,Deleting objects from a graphical environment before allocating them to another user,X
+,,,,,s4.4,Clearing the keyboard buffer or buffer containing the password after logging in,X
+,,,,,s4.5,Deleting work pages and display pages from a terminal,X
+,,,,,s4.6,Clearing the printer buffer,X
+,,,,,s4.7,Deleting or reassigning access to information entered/processed by a user who no longer works on the system,X
+,,,,,s9,"Implementation of ""discretionary access control""",X
+,,,,,s10,"Implementation of ""mandatory access control""",X
+M5,Trojan Horse Attack,V3,Uncontrolled changes to the application software,2,pr9,Software development/update control,
+,,,,,pr9.1,Setting the gold standard for software development,
+,,,,,pr9.2,"Maintain a log of software changes, implementations, and the reasons for those changes",
+,,,,,pr9.3,Definition of system security features,
+,,,,,pr9.4,Establish control measures to ensure that approval and verification procedures are not circumvented,
+,,,,,pr9.5,Assignment of authorized personnel to develop safety procedures,
+,,,,,pr9.6,Perform file access controls for analysts and programmers,
+,,,,,pr9.7,"Periodically check software libraries, verify correspondence between source programs and objects",
+,,,,,pr9.8,Functional tests on the correct functioning of safety procedures,
+,,,,,pr9.9,Functional testing of security procedure vulnerabilities,
+,,,,,pr9.10,Simulations of system errors that can reduce the effectiveness of the measures taken,
+,,,,,pr9.11,System Penetration Test,
+,,,,,pr9.12,"Identify all possible ""trap doors"" and use them to check the risk of penetration",
+,,,,,pr9.13,Formal demonstrations of how the software works,
+,,,,,pr22,Assigning access to application software and operating system according to need-to-know and qualification,
+,,,,,s9,"Implementation of ""discretionary access control""",X
+,,,,,s10,"Implementation of ""mandatory access control""",X
+,,V4,Failure to periodically check the procedures installed on the system,3,pr21,Hardware and software inventory,
+,,,,,pr26,Configuration Management,
+,,,,,pr26.1,Assigning a unique identifier to each entry,
+,,,,,pr26.2,Developing a Configuration Management Plan,
+,,,,,pr26.3,Recording all changes to a system's configuration,
+,,,,,pr26.4,Implementing a configuration control plan,
+,,,,,pr26.5,Life cycle assurance,
+,,,,,s7,Software for controlling system hardware/software configurations,X
+,,,,,s7.1,Central Processing Unit Configuration Control,X
+,,,,,s7.2,Check communication ports connected to the network,X
+,,,,,s11,Trusted path,X
+,,,,,s13,RAM resident application control program,X
+,,,,,s14,Antivirus applications,X
+,,,,,s14.1,Control of major operating system calls or specific malicious actions via TSR procedures,X
+,,,,,s14.2,"Programs for scanning files, identifying the virus strain, identifying the type of infection, deleting infected files",X
+,,V7,Untested software applications,2,pr9,Software development/update control,
+,,,,,pr9.1,Setting the gold standard for software development,
+,,,,,pr9.2,"Maintain a log of software changes, implementations, and the reasons for those changes",
+,,,,,pr9.3,Definition of system security features,
+,,,,,pr9.4,Establish control measures to ensure that approval and verification procedures are not circumvented,
+,,,,,pr9.5,Assignment of authorized personnel to develop safety procedures,
+,,,,,pr9.6,Perform file access controls for analysts and programmers,
+,,,,,pr9.7,"Periodically check software libraries, verify correspondence between source programs and objects",
+,,,,,pr9.8,Functional tests on the correct functioning of safety procedures,
+,,,,,pr9.9,Functional testing of security procedure vulnerabilities,
+,,,,,pr9.10,Simulations of system errors that can reduce the effectiveness of the measures taken,
+,,,,,pr9.11,System Penetration Test,
+,,,,,pr9.12,"Identify all possible ""trap doors"" and use them to check the risk of penetration",
+,,,,,pr9.13,Formal demonstrations of how the software works,
+,,V9,Non-existent logical access procedures,4,s1,Identification and authentication,X
+,,,,,s1.1,Password is not displayed on screen as you type,X
+,,,,,s1.2,The password is case sensitive.,X
+,,,,,s1.3,Password requires special characters,X
+,,,,,s1.4,Password must contain at least one numeric character,X
+,,,,,s1.5,Password must contain at least one alphabetic character,X
+,,,,,s1.6,The password must not contain more than three consecutive numbers or letters,X
+,,,,,s1.7,The password must not contain more than two consecutive identical numbers or letters,X
+,,,,,s1.8,New passwords must always be entered twice to verify correct typing.,X
+,,,,,s1.9,Encryption of passwords in transit on the network,X
+,,,,,s1.10,Encryption of passwords stored on the host,X
+,,,,,s1.11,Access blocked after n failed login attempts,X
+,,,,,s1.12,Time-limited access,X
+,,,,,s1.13,Viewing Last Login Messages,X
+,,,,,s1.14,Disabling system messages,X
+,,,,,s1.15,Periodic password change request,X
+,,,,,s1.16,Request for a different password from the previous one each time it is changed,X
+,,,,,s1.17,Creation of pronounceable passwords by the system,X
+,,,,,s1.18,Password expiration control,X
+,,,,,s1.19,Minimum password length assignment,X
+,,,,,s1.20,Consecutive request for multiple passwords after entering userid,X
+,,,,,s1.21,Check new user-generated passwords,X
+,,,,,s1.22,Stop requesting the userid for a certain period of time after n failed login attempts,X
+,,,,,s1.23,Identification of a user with a unique personal code,X
+,,,,,s1.24,Inactive terminals lock the screen or log off after a predetermined period of time,X
+,,,,,s1.25,Proxy account routing,X
+,,,,,s1.26,User account routing,X
+,,,,,s1.27,"The system does not warn the user that the userid is incorrect and still allows the password to be entered. After the password has been entered, it generically communicates that access has not been permitted",X
+,,,,,s9,"Implementation of ""discretionary access control""",X
+,,,,,s10,"Implementation of ""mandatory access control""",X
+,,V8,Inadequate logical access control,4,s1,Identification and authentication,X
+,,,,,s1.1,Password is not displayed on screen as you type,X
+,,,,,s1.2,The password is case sensitive.,X
+,,,,,s1.3,Password requires special characters,X
+,,,,,s1.4,Password must contain at least one numeric character,X
+,,,,,s1.5,Password must contain at least one alphabetic character,X
+,,,,,s1.6,The password must not contain more than three consecutive numbers or letters,X
+,,,,,s1.7,The password must not contain more than two consecutive identical numbers or letters,X
+,,,,,s1.8,New passwords must always be entered twice to verify correct typing.,X
+,,,,,s1.9,Encryption of passwords in transit on the network,X
+,,,,,s1.10,Encryption of passwords stored on the host,X
+,,,,,s1.11,Access blocked after n failed login attempts,X
+,,,,,s1.12,Time-limited access,X
+,,,,,s1.13,Viewing Last Login Messages,X
+,,,,,s1.14,Disabling system messages,X
+,,,,,s1.15,Periodic password change request,X
+,,,,,s1.16,Request for a different password from the previous one each time it is changed,X
+,,,,,s1.17,Creation of pronounceable passwords by the system,X
+,,,,,s1.18,Password expiration control,X
+,,,,,s1.19,Minimum password length assignment,X
+,,,,,s1.20,Consecutive request for multiple passwords after entering userid,X
+,,,,,s1.21,Check new user-generated passwords,X
+,,,,,s1.22,Stop requesting the userid for a certain period of time after n failed login attempts,X
+,,,,,s1.23,Identification of a user with a unique personal code,X
+,,,,,s1.24,Inactive terminals lock the screen or log off after a predetermined period of time,X
+,,,,,s1.25,Proxy account routing,X
+,,,,,s1.26,User account routing,X
+,,,,,s1.27,"The system does not warn the user that the userid is incorrect and still allows the password to be entered. After the password has been entered, it generically communicates that access has not been permitted",X
+,,,,,s9,"Implementation of ""discretionary access control""",X
+,,,,,s10,"Implementation of ""mandatory access control""",X
+,,V14,Inadequate supervision,1,s11,Trusted path,X
+,,,,,s12,Trusted recovery capability,X
+,,,,,s12.1,Restarting the system in single-user mode,X
+,,,,,s12.2,Recovering files that were active at the time of system failure,X
+,,,,,s12.3,Recovering damaged files using previously made backups,X
+,,,,,s12.4,"Check critical files, associated with passwords",X
+,,V16,Untrained staff,1,pe4,Staff training,
+,,,,,pe4.1,Test to assess the level of computer literacy of staff,
+,,,,,pe4.2,Internal course on the use of procedures based on tests carried out,
+,,,,,pe4.3,Final exams to evaluate the level of knowledge acquired,
+,,,,,pe4.4,Periodic knowledge checks,
+,,,,,pe4.5,Creation of working groups according to specific expertise,
+,,V23,Unauthorized software applications,2,pe3,Instructions on safety and personnel management,
+,,,,,pe3.1,Motivate staff to follow the company's safety policy,
+,,,,,pe3.2,Educate staff on possible threats and how to limit their extent by implementing mitigation measures.,
+,,,,,pe3.3,"Maintain constant attention to safety regulations by adopting posters, circular letters, educational videos",
+,,,,,pe3.4,Avoid situations of discontent on the part of employees,
+,,,,,pe3.5,Regularly review staff safety training,
+,,,,,pe3.6,Keep staff informed of safety news,
+,,,,,pe3.7,Maintain a climate of serenity within the company,
+,,,,,pe5,Establish a user support staff to perform security checks and provide assistance with security issues,
+,,,,,pr21,Hardware and software inventory,
+,,,,,pr22,Assigning access to application software and operating system according to need-to-know and qualification,
+,,,,,pr26,Configuration Management,
+,,,,,pr26.1,Assigning a unique identifier to each entry,
+,,,,,pr26.2,Developing a Configuration Management Plan,
+,,,,,pr26.3,Recording all changes to a system's configuration,
+,,,,,pr26.4,Implementing a configuration control plan,
+,,,,,pr26.5,Life cycle assurance,
+M6,Computer virus attack,V3,Uncontrolled changes to the application software,2,pr9,Software development/update control,
+,,,,,pr9.1,Setting the gold standard for software development,
+,,,,,pr9.2,"Maintain a log of software changes, implementations, and the reasons for those changes",
+,,,,,pr9.3,Definition of system security features,
+,,,,,pr9.4,Establish control measures to ensure that approval and verification procedures are not circumvented,
+,,,,,pr9.5,Assignment of authorized personnel to develop safety procedures,
+,,,,,pr9.6,Perform file access controls for analysts and programmers,
+,,,,,pr9.7,"Periodically check software libraries, verify correspondence between source programs and objects",
+,,,,,pr9.8,Functional tests on the correct functioning of safety procedures,
+,,,,,pr9.9,Functional testing of security procedure vulnerabilities,
+,,,,,pr9.10,Simulations of system errors that can reduce the effectiveness of the measures taken,
+,,,,,pr9.11,System Penetration Test,
+,,,,,pr9.12,"Identify all possible ""trap doors"" and use them to check the risk of penetration",
+,,,,,pr9.13,Formal demonstrations of how the software works,
+,,,,,pr22,Assigning access to application software and operating system according to need-to-know and qualification,
+,,,,,s9,"Implementation of ""discretionary access control""",X
+,,,,,s10,"Implementation of ""mandatory access control""",X
+,,V4,Failure to periodically check the procedures installed on the system,3,pr21,Hardware and software inventory,
+,,,,,pr26,Configuration Management,
+,,,,,pr26.1,Assigning a unique identifier to each entry,
+,,,,,pr26.2,Developing a Configuration Management Plan,
+,,,,,pr26.3,Recording all changes to a system's configuration,
+,,,,,pr26.4,Implementing a configuration control plan,
+,,,,,pr26.5,Life cycle assurance,
+,,,,,s7,Software for controlling system hardware/software configurations,X
+,,,,,s7.1,Central Processing Unit Configuration Control,X
+,,,,,s7.2,Check communication ports connected to the network,X
+,,,,,s11,Trusted path,X
+,,,,,s13,RAM resident application control program,X
+,,,,,s14,Antivirus applications,X
+,,,,,s14.1,Control of major operating system calls or specific malicious actions via TSR procedures,X
+,,,,,s14.2,"Programs for scanning files, identifying the virus strain, identifying the type of infection, deleting infected files",X
+,,V7,Untested software applications,2,pr9,Software development/update control,
+,,,,,pr9.1,Setting the gold standard for software development,
+,,,,,pr9.2,"Maintain a log of software changes, implementations, and the reasons for those changes",
+,,,,,pr9.3,Definition of system security features,
+,,,,,pr9.4,Establish control measures to ensure that approval and verification procedures are not circumvented,
+,,,,,pr9.5,Assignment of authorized personnel to develop safety procedures,
+,,,,,pr9.6,Perform file access controls for analysts and programmers,
+,,,,,pr9.7,"Periodically check software libraries, verify correspondence between source programs and objects",
+,,,,,pr9.8,Functional tests on the correct functioning of safety procedures,
+,,,,,pr9.9,Functional testing of security procedure vulnerabilities,
+,,,,,pr9.10,Simulations of system errors that can reduce the effectiveness of the measures taken,
+,,,,,pr9.11,System Penetration Test,
+,,,,,pr9.12,"Identify all possible ""trap doors"" and use them to check the risk of penetration",
+,,,,,pr9.13,Formal demonstrations of how the software works,
+,,V9,Non-existent logical access procedures,4,s1,Identification and authentication,X
+,,,,,s1.1,Password is not displayed on screen as you type,X
+,,,,,s1.2,The password is case sensitive.,X
+,,,,,s1.3,Password requires special characters,X
+,,,,,s1.4,Password must contain at least one numeric character,X
+,,,,,s1.5,Password must contain at least one alphabetic character,X
+,,,,,s1.6,The password must not contain more than three consecutive numbers or letters,X
+,,,,,s1.7,The password must not contain more than two consecutive identical numbers or letters,X
+,,,,,s1.8,New passwords must always be entered twice to verify correct typing.,X
+,,,,,s1.9,Encryption of passwords in transit on the network,X
+,,,,,s1.10,Encryption of passwords stored on the host,X
+,,,,,s1.11,Access blocked after n failed login attempts,X
+,,,,,s1.12,Time-limited access,X
+,,,,,s1.13,Viewing Last Login Messages,X
+,,,,,s1.14,Disabling system messages,X
+,,,,,s1.15,Periodic password change request,X
+,,,,,s1.16,Request for a different password from the previous one each time it is changed,X
+,,,,,s1.17,Creation of pronounceable passwords by the system,X
+,,,,,s1.18,Password expiration control,X
+,,,,,s1.19,Minimum password length assignment,X
+,,,,,s1.20,Consecutive request for multiple passwords after entering userid,X
+,,,,,s1.21,Check new user-generated passwords,X
+,,,,,s1.22,Stop requesting the userid for a certain period of time after n failed login attempts,X
+,,,,,s1.23,Identification of a user with a unique personal code,X
+,,,,,s1.24,Inactive terminals lock the screen or log off after a predetermined period of time,X
+,,,,,s1.25,Proxy account routing,X
+,,,,,s1.26,User account routing,X
+,,,,,s1.27,"The system does not warn the user that the userid is incorrect and still allows the password to be entered. After the password has been entered, it generically communicates that access has not been permitted",X
+,,,,,s9,"Implementation of ""discretionary access control""",X
+,,,,,s10,"Implementation of ""mandatory access control""",X
+,,V8,Inadequate logical access control,4,s1,Identification and authentication,X
+,,,,,s1.1,Password is not displayed on screen as you type,X
+,,,,,s1.2,The password is case sensitive.,X
+,,,,,s1.3,Password requires special characters,X
+,,,,,s1.4,Password must contain at least one numeric character,X
+,,,,,s1.5,Password must contain at least one alphabetic character,X
+,,,,,s1.6,The password must not contain more than three consecutive numbers or letters,X
+,,,,,s1.7,The password must not contain more than two consecutive identical numbers or letters,X
+,,,,,s1.8,New passwords must always be entered twice to verify correct typing.,X
+,,,,,s1.9,Encryption of passwords in transit on the network,X
+,,,,,s1.10,Encryption of passwords stored on the host,X
+,,,,,s1.11,Access blocked after n failed login attempts,X
+,,,,,s1.12,Time-limited access,X
+,,,,,s1.13,Viewing Last Login Messages,X
+,,,,,s1.14,Disabling system messages,X
+,,,,,s1.15,Periodic password change request,X
+,,,,,s1.16,Request for a different password from the previous one each time it is changed,X
+,,,,,s1.17,Creation of pronounceable passwords by the system,X
+,,,,,s1.18,Password expiration control,X
+,,,,,s1.19,Minimum password length assignment,X
+,,,,,s1.20,Consecutive request for multiple passwords after entering userid,X
+,,,,,s1.21,Check new user-generated passwords,X
+,,,,,s1.22,Stop requesting the userid for a certain period of time after n failed login attempts,X
+,,,,,s1.23,Identification of a user with a unique personal code,X
+,,,,,s1.24,Inactive terminals lock the screen or log off after a predetermined period of time,X
+,,,,,s1.25,Proxy account routing,X
+,,,,,s1.26,User account routing,X
+,,,,,s1.27,"The system does not warn the user that the userid is incorrect and still allows the password to be entered. After the password has been entered, it generically communicates that access has not been permitted",X
+,,,,,s9,"Implementation of ""discretionary access control""",X
+,,,,,s10,"Implementation of ""mandatory access control""",X
+,,V14,Inadequate supervision,1,s11,Trusted path,X
+,,,,,s12,Trusted recovery capability,X
+,,,,,s12.1,Restarting the system in single-user mode,X
+,,,,,s12.2,Recovering files that were active at the time of system failure,X
+,,,,,s12.3,Recovering damaged files using previously made backups,X
+,,,,,s12.4,"Check critical files, associated with passwords",X
+,,V16,Untrained staff,3,pe4,Staff training,
+,,,,,pe4.1,Test to assess the level of computer literacy of staff,
+,,,,,pe4.2,Internal course on the use of procedures based on tests carried out,
+,,,,,pe4.3,Final exams to evaluate the level of knowledge acquired,
+,,,,,pe4.4,Periodic knowledge checks,
+,,,,,pe4.5,Creation of working groups according to specific expertise,
+,,V23,Unauthorized software applications,2,pe3,Instructions on safety and personnel management,
+,,,,,pe3.1,Motivate staff to follow the company's safety policy,
+,,,,,pe3.2,Educate staff on possible threats and how to limit their extent by implementing mitigation measures.,
+,,,,,pe3.3,"Maintain constant attention to safety regulations by adopting posters, circular letters, educational videos",
+,,,,,pe3.4,Avoid situations of discontent on the part of employees,
+,,,,,pe3.5,Regularly review staff safety training,
+,,,,,pe3.6,Keep staff informed of safety news,
+,,,,,pe3.7,Maintain a climate of serenity within the company,
+,,,,,pe5,Establish a user support staff to perform security checks and provide assistance with security issues,
+,,,,,pr21,Hardware and software inventory,
+,,,,,pr22,Assigning access to application software and operating system according to need-to-know and qualification,
+,,,,,pr26,Configuration Management,
+,,,,,pr26.1,Assigning a unique identifier to each entry,
+,,,,,pr26.2,Developing a Configuration Management Plan,
+,,,,,pr26.3,Recording all changes to a system's configuration,
+,,,,,pr26.4,Implementing a configuration control plan,
+,,,,,pr26.5,Life cycle assurance,
+M7,Logic bombs,V3,Uncontrolled changes to the application software,2,pr9,Software development/update control,
+,,,,,pr9.1,Setting the gold standard for software development,
+,,,,,pr9.2,"Maintain a log of software changes, implementations, and the reasons for those changes",
+,,,,,pr9.3,Definition of system security features,
+,,,,,pr9.4,Establish control measures to ensure that approval and verification procedures are not circumvented,
+,,,,,pr9.5,Assignment of authorized personnel to develop safety procedures,
+,,,,,pr9.6,Perform file access controls for analysts and programmers,
+,,,,,pr9.7,"Periodically check software libraries, verify correspondence between source programs and objects",
+,,,,,pr9.8,Functional tests on the correct functioning of safety procedures,
+,,,,,pr9.9,Functional testing of security procedure vulnerabilities,
+,,,,,pr9.10,Simulations of system errors that can reduce the effectiveness of the measures taken,
+,,,,,pr9.11,System Penetration Test,
+,,,,,pr9.12,"Identify all possible ""trap doors"" and use them to check the risk of penetration",
+,,,,,pr9.13,Formal demonstrations of how the software works,
+,,,,,pr22,Assigning access to application software and operating system according to need-to-know and qualification,
+,,,,,s9,"Implementation of ""discretionary access control""",X
+,,,,,s10,"Implementation of ""mandatory access control""",X
+,,V4,Failure to periodically check the procedures installed on the system,3,pr21,Hardware and software inventory,
+,,,,,pr26,Configuration Management,
+,,,,,pr26.1,Assigning a unique identifier to each entry,
+,,,,,pr26.2,Developing a Configuration Management Plan,
+,,,,,pr26.3,Recording all changes to a system's configuration,
+,,,,,pr26.4,Implementing a configuration control plan,
+,,,,,pr26.5,Life cycle assurance,
+,,,,,s7,Software for controlling system hardware/software configurations,X
+,,,,,s7.1,Central Processing Unit Configuration Control,X
+,,,,,s7.2,Check communication ports connected to the network,X
+,,,,,s11,Trusted path,X
+,,,,,s13,RAM resident application control program,X
+,,,,,s14,Antivirus applications,X
+,,,,,s14.1,Control of major operating system calls or specific malicious actions via TSR procedures,X
+,,,,,s14.2,"Programs for scanning files, identifying the virus strain, identifying the type of infection, deleting infected files",X
+,,V7,Untested software applications,2,pr9,Software development/update control,
+,,,,,pr9.1,Setting the gold standard for software development,
+,,,,,pr9.2,"Maintain a log of software changes, implementations, and the reasons for those changes",
+,,,,,pr9.3,Definition of system security features,
+,,,,,pr9.4,Establish control measures to ensure that approval and verification procedures are not circumvented,
+,,,,,pr9.5,Assignment of authorized personnel to develop safety procedures,
+,,,,,pr9.6,Perform file access controls for analysts and programmers,
+,,,,,pr9.7,"Periodically check software libraries, verify correspondence between source programs and objects",
+,,,,,pr9.8,Functional tests on the correct functioning of safety procedures,
+,,,,,pr9.9,Functional testing of security procedure vulnerabilities,
+,,,,,pr9.10,Simulations of system errors that can reduce the effectiveness of the measures taken,
+,,,,,pr9.11,System Penetration Test,
+,,,,,pr9.12,"Identify all possible ""trap doors"" and use them to check the risk of penetration",
+,,,,,pr9.13,Formal demonstrations of how the software works,
+,,V9,Non-existent logical access procedures,4,s1,Identification and authentication,X
+,,,,,s1.1,Password is not displayed on screen as you type,X
+,,,,,s1.2,The password is case sensitive.,X
+,,,,,s1.3,Password requires special characters,X
+,,,,,s1.4,Password must contain at least one numeric character,X
+,,,,,s1.5,Password must contain at least one alphabetic character,X
+,,,,,s1.6,The password must not contain more than three consecutive numbers or letters,X
+,,,,,s1.7,The password must not contain more than two consecutive identical numbers or letters,X
+,,,,,s1.8,New passwords must always be entered twice to verify correct typing.,X
+,,,,,s1.9,Encryption of passwords in transit on the network,X
+,,,,,s1.10,Encryption of passwords stored on the host,X
+,,,,,s1.11,Access blocked after n failed login attempts,X
+,,,,,s1.12,Time-limited access,X
+,,,,,s1.13,Viewing Last Login Messages,X
+,,,,,s1.14,Disabling system messages,X
+,,,,,s1.15,Periodic password change request,X
+,,,,,s1.16,Request for a different password from the previous one each time it is changed,X
+,,,,,s1.17,Creation of pronounceable passwords by the system,X
+,,,,,s1.18,Password expiration control,X
+,,,,,s1.19,Minimum password length assignment,X
+,,,,,s1.20,Consecutive request for multiple passwords after entering userid,X
+,,,,,s1.21,Check new user-generated passwords,X
+,,,,,s1.22,Stop requesting the userid for a certain period of time after n failed login attempts,X
+,,,,,s1.23,Identification of a user with a unique personal code,X
+,,,,,s1.24,Inactive terminals lock the screen or log off after a predetermined period of time,X
+,,,,,s1.25,Proxy account routing,X
+,,,,,s1.26,User account routing,X
+,,,,,s1.27,"The system does not warn the user that the userid is incorrect and still allows the password to be entered. After the password has been entered, it generically communicates that access has not been permitted",X
+,,,,,s9,"Implementation of ""discretionary access control""",X
+,,,,,s10,"Implementation of ""mandatory access control""",X
+,,V8,Inadequate logical access control,4,s1,Identification and authentication,X
+,,,,,s1.1,Password is not displayed on screen as you type,X
+,,,,,s1.2,The password is case sensitive.,X
+,,,,,s1.3,Password requires special characters,X
+,,,,,s1.4,Password must contain at least one numeric character,X
+,,,,,s1.5,Password must contain at least one alphabetic character,X
+,,,,,s1.6,The password must not contain more than three consecutive numbers or letters,X
+,,,,,s1.7,The password must not contain more than two consecutive identical numbers or letters,X
+,,,,,s1.8,New passwords must always be entered twice to verify correct typing.,X
+,,,,,s1.9,Encryption of passwords in transit on the network,X
+,,,,,s1.10,Encryption of passwords stored on the host,X
+,,,,,s1.11,Access blocked after n failed login attempts,X
+,,,,,s1.12,Time-limited access,X
+,,,,,s1.13,Viewing Last Login Messages,X
+,,,,,s1.14,Disabling system messages,X
+,,,,,s1.15,Periodic password change request,X
+,,,,,s1.16,Request for a different password from the previous one each time it is changed,X
+,,,,,s1.17,Creation of pronounceable passwords by the system,X
+,,,,,s1.18,Password expiration control,X
+,,,,,s1.19,Minimum password length assignment,X
+,,,,,s1.20,Consecutive request for multiple passwords after entering userid,X
+,,,,,s1.21,Check new user-generated passwords,X
+,,,,,s1.22,Stop requesting the userid for a certain period of time after n failed login attempts,X
+,,,,,s1.23,Identification of a user with a unique personal code,X
+,,,,,s1.24,Inactive terminals lock the screen or log off after a predetermined period of time,X
+,,,,,s1.25,Proxy account routing,X
+,,,,,s1.26,User account routing,X
+,,,,,s1.27,"The system does not warn the user that the userid is incorrect and still allows the password to be entered. After the password has been entered, it generically communicates that access has not been permitted",X
+,,,,,s9,"Implementation of ""discretionary access control""",X
+,,,,,s10,"Implementation of ""mandatory access control""",X
+,,V14,Inadequate supervision,1,s11,Trusted path,X
+,,,,,s12,Trusted recovery capability,X
+,,,,,s12.1,Restarting the system in single-user mode,X
+,,,,,s12.2,Recovering files that were active at the time of system failure,X
+,,,,,s12.3,Recovering damaged files using previously made backups,X
+,,,,,s12.4,"Check critical files, associated with passwords",X
+,,V16,Untrained staff,3,pe4,Staff training,
+,,,,,pe4.1,Test to assess the level of computer literacy of staff,
+,,,,,pe4.2,Internal course on the use of procedures based on tests carried out,
+,,,,,pe4.3,Final exams to evaluate the level of knowledge acquired,
+,,,,,pe4.4,Periodic knowledge checks,
+,,,,,pe4.5,Creation of working groups according to specific expertise,
+,,V23,Unauthorized software applications,2,pe3,Instructions on safety and personnel management,
+,,,,,pe3.1,Motivate staff to follow the company's safety policy,
+,,,,,pe3.2,Educate staff on possible threats and how to limit their extent by implementing mitigation measures.,
+,,,,,pe3.3,"Maintain constant attention to safety regulations by adopting posters, circular letters, educational videos",
+,,,,,pe3.4,Avoid situations of discontent on the part of employees,
+,,,,,pe3.5,Regularly review staff safety training,
+,,,,,pe3.6,Keep staff informed of safety news,
+,,,,,pe3.7,Maintain a climate of serenity within the company,
+,,,,,pe5,Establish a user support staff to perform security checks and provide assistance with security issues,
+,,,,,pr21,Hardware and software inventory,
+,,,,,pr22,Assigning access to application software and operating system according to need-to-know and qualification,
+,,,,,pr26,Configuration Management,
+,,,,,pr26.1,Assigning a unique identifier to each entry,
+,,,,,pr26.2,Developing a Configuration Management Plan,
+,,,,,pr26.3,Recording all changes to a system's configuration,
+,,,,,pr26.4,Implementing a configuration control plan,
+,,,,,pr26.5,Life cycle assurance,
+M8,Lightning strike,V34,System not protected from lightning,2,h14,Lightning Protection,X
+,,,,,h14.1,Lightning rods,X
+,,,,,h14.2,Presence of the land line,X
+,,V12,Untested emergency procedures,1,pr6,Emergency plan,
+,,,,,pr6.1,Procedure manual to be provided to the personnel in charge,
+,,,,,pr6.2,Placement of emergency procedure summary tables (including emergency and management telephone numbers),
+,,,,,pr6.3,Establish rules to verify that an emergency situation actually exists,
+,,,,,pr6.4,Procedure for recovering damaged data,
+,,,,,pr6.5,Presence of a checklist for emergency procedures,
+,,,,,pr6.6,Procedures for repairing or replacing malfunctioning or defective hardware,
+,,,,,pr6.7,Emergency data deletion/destruction procedures,
+,,,,,pr6.8,Locking backups in fireproof safes,
+,,,,,pr6.9,Obligation to contact the Security Officer,
+,,,,,pr6.10,Obligation to contact any external support services,
+,,,,,pr6.11,"Computer shutdown plan, air conditioning systems, electrical systems",
+,,,,,pr6.12,"Periodic review of the emergency plan, with any updates or changes",
+,,,,,pr6.13,Test and simulate emergency procedures at least once every six months,
+M9,Searching through the garbage,V24,Abandoned waste material,2,pe3,Instructions on safety and personnel management,
+,,,,,pe3.1,Motivate staff to follow the company's safety policy,
+,,,,,pe3.2,Educate staff on possible threats and how to limit their extent by implementing mitigation measures.,
+,,,,,pe3.3,"Maintain constant attention to safety regulations by adopting posters, circular letters, educational videos",
+,,,,,pe3.4,Avoid situations of discontent on the part of employees,
+,,,,,pe3.5,Regularly review staff safety training,
+,,,,,pe3.6,Keep staff informed of safety news,
+,,,,,pe3.7,Maintain a climate of serenity within the company,
+,,,,,pe5,Establish a user support staff to perform security checks and provide assistance with security issues,
+,,,,,pr4,"Checking waste collection containers to see if they contain objects (documents, disks, tapes, etc.) that may contain data",
+,,V15,Ignorance of safety procedures,2,pe3,Instructions on safety and personnel management,
+,,,,,pe3.1,Motivate staff to follow the company's safety policy,
+,,,,,pe3.2,Educate staff on possible threats and how to limit their extent by implementing mitigation measures.,
+,,,,,pe3.3,"Maintain constant attention to safety regulations by adopting posters, circular letters, educational videos",
+,,,,,pe3.4,Avoid situations of discontent on the part of employees,
+,,,,,pe3.5,Regularly review staff safety training,
+,,,,,pe3.6,Keep staff informed of safety news,
+,,,,,pe3.7,Maintain a climate of serenity within the company,
+M10,Covert storage channel,V3,Uncontrolled changes to the application software,2,pr9,Software development/update control,
+,,,,,pr9.1,Setting the gold standard for software development,
+,,,,,pr9.2,"Maintain a log of software changes, implementations, and the reasons for those changes",
+,,,,,pr9.3,Definition of system security features,
+,,,,,pr9.4,Establish control measures to ensure that approval and verification procedures are not circumvented,
+,,,,,pr9.5,Assignment of authorized personnel to develop safety procedures,
+,,,,,pr9.6,Perform file access controls for analysts and programmers,
+,,,,,pr9.7,"Periodically check software libraries, verify correspondence between source programs and objects",
+,,,,,pr9.8,Functional tests on the correct functioning of safety procedures,
+,,,,,pr9.9,Functional testing of security procedure vulnerabilities,
+,,,,,pr9.10,Simulations of system errors that can reduce the effectiveness of the measures taken,
+,,,,,pr9.11,System Penetration Test,
+,,,,,pr9.12,"Identify all possible ""trap doors"" and use them to check the risk of penetration",
+,,,,,pr9.13,Formal demonstrations of how the software works,
+,,,,,pr22,Assigning access to application software and operating system according to need-to-know and qualification,
+,,,,,s9,"Implementation of ""discretionary access control""",X
+,,,,,s10,"Implementation of ""mandatory access control""",X
+,,V7,Untested software applications,2,pr9,Software development/update control,
+,,,,,pr9.1,Setting the gold standard for software development,
+,,,,,pr9.2,"Maintain a log of software changes, implementations, and the reasons for those changes",
+,,,,,pr9.3,Definition of system security features,
+,,,,,pr9.4,Establish control measures to ensure that approval and verification procedures are not circumvented,
+,,,,,pr9.5,Assignment of authorized personnel to develop safety procedures,
+,,,,,pr9.6,Perform file access controls for analysts and programmers,
+,,,,,pr9.7,"Periodically check software libraries, verify correspondence between source programs and objects",
+,,,,,pr9.8,Functional tests on the correct functioning of safety procedures,
+,,,,,pr9.9,Functional testing of security procedure vulnerabilities,
+,,,,,pr9.10,Simulations of system errors that can reduce the effectiveness of the measures taken,
+,,,,,pr9.11,System Penetration Test,
+,,,,,pr9.12,"Identify all possible ""trap doors"" and use them to check the risk of penetration",
+,,,,,pr9.13,Formal demonstrations of how the software works,
+,,V23,Unauthorized software applications,2,pe3,Instructions on safety and personnel management,
+,,,,,pe3.1,Motivate staff to follow the company's safety policy,
+,,,,,pe3.2,Educate staff on possible threats and how to limit their extent by implementing mitigation measures.,
+,,,,,pe3.3,"Maintain constant attention to safety regulations by adopting posters, circular letters, educational videos",
+,,,,,pe3.4,Avoid situations of discontent on the part of employees,
+,,,,,pe3.5,Regularly review staff safety training,
+,,,,,pe3.6,Keep staff informed of safety news,
+,,,,,pe3.7,Maintain a climate of serenity within the company,
+,,,,,pe5,Establish a user support staff to perform security checks and provide assistance with security issues,
+,,,,,pr21,Hardware and software inventory,
+,,,,,pr22,Assigning access to application software and operating system according to need-to-know and qualification,
+,,,,,pr26,Configuration Management,
+,,,,,pr26.1,Assigning a unique identifier to each entry,
+,,,,,pr26.2,Developing a Configuration Management Plan,
+,,,,,pr26.3,Recording all changes to a system's configuration,
+,,,,,pr26.4,Implementing a configuration control plan,
+,,,,,pr26.5,Life cycle assurance,
+,,V4,Failure to periodically check the procedures installed on the system,3,pr21,Hardware and software inventory,
+,,,,,pr26,Configuration Management,
+,,,,,pr26.1,Assigning a unique identifier to each entry,
+,,,,,pr26.2,Developing a Configuration Management Plan,
+,,,,,pr26.3,Recording all changes to a system's configuration,
+,,,,,pr26.4,Implementing a configuration control plan,
+,,,,,pr26.5,Life cycle assurance,
+,,,,,s7,Software for controlling system hardware/software configurations,X
+,,,,,s7.1,Central Processing Unit Configuration Control,X
+,,,,,s7.2,Check communication ports connected to the network,X
+,,,,,s11,Trusted path,X
+,,,,,s13,RAM resident application control program,X
+,,,,,s14,Antivirus applications,X
+,,,,,s14.1,Control of major operating system calls or specific malicious actions via TSR procedures,X
+,,,,,s14.2,"Programs for scanning files, identifying the virus strain, identifying the type of infection, deleting infected files",X
+,,V20,Lack of software to control hardware configurations,1,pr26,Configuration Management,
+,,,,,pr26.1,Assigning a unique identifier to each entry,
+,,,,,pr26.2,Developing a Configuration Management Plan,
+,,,,,pr26.3,Recording all changes to a system's configuration,
+,,,,,pr26.4,Implementing a configuration control plan,
+,,,,,pr26.5,Life cycle assurance,
+,,V36,No control over system clock,1,s5,"Software for the identification and analysis of ""covert channels""",X
+,,,,,s5.2,Covert Timing Channel Analysis,X
+,,,,,s5.3,Access to the system clock is not allowed,X
+M11,Covert timing channel,V3,Uncontrolled changes to the application software,2,pr9,Software development/update control,
+,,,,,pr9.1,Setting the gold standard for software development,
+,,,,,pr9.2,"Maintain a log of software changes, implementations, and the reasons for those changes",
+,,,,,pr9.3,Definition of system security features,
+,,,,,pr9.4,Establish control measures to ensure that approval and verification procedures are not circumvented,
+,,,,,pr9.5,Assignment of authorized personnel to develop safety procedures,
+,,,,,pr9.6,Perform file access controls for analysts and programmers,
+,,,,,pr9.7,"Periodically check software libraries, verify correspondence between source programs and objects",
+,,,,,pr9.8,Functional tests on the correct functioning of safety procedures,
+,,,,,pr9.9,Functional testing of security procedure vulnerabilities,
+,,,,,pr9.10,Simulations of system errors that can reduce the effectiveness of the measures taken,
+,,,,,pr9.11,System Penetration Test,
+,,,,,pr9.12,"Identify all possible ""trap doors"" and use them to check the risk of penetration",
+,,,,,pr9.13,Formal demonstrations of how the software works,
+,,,,,pr22,Assigning access to application software and operating system according to need-to-know and qualification,
+,,,,,s9,"Implementation of ""discretionary access control""",X
+,,,,,s10,"Implementation of ""mandatory access control""",X
+,,V7,Untested software applications,2,pr9,Software development/update control,
+,,,,,pr9.1,Setting the gold standard for software development,
+,,,,,pr9.2,"Maintain a log of software changes, implementations, and the reasons for those changes",
+,,,,,pr9.3,Definition of system security features,
+,,,,,pr9.4,Establish control measures to ensure that approval and verification procedures are not circumvented,
+,,,,,pr9.5,Assignment of authorized personnel to develop safety procedures,
+,,,,,pr9.6,Perform file access controls for analysts and programmers,
+,,,,,pr9.7,"Periodically check software libraries, verify correspondence between source programs and objects",
+,,,,,pr9.8,Functional tests on the correct functioning of safety procedures,
+,,,,,pr9.9,Functional testing of security procedure vulnerabilities,
+,,,,,pr9.10,Simulations of system errors that can reduce the effectiveness of the measures taken,
+,,,,,pr9.11,System Penetration Test,
+,,,,,pr9.12,"Identify all possible ""trap doors"" and use them to check the risk of penetration",
+,,,,,pr9.13,Formal demonstrations of how the software works,
+,,V23,Unauthorized software applications,2,pe3,Instructions on safety and personnel management,
+,,,,,pe3.1,Motivate staff to follow the company's safety policy,
+,,,,,pe3.2,Educate staff on possible threats and how to limit their extent by implementing mitigation measures.,
+,,,,,pe3.3,"Maintain constant attention to safety regulations by adopting posters, circular letters, educational videos",
+,,,,,pe3.4,Avoid situations of discontent on the part of employees,
+,,,,,pe3.5,Regularly review staff safety training,
+,,,,,pe3.6,Keep staff informed of safety news,
+,,,,,pe3.7,Maintain a climate of serenity within the company,
+,,,,,pe5,Establish a user support staff to perform security checks and provide assistance with security issues,
+,,,,,pr21,Hardware and software inventory,
+,,,,,pr22,Assigning access to application software and operating system according to need-to-know and qualification,
+,,,,,pr26,Configuration Management,
+,,,,,pr26.1,Assigning a unique identifier to each entry,
+,,,,,pr26.2,Developing a Configuration Management Plan,
+,,,,,pr26.3,Recording all changes to a system's configuration,
+,,,,,pr26.4,Implementing a configuration control plan,
+,,,,,pr26.5,Life cycle assurance,
+,,V4,Failure to periodically check the procedures installed on the system,3,pr21,Hardware and software inventory,
+,,,,,pr26,Configuration Management,
+,,,,,pr26.1,Assigning a unique identifier to each entry,
+,,,,,pr26.2,Developing a Configuration Management Plan,
+,,,,,pr26.3,Recording all changes to a system's configuration,
+,,,,,pr26.4,Implementing a configuration control plan,
+,,,,,pr26.5,Life cycle assurance,
+,,,,,s7,Software for controlling system hardware/software configurations,X
+,,,,,s7.1,Central Processing Unit Configuration Control,X
+,,,,,s7.2,Check communication ports connected to the network,X
+,,,,,s11,Trusted path,X
+,,,,,s13,RAM resident application control program,X
+,,,,,s14,Antivirus applications,X
+,,,,,s14.1,Control of major operating system calls or specific malicious actions via TSR procedures,X
+,,,,,s14.2,"Programs for scanning files, identifying the virus strain, identifying the type of infection, deleting infected files",X
+,,V20,Lack of software to control hardware configurations,1,pr26,Configuration Management,
+,,,,,pr26.1,Assigning a unique identifier to each entry,
+,,,,,pr26.2,Developing a Configuration Management Plan,
+,,,,,pr26.3,Recording all changes to a system's configuration,
+,,,,,pr26.4,Implementing a configuration control plan,
+,,,,,pr26.5,Life cycle assurance,
+,,V36,No control over system clock,1,s5,"Software for the identification and analysis of ""covert channels""",X
+,,,,,s5.2,Covert Timing Channel Analysis,X
+,,,,,s5.3,Access to the system clock is not allowed,X
+M12,Accidental damage to media,V31,Hardware devices that are not physically locked,1,h11,Physical system lock,X
+,,,,,h11.1,System anchored on supports,X
+,,,,,h11.2,Steel cable anchored system,X
+,,V16,Untrained staff,3,pe4,Staff training,
+,,,,,pe4.1,Test to assess the level of computer literacy of staff,
+,,,,,pe4.2,Internal course on the use of procedures based on tests carried out,
+,,,,,pe4.3,Final exams to evaluate the level of knowledge acquired,
+,,,,,pe4.4,Periodic knowledge checks,
+,,,,,pe4.5,Creation of working groups according to specific expertise,
+,,V18,Improper manipulation of mass storage devices,2,pr1,Procedures for backing up software and data,
+,,,,,pr1.1,Backup plan,
+,,,,,pr1.2,Rotating the memories used for backups,
+,,,,,pr1.3,Backup done at the end of the day,
+,,,,,pr1.4,Assignment of responsibilities and tasks,
+,,,,,pr1.5,Creating multiple copies,
+,,,,,pr1.6,Documentation relating to copies,
+,,,,,pr6,Emergency plan,
+,,,,,pr6.1,Procedure manual to be provided to the personnel in charge,
+,,,,,pr6.2,Placement of emergency procedure summary tables (including emergency and management telephone numbers),
+,,,,,pr6.3,Establish rules to verify that an emergency situation actually exists,
+,,,,,pr6.4,Procedure for recovering damaged data,
+,,,,,pr6.5,Presence of a checklist for emergency procedures,
+,,,,,pr6.6,Procedures for repairing or replacing malfunctioning or defective hardware,
+,,,,,pr6.7,Emergency data deletion/destruction procedures,
+,,,,,pr6.8,Locking backups in fireproof safes,
+,,,,,pr6.9,Obligation to contact the Security Officer,
+,,,,,pr6.10,Obligation to contact any external support services,
+,,,,,pr6.11,"Computer shutdown plan, air conditioning systems, electrical systems",
+,,,,,pr6.12,"Periodic review of the emergency plan, with any updates or changes",
+,,,,,pr6.13,Test and simulate emergency procedures at least once every six months,
+M13,Destruction of the CED area,V38,System not protected from explosions,1,f4,Installation of equipment away from external perimeter walls,
+,,,,,f5,"Construction of external walls of the CED in solid building structures (reinforced concrete, solid bricks, double-layer perforated bricks) capable of withstanding medium-violence explosions",
+,,V12,Untested emergency procedures,1,pr6,Emergency plan,
+,,,,,pr6.1,Procedure manual to be provided to the personnel in charge,
+,,,,,pr6.2,Placement of emergency procedure summary tables (including emergency and management telephone numbers),
+,,,,,pr6.3,Establish rules to verify that an emergency situation actually exists,
+,,,,,pr6.4,Procedure for recovering damaged data,
+,,,,,pr6.5,Presence of a checklist for emergency procedures,
+,,,,,pr6.6,Procedures for repairing or replacing malfunctioning or defective hardware,
+,,,,,pr6.7,Emergency data deletion/destruction procedures,
+,,,,,pr6.8,Locking backups in fireproof safes,
+,,,,,pr6.9,Obligation to contact the Security Officer,
+,,,,,pr6.10,Obligation to contact any external support services,
+,,,,,pr6.11,"Computer shutdown plan, air conditioning systems, electrical systems",
+,,,,,pr6.12,"Periodic review of the emergency plan, with any updates or changes",
+,,,,,pr6.13,Test and simulate emergency procedures at least once every six months,
+M14,Accidental error,V16,Untrained staff,3,pe4,Staff training,
+,,,,,pe4.1,Test to assess the level of computer literacy of staff,
+,,,,,pe4.2,Internal course on the use of procedures based on tests carried out,
+,,,,,pe4.3,Final exams to evaluate the level of knowledge acquired,
+,,,,,pe4.4,Periodic knowledge checks,
+,,,,,pe4.5,Creation of working groups according to specific expertise,
+,,V14,Inadequate supervision,1,s11,Trusted path,X
+,,,,,s12,Trusted recovery capability,X
+,,,,,s12.1,Restarting the system in single-user mode,X
+,,,,,s12.2,Recovering files that were active at the time of system failure,X
+,,,,,s12.3,Recovering damaged files using previously made backups,X
+,,,,,s12.4,"Check critical files, associated with passwords",X
+,,V15,Ignorance of safety procedures,2,pe3,Instructions on safety and personnel management,
+,,,,,pe3.1,Motivate staff to follow the company's safety policy,
+,,,,,pe3.2,Educate staff on possible threats and how to limit their extent by implementing mitigation measures.,
+,,,,,pe3.3,"Maintain constant attention to safety regulations by adopting posters, circular letters, educational videos",
+,,,,,pe3.4,Avoid situations of discontent on the part of employees,
+,,,,,pe3.5,Regularly review staff safety training,
+,,,,,pe3.6,Keep staff informed of safety news,
+,,,,,pe3.7,Maintain a climate of serenity within the company,
+,,V6,Insufficient error detection,2,pr9.3,Definition of system security features,
+,,,,,pr9.8,Functional tests on the correct functioning of safety procedures,
+,,,,,pr9.13,Formal demonstrations of how the software works,
+,,,,,pr30,Continuous availability of technical and support staff,
+,,V11,Errors in programs,2,pr9,Software development/update control,
+,,,,,pr28,Validation/certification of new software,
+,,V10,Incorrect input/output procedures,2,pr1,Procedures for backing up software and data,
+,,,,,pr1.1,Backup plan,
+,,,,,pr1.2,Rotating the memories used for backups,
+,,,,,pr1.3,Backup done at the end of the day,
+,,,,,pr1.4,Assignment of responsibilities and tasks,
+,,,,,pr1.5,Creating multiple copies,
+,,,,,pr1.6,Documentation relating to copies,
+M15,Physical theft of media,V31,Hardware devices that are not physically locked,1,h11,Physical system lock,X
+,,,,,h11.1,System anchored on supports,X
+,,,,,h11.2,Steel cable anchored system,X
+,,V32,Inadequate access control to the CED area,13,f7,Physical access control,
+,,,,,f7.1,Checkpoint at the main entrance,
+,,,,,f7.2,Checkpoint at secondary entrances,
+,,,,,f7.3,Checkpoint at individual floors or offices,
+,,,,,f7.4,Bars on the windows,
+,,,,,f7.5,Armored doors,
+,,,,,f7.6,Combination locks,
+,,,,,f7.7,Anti-throw grates,
+,,,,,f7.8,Vents and ventilation paths narrow enough to prevent intruders from passing through,
+,,,,,f7.9,Installation of devices on the locks of panic doors of emergency exits that activate an alarm in the event of opening,
+,,,,,f7.10,Lack of windows in the CED area,
+,,,,,f7.11,Via badge reader,
+,,,,,f7.12,Via microprocessor board,
+,,,,,f7.13,Via identification code on keyboard,
+,,,,,f7.14,Via a card with visible barcode,
+,,,,,h12,Biometric recognition,X
+,,,,,h12.1,Retina Reading,X
+,,,,,h12.2,Fingerprint reading,X
+,,,,,h12.3,Hand shape reading,X
+,,,,,h12.4,Voice Print Recognition,X
+,,,,,h12.5,Signature recognition,X
+,,,,,pe8,Personal recognition of employees,
+,,,,,pe8.1,"Assignment to authorized personnel of a badge with photograph, personal data and identification code",
+,,,,,pe8.2,Periodic inspection of the times and names of those who have access to restricted areas,
+,,,,,pe9,Accompaniment of all visitors,
+,,,,,pe9.1,Visitors must leave an identity document at the checkpoint,
+,,,,,pe9.2,Visitors are picked up by the staff and accompanied to the destination office,
+,,,,,pe9.3,Presence of a visitor log,
+,,,,,pe9.4,"Numbered pass release with ""Visitor"" indication",
+,,,,,pe9.5,Visitors are never left alone or free to roam the offices unaccompanied.,
+,,,,,pe9.6,Visitors are escorted back to the exit by the staff,
+,,,,,pe10,Surveillance staff present after working hours,
+,,,,,pe10.1,24/7 duty shifts,
+,,,,,pe10.2,Attendance shifts,
+,,,,,pe10.3,Armed surveillance,
+,,,,,pe10.4,Checking the premises and closing the doors and windows,
+M16,Fire,V26,Inadequate fire protection,7,f1,"CED area isolation, with separate location, to minimize damage from water or fire",
+,,,,,f3,Arrangement of main CED area not higher than third floor/level for easy access in case of fire,
+,,,,,f8,Environmental parameter control,
+,,,,,f8.1,Smoke control via sensors positioned in areas with air flow,
+,,,,,f8.2,Fire control via sensors placed in areas with air flow,
+,,,,,f8.3,Connection of fire sensors to the fire brigade control centre or to internal surveillance personnel,
+,,,,,f8.5,Temperature control,
+,,,,,f8.6,Humidity control,
+,,,,,f8.7,Audible and visual alarm in case of fire or flood,
+,,,,,f11,Fire safety measures,
+,,,,,f11.1,Smoking ban,
+,,,,,f11.2,System with Halon 1301 gas or alternative,
+,,,,,f11.3,System with Halon 1211 gas or alternative,
+,,,,,f11.4,CO2 systems,
+,,,,,f11.5,Liquid systems,
+,,,,,f11.6,Manual fire extinguishers,
+,,,,,f11.7,Fire doors,
+,,,,,f11.8,Fireproof safes,
+,,,,,f11.9,Separation of the data processing area from nearby offices with walls approved for fire resistance of no less than one hour,
+,,,,,f11.10,Extension of fire resistant walls from floor structure to ceiling structure,
+,,,,,f11.11,"Use of proven fire-resistant material for suspended floors, false ceilings and furnishings of the CED",
+,,,,,f11.12,Fire barriers inside the ventilation ducts of the air conditioning system,
+,,V28,Inadequate high temperature protection,1,f8,Environmental parameter control,
+,,,,,f8.5,Temperature control,
+,,,,,f8.6,Humidity control,
+,,,,,f13,Air conditioning equipment,
+,,,,,f13.1,Maintain humidity at levels established by technical specifications,
+,,,,,f13.2,Maintaining temperatures at levels established by technical specifications,
+,,V12,Untested emergency procedures,1,pr6,Emergency plan,
+,,,,,pr6.1,Procedure manual to be provided to the personnel in charge,
+,,,,,pr6.2,Placement of emergency procedure summary tables (including emergency and management telephone numbers),
+,,,,,pr6.3,Establish rules to verify that an emergency situation actually exists,
+,,,,,pr6.4,Procedure for recovering damaged data,
+,,,,,pr6.5,Presence of a checklist for emergency procedures,
+,,,,,pr6.6,Procedures for repairing or replacing malfunctioning or defective hardware,
+,,,,,pr6.7,Emergency data deletion/destruction procedures,
+,,,,,pr6.8,Locking backups in fireproof safes,
+,,,,,pr6.9,Obligation to contact the Security Officer,
+,,,,,pr6.10,Obligation to contact any external support services,
+,,,,,pr6.11,"Computer shutdown plan, air conditioning systems, electrical systems",
+,,,,,pr6.12,"Periodic review of the emergency plan, with any updates or changes",
+,,,,,pr6.13,Test and simulate emergency procedures at least once every six months,
+M17,Entering false information,V10,Incorrect input/output procedures,2,pr1,Procedures for backing up software and data,
+,,,,,pr1.1,Backup plan,
+,,,,,pr1.2,Rotating the memories used for backups,
+,,,,,pr1.3,Backup done at the end of the day,
+,,,,,pr1.4,Assignment of responsibilities and tasks,
+,,,,,pr1.5,Creating multiple copies,
+,,,,,pr1.6,Documentation relating to copies,
+,,V14,Inadequate supervision,1,s11,Trusted path,X
+,,,,,s12,Trusted recovery capability,X
+,,,,,s12.1,Restarting the system in single-user mode,X
+,,,,,s12.2,Recovering files that were active at the time of system failure,X
+,,,,,s12.3,Recovering damaged files using previously made backups,X
+,,,,,s12.4,"Check critical files, associated with passwords",X
+,,V16,Untrained staff,3,pe4,Staff training,
+,,,,,pe4.1,Test to assess the level of computer literacy of staff,
+,,,,,pe4.2,Internal course on the use of procedures based on tests carried out,
+,,,,,pe4.3,Final exams to evaluate the level of knowledge acquired,
+,,,,,pe4.4,Periodic knowledge checks,
+,,,,,pe4.5,Creation of working groups according to specific expertise,
+M18,Interception and espionage,V1,Communication channels not adequately protected,1,f9,COMSEC Measures,
+,,,,,f9.1,TEMPEST Devices,
+,,,,,f9.2,Encryption devices,
+,,,,,f9.3,Screened rooms,
+,,,,,f9.4,COMSEC Regulatory Enforcement,
+M19,Electromagnetic interference,V1,Communication channels not adequately protected,1,f9,COMSEC Measures,
+,,,,,f9.1,TEMPEST Devices,
+,,,,,f9.2,Encryption devices,
+,,,,,f9.3,Screened rooms,
+,,,,,f9.4,COMSEC Regulatory Enforcement,
+,,V19,Changing system hardware configuration,1,pr21,Hardware and software inventory,
+,,,,,pr26,Configuration Management,
+,,,,,pr26.1,Assigning a unique identifier to each entry,
+,,,,,pr26.2,Developing a Configuration Management Plan,
+,,,,,pr26.3,Recording all changes to a system's configuration,
+,,,,,pr26.4,Implementing a configuration control plan,
+,,,,,pr26.5,Life cycle assurance,
+,,,,,s8,Software for controlling hardware operation,X
+,,,,,s8.1,CPU Operation Check,X
+,,,,,s8.2,CPU Usage Monitoring,X
+,,,,,s8.3,Monitor system memory usage,X
+,,,,,s8.4,Disk Activity Monitor,X
+,,,,,s8.5,Network activity and traffic monitoring,X
+,,,,,s8.6,Compiling network activity statistics,X
+,,,,,s8.7,System Disk Performance Check,X
+,,,,,s8.8,Remote systems monitoring,X
+,,,,,s8.9,Software for UPS management and server shutdown even in the absence of the system administrator,X
+,,,,,s8.10,Hardware diagnostic software,X
+,,V37,Hardware device malfunction,1,s8,Software for controlling hardware operation,X
+,,,,,s8.1,CPU Operation Check,X
+,,,,,s8.2,CPU Usage Monitoring,X
+,,,,,s8.3,Monitor system memory usage,X
+,,,,,s8.4,Disk Activity Monitor,X
+,,,,,s8.5,Network activity and traffic monitoring,X
+,,,,,s8.6,Compiling network activity statistics,X
+,,,,,s8.7,System Disk Performance Check,X
+,,,,,s8.8,Remote systems monitoring,X
+,,,,,s8.9,Software for UPS management and server shutdown even in the absence of the system administrator,X
+,,,,,s8.10,Hardware diagnostic software,X
+,,,,,s12,Trusted recovery capability,X
+,,,,,s12.1,Restarting the system in single-user mode,X
+,,,,,s12.2,Recovering files that were active at the time of system failure,X
+,,,,,s12.3,Recovering damaged files using previously made backups,X
+,,,,,s12.4,"Check critical files, associated with passwords",X
+,,V30,Electromagnetic emanations,1,f9,COMSEC Measures,
+,,,,,f9.1,TEMPEST Devices,
+,,,,,f9.2,Encryption devices,
+,,,,,f9.3,Screened rooms,
+,,,,,f9.4,COMSEC Regulatory Enforcement,
+M20,Service interruption,V7,Untested software applications,2,pr9,Software development/update control,
+,,,,,pr9.1,Setting the gold standard for software development,
+,,,,,pr9.2,"Maintain a log of software changes, implementations, and the reasons for those changes",
+,,,,,pr9.3,Definition of system security features,
+,,,,,pr9.4,Establish control measures to ensure that approval and verification procedures are not circumvented,
+,,,,,pr9.5,Assignment of authorized personnel to develop safety procedures,
+,,,,,pr9.6,Perform file access controls for analysts and programmers,
+,,,,,pr9.7,"Periodically check software libraries, verify correspondence between source programs and objects",
+,,,,,pr9.8,Functional tests on the correct functioning of safety procedures,
+,,,,,pr9.9,Functional testing of security procedure vulnerabilities,
+,,,,,pr9.10,Simulations of system errors that can reduce the effectiveness of the measures taken,
+,,,,,pr9.11,System Penetration Test,
+,,,,,pr9.12,"Identify all possible ""trap doors"" and use them to check the risk of penetration",
+,,,,,pr9.13,Formal demonstrations of how the software works,
+,,V23,Unauthorized software applications,2,pe3,Instructions on safety and personnel management,
+,,,,,pe3.1,Motivate staff to follow the company's safety policy,
+,,,,,pe3.2,Educate staff on possible threats and how to limit their extent by implementing mitigation measures.,
+,,,,,pe3.3,"Maintain constant attention to safety regulations by adopting posters, circular letters, educational videos",
+,,,,,pe3.4,Avoid situations of discontent on the part of employees,
+,,,,,pe3.5,Regularly review staff safety training,
+,,,,,pe3.6,Keep staff informed of safety news,
+,,,,,pe3.7,Maintain a climate of serenity within the company,
+,,,,,pe5,Establish a user support staff to perform security checks and provide assistance with security issues,
+,,,,,pr21,Hardware and software inventory,
+,,,,,pr22,Assigning access to application software and operating system according to need-to-know and qualification,
+,,,,,pr26,Configuration Management,
+,,,,,pr26.1,Assigning a unique identifier to each entry,
+,,,,,pr26.2,Developing a Configuration Management Plan,
+,,,,,pr26.3,Recording all changes to a system's configuration,
+,,,,,pr26.4,Implementing a configuration control plan,
+,,,,,pr26.5,Life cycle assurance,
+,,V14,Inadequate supervision,1,s11,Trusted path,X
+,,,,,s12,Trusted recovery capability,X
+,,,,,s12.1,Restarting the system in single-user mode,X
+,,,,,s12.2,Recovering files that were active at the time of system failure,X
+,,,,,s12.3,Recovering damaged files using previously made backups,X
+,,,,,s12.4,"Check critical files, associated with passwords",X
+M21,Masking,V14,Inadequate supervision,1,s11,Trusted path,X
+,,,,,s12,Trusted recovery capability,X
+,,,,,s12.1,Restarting the system in single-user mode,X
+,,,,,s12.2,Recovering files that were active at the time of system failure,X
+,,,,,s12.3,Recovering damaged files using previously made backups,X
+,,,,,s12.4,"Check critical files, associated with passwords",X
+,,V16,Untrained staff,3,pe4,Staff training,
+,,,,,pe4.1,Test to assess the level of computer literacy of staff,
+,,,,,pe4.2,Internal course on the use of procedures based on tests carried out,
+,,,,,pe4.3,Final exams to evaluate the level of knowledge acquired,
+,,,,,pe4.4,Periodic knowledge checks,
+,,,,,pe4.5,Creation of working groups according to specific expertise,
+,,V17,Misuse of information by end users,3,pe3,Instructions on safety and personnel management,
+,,,,,pe3.1,Motivate staff to follow the company's safety policy,
+,,,,,pe3.2,Educate staff on possible threats and how to limit their extent by implementing mitigation measures.,
+,,,,,pe3.3,"Maintain constant attention to safety regulations by adopting posters, circular letters, educational videos",
+,,,,,pe3.4,Avoid situations of discontent on the part of employees,
+,,,,,pe3.5,Regularly review staff safety training,
+,,,,,pe3.6,Keep staff informed of safety news,
+,,,,,pe3.7,Maintain a climate of serenity within the company,
+,,V15,Ignorance of safety procedures,2,pe3,Instructions on safety and personnel management,
+,,,,,pe3.1,Motivate staff to follow the company's safety policy,
+,,,,,pe3.2,Educate staff on possible threats and how to limit their extent by implementing mitigation measures.,
+,,,,,pe3.3,"Maintain constant attention to safety regulations by adopting posters, circular letters, educational videos",
+,,,,,pe3.4,Avoid situations of discontent on the part of employees,
+,,,,,pe3.5,Regularly review staff safety training,
+,,,,,pe3.6,Keep staff informed of safety news,
+,,,,,pe3.7,Maintain a climate of serenity within the company,
+,,V24,Abandoned waste material,2,pe3,Instructions on safety and personnel management,
+,,,,,pe3.1,Motivate staff to follow the company's safety policy,
+,,,,,pe3.2,Educate staff on possible threats and how to limit their extent by implementing mitigation measures.,
+,,,,,pe3.3,"Maintain constant attention to safety regulations by adopting posters, circular letters, educational videos",
+,,,,,pe3.4,Avoid situations of discontent on the part of employees,
+,,,,,pe3.5,Regularly review staff safety training,
+,,,,,pe3.6,Keep staff informed of safety news,
+,,,,,pe3.7,Maintain a climate of serenity within the company,
+,,,,,pe5,Establish a user support staff to perform security checks and provide assistance with security issues,
+,,,,,pr4,"Checking waste collection containers to see if they contain objects (documents, disks, tapes, etc.) that may contain data",
+,,V25,Insufficient information surveillance,3,f15,Terminal/Printer Positioning,
+,,,,,f15.1,Not facing passageways (inaccessible to direct view),
+,,,,,f15.2,Not facing the window (inaccessible to direct view),
+,,,,,pr31,"Control of documentation exiting the CED, with recording of the date, time and employee",
+,,,,,pr32,Procedure of marking tapes and disks with labels that can be detected by special sensors to prevent information theft,
+,,,,,pr34,Cross-checking of entered data (only for high ranking),
+,,V8,Inadequate logical access control,4,s1,Identification and authentication,X
+,,,,,s1.1,Password is not displayed on screen as you type,X
+,,,,,s1.2,The password is case sensitive.,X
+,,,,,s1.3,Password requires special characters,X
+,,,,,s1.4,Password must contain at least one numeric character,X
+,,,,,s1.5,Password must contain at least one alphabetic character,X
+,,,,,s1.6,The password must not contain more than three consecutive numbers or letters,X
+,,,,,s1.7,The password must not contain more than two consecutive identical numbers or letters,X
+,,,,,s1.8,New passwords must always be entered twice to verify correct typing.,X
+,,,,,s1.9,Encryption of passwords in transit on the network,X
+,,,,,s1.10,Encryption of passwords stored on the host,X
+,,,,,s1.11,Access blocked after n failed login attempts,X
+,,,,,s1.12,Time-limited access,X
+,,,,,s1.13,Viewing Last Login Messages,X
+,,,,,s1.14,Disabling system messages,X
+,,,,,s1.15,Periodic password change request,X
+,,,,,s1.16,Request for a different password from the previous one each time it is changed,X
+,,,,,s1.17,Creation of pronounceable passwords by the system,X
+,,,,,s1.18,Password expiration control,X
+,,,,,s1.19,Minimum password length assignment,X
+,,,,,s1.20,Consecutive request for multiple passwords after entering userid,X
+,,,,,s1.21,Check new user-generated passwords,X
+,,,,,s1.22,Stop requesting the userid for a certain period of time after n failed login attempts,X
+,,,,,s1.23,Identification of a user with a unique personal code,X
+,,,,,s1.24,Inactive terminals lock the screen or log off after a predetermined period of time,X
+,,,,,s1.25,Proxy account routing,X
+,,,,,s1.26,User account routing,X
+,,,,,s1.27,"The system does not warn the user that the userid is incorrect and still allows the password to be entered. After the password has been entered, it generically communicates that access has not been permitted",X
+,,,,,s9,"Implementation of ""discretionary access control""",X
+,,,,,s10,"Implementation of ""mandatory access control""",X
+M22,Hidden access doors,V2,Uncontrolled changes to the operating system,3,pr9,Software development/update control,
+,,,,,pr9.1,Setting the gold standard for software development,
+,,,,,pr9.2,"Maintain a log of software changes, implementations, and the reasons for those changes",
+,,,,,pr9.3,Definition of system security features,
+,,,,,pr9.4,Establish control measures to ensure that approval and verification procedures are not circumvented,
+,,,,,pr9.5,Assignment of authorized personnel to develop safety procedures,
+,,,,,pr9.6,Perform file access controls for analysts and programmers,
+,,,,,pr9.7,"Periodically check software libraries, verify correspondence between source programs and objects",
+,,,,,pr9.8,Functional tests on the correct functioning of safety procedures,
+,,,,,pr9.9,Functional testing of security procedure vulnerabilities,
+,,,,,pr9.10,Simulations of system errors that can reduce the effectiveness of the measures taken,
+,,,,,pr9.11,System Penetration Test,
+,,,,,pr9.12,"Identify all possible ""trap doors"" and use them to check the risk of penetration",
+,,,,,pr9.13,Formal demonstrations of how the software works,
+,,,,,pr22,Assigning access to application software and operating system according to need-to-know and qualification,
+,,,,,s9,"Implementation of ""discretionary access control""",X
+,,,,,s10,"Implementation of ""mandatory access control""",X
+,,V3,Uncontrolled changes to the application software,2,pr9,Software development/update control,
+,,,,,pr9.1,Setting the gold standard for software development,
+,,,,,pr9.2,"Maintain a log of software changes, implementations, and the reasons for those changes",
+,,,,,pr9.3,Definition of system security features,
+,,,,,pr9.4,Establish control measures to ensure that approval and verification procedures are not circumvented,
+,,,,,pr9.5,Assignment of authorized personnel to develop safety procedures,
+,,,,,pr9.6,Perform file access controls for analysts and programmers,
+,,,,,pr9.7,"Periodically check software libraries, verify correspondence between source programs and objects",
+,,,,,pr9.8,Functional tests on the correct functioning of safety procedures,
+,,,,,pr9.9,Functional testing of security procedure vulnerabilities,
+,,,,,pr9.10,Simulations of system errors that can reduce the effectiveness of the measures taken,
+,,,,,pr9.11,System Penetration Test,
+,,,,,pr9.12,"Identify all possible ""trap doors"" and use them to check the risk of penetration",
+,,,,,pr9.13,Formal demonstrations of how the software works,
+,,,,,pr22,Assigning access to application software and operating system according to need-to-know and qualification,
+,,,,,s9,"Implementation of ""discretionary access control""",X
+,,,,,s10,"Implementation of ""mandatory access control""",X
+,,V5,"Exploiting operating system ""holes""",4,pr9,Software development/update control,
+,,,,,pr9.1,Setting the gold standard for software development,
+,,,,,pr9.2,"Maintain a log of software changes, implementations, and the reasons for those changes",
+,,,,,pr9.3,Definition of system security features,
+,,,,,pr9.4,Establish control measures to ensure that approval and verification procedures are not circumvented,
+,,,,,pr9.5,Assignment of authorized personnel to develop safety procedures,
+,,,,,pr9.6,Perform file access controls for analysts and programmers,
+,,,,,pr9.7,"Periodically check software libraries, verify correspondence between source programs and objects",
+,,,,,pr9.8,Functional tests on the correct functioning of safety procedures,
+,,,,,pr9.9,Functional testing of security procedure vulnerabilities,
+,,,,,pr9.10,Simulations of system errors that can reduce the effectiveness of the measures taken,
+,,,,,pr9.11,System Penetration Test,
+,,,,,pr9.12,"Identify all possible ""trap doors"" and use them to check the risk of penetration",
+,,,,,pr9.13,Formal demonstrations of how the software works,
+,,,,,pr22,Assigning access to application software and operating system according to need-to-know and qualification,
+,,V7,Untested software applications,2,pr9,Software development/update control,
+,,,,,pr9.1,Setting the gold standard for software development,
+,,,,,pr9.2,"Maintain a log of software changes, implementations, and the reasons for those changes",
+,,,,,pr9.3,Definition of system security features,
+,,,,,pr9.4,Establish control measures to ensure that approval and verification procedures are not circumvented,
+,,,,,pr9.5,Assignment of authorized personnel to develop safety procedures,
+,,,,,pr9.6,Perform file access controls for analysts and programmers,
+,,,,,pr9.7,"Periodically check software libraries, verify correspondence between source programs and objects",
+,,,,,pr9.8,Functional tests on the correct functioning of safety procedures,
+,,,,,pr9.9,Functional testing of security procedure vulnerabilities,
+,,,,,pr9.10,Simulations of system errors that can reduce the effectiveness of the measures taken,
+,,,,,pr9.11,System Penetration Test,
+,,,,,pr9.12,"Identify all possible ""trap doors"" and use them to check the risk of penetration",
+,,,,,pr9.13,Formal demonstrations of how the software works,
+M23,Unconditional access procedure,V2,Uncontrolled changes to the operating system,3,pr9,Software development/update control,
+,,,,,pr9.1,Setting the gold standard for software development,
+,,,,,pr9.2,"Maintain a log of software changes, implementations, and the reasons for those changes",
+,,,,,pr9.3,Definition of system security features,
+,,,,,pr9.4,Establish control measures to ensure that approval and verification procedures are not circumvented,
+,,,,,pr9.5,Assignment of authorized personnel to develop safety procedures,
+,,,,,pr9.6,Perform file access controls for analysts and programmers,
+,,,,,pr9.7,"Periodically check software libraries, verify correspondence between source programs and objects",
+,,,,,pr9.8,Functional tests on the correct functioning of safety procedures,
+,,,,,pr9.9,Functional testing of security procedure vulnerabilities,
+,,,,,pr9.10,Simulations of system errors that can reduce the effectiveness of the measures taken,
+,,,,,pr9.11,System Penetration Test,
+,,,,,pr9.12,"Identify all possible ""trap doors"" and use them to check the risk of penetration",
+,,,,,pr9.13,Formal demonstrations of how the software works,
+,,,,,pr22,Assigning access to application software and operating system according to need-to-know and qualification,
+,,,,,s9,"Implementation of ""discretionary access control""",X
+,,,,,s10,"Implementation of ""mandatory access control""",X
+,,V3,Uncontrolled changes to the application software,2,pr9,Software development/update control,
+,,,,,pr9.1,Setting the gold standard for software development,
+,,,,,pr9.2,"Maintain a log of software changes, implementations, and the reasons for those changes",
+,,,,,pr9.3,Definition of system security features,
+,,,,,pr9.4,Establish control measures to ensure that approval and verification procedures are not circumvented,
+,,,,,pr9.5,Assignment of authorized personnel to develop safety procedures,
+,,,,,pr9.6,Perform file access controls for analysts and programmers,
+,,,,,pr9.7,"Periodically check software libraries, verify correspondence between source programs and objects",
+,,,,,pr9.8,Functional tests on the correct functioning of safety procedures,
+,,,,,pr9.9,Functional testing of security procedure vulnerabilities,
+,,,,,pr9.10,Simulations of system errors that can reduce the effectiveness of the measures taken,
+,,,,,pr9.11,System Penetration Test,
+,,,,,pr9.12,"Identify all possible ""trap doors"" and use them to check the risk of penetration",
+,,,,,pr9.13,Formal demonstrations of how the software works,
+,,,,,pr22,Assigning access to application software and operating system according to need-to-know and qualification,
+,,,,,s9,"Implementation of ""discretionary access control""",X
+,,,,,s10,"Implementation of ""mandatory access control""",X
+,,V5,"Exploiting operating system ""holes""",4,pr9,Software development/update control,
+,,,,,pr9.1,Setting the gold standard for software development,
+,,,,,pr9.2,"Maintain a log of software changes, implementations, and the reasons for those changes",
+,,,,,pr9.3,Definition of system security features,
+,,,,,pr9.4,Establish control measures to ensure that approval and verification procedures are not circumvented,
+,,,,,pr9.5,Assignment of authorized personnel to develop safety procedures,
+,,,,,pr9.6,Perform file access controls for analysts and programmers,
+,,,,,pr9.7,"Periodically check software libraries, verify correspondence between source programs and objects",
+,,,,,pr9.8,Functional tests on the correct functioning of safety procedures,
+,,,,,pr9.9,Functional testing of security procedure vulnerabilities,
+,,,,,pr9.10,Simulations of system errors that can reduce the effectiveness of the measures taken,
+,,,,,pr9.11,System Penetration Test,
+,,,,,pr9.12,"Identify all possible ""trap doors"" and use them to check the risk of penetration",
+,,,,,pr9.13,Formal demonstrations of how the software works,
+,,,,,pr22,Assigning access to application software and operating system according to need-to-know and qualification,
+,,V7,Untested software applications,2,pr9,Software development/update control,
+,,,,,pr9.1,Setting the gold standard for software development,
+,,,,,pr9.2,"Maintain a log of software changes, implementations, and the reasons for those changes",
+,,,,,pr9.3,Definition of system security features,
+,,,,,pr9.4,Establish control measures to ensure that approval and verification procedures are not circumvented,
+,,,,,pr9.5,Assignment of authorized personnel to develop safety procedures,
+,,,,,pr9.6,Perform file access controls for analysts and programmers,
+,,,,,pr9.7,"Periodically check software libraries, verify correspondence between source programs and objects",
+,,,,,pr9.8,Functional tests on the correct functioning of safety procedures,
+,,,,,pr9.9,Functional testing of security procedure vulnerabilities,
+,,,,,pr9.10,Simulations of system errors that can reduce the effectiveness of the measures taken,
+,,,,,pr9.11,System Penetration Test,
+,,,,,pr9.12,"Identify all possible ""trap doors"" and use them to check the risk of penetration",
+,,,,,pr9.13,Formal demonstrations of how the software works,
+M24,Playback Retransmission,V1,Communication channels not adequately protected,1,f9,COMSEC Measures,
+,,,,,f9.1,TEMPEST Devices,
+,,,,,f9.2,Encryption devices,
+,,,,,f9.3,Screened rooms,
+,,,,,f9.4,COMSEC Regulatory Enforcement,
+M25,Sabotage,V13,Lack of emergency procedures,3,pr6,Emergency plan,
+,,,,,pr6.1,Procedure manual to be provided to the personnel in charge,
+,,,,,pr6.2,Placement of emergency procedure summary tables (including emergency and management telephone numbers),
+,,,,,pr6.3,Establish rules to verify that an emergency situation actually exists,
+,,,,,pr6.4,Procedure for recovering damaged data,
+,,,,,pr6.5,Presence of a checklist for emergency procedures,
+,,,,,pr6.6,Procedures for repairing or replacing malfunctioning or defective hardware,
+,,,,,pr6.7,Emergency data deletion/destruction procedures,
+,,,,,pr6.8,Locking backups in fireproof safes,
+,,,,,pr6.9,Obligation to contact the Security Officer,
+,,,,,pr6.10,Obligation to contact any external support services,
+,,,,,pr6.11,"Computer shutdown plan, air conditioning systems, electrical systems",
+,,,,,pr6.12,"Periodic review of the emergency plan, with any updates or changes",
+,,,,,pr6.13,Test and simulate emergency procedures at least once every six months,
+,,V32,Inadequate access control to the CED area,13,f7,Physical access control,
+,,,,,f7.1,Checkpoint at the main entrance,
+,,,,,f7.2,Checkpoint at secondary entrances,
+,,,,,f7.3,Checkpoint at individual floors or offices,
+,,,,,f7.4,Bars on the windows,
+,,,,,f7.5,Armored doors,
+,,,,,f7.6,Combination locks,
+,,,,,f7.7,Anti-throw grates,
+,,,,,f7.8,Vents and ventilation paths narrow enough to prevent intruders from passing through,
+,,,,,f7.9,Installation of devices on the locks of panic doors of emergency exits that activate an alarm in the event of opening,
+,,,,,f7.10,Lack of windows in the CED area,
+,,,,,f7.11,Via badge reader,
+,,,,,f7.12,Via microprocessor board,
+,,,,,f7.13,Via identification code on keyboard,
+,,,,,f7.14,Via a card with visible barcode,
+,,,,,h12,Biometric recognition,X
+,,,,,h12.1,Retina Reading,X
+,,,,,h12.2,Fingerprint reading,X
+,,,,,h12.3,Hand shape reading,X
+,,,,,h12.4,Voice Print Recognition,X
+,,,,,h12.5,Signature recognition,X
+,,,,,pe8,Personal recognition of employees,
+,,,,,pe8.1,"Assignment to authorized personnel of a badge with photograph, personal data and identification code",
+,,,,,pe8.2,Periodic inspection of the times and names of those who have access to restricted areas,
+,,,,,pe9,Accompaniment of all visitors,
+,,,,,pe9.1,Visitors must leave an identity document at the checkpoint,
+,,,,,pe9.2,Visitors are picked up by the staff and accompanied to the destination office,
+,,,,,pe9.3,Presence of a visitor log,
+,,,,,pe9.4,"Numbered pass release with ""Visitor"" indication",
+,,,,,pe9.5,Visitors are never left alone or free to roam the offices unaccompanied.,
+,,,,,pe9.6,Visitors are escorted back to the exit by the staff,
+,,,,,pe10,Surveillance staff present after working hours,
+,,,,,pe10.1,24/7 duty shifts,
+,,,,,pe10.2,Attendance shifts,
+,,,,,pe10.3,Armed surveillance,
+,,,,,pe10.4,Checking the premises and closing the doors and windows,
+,,V33,Lack of access control to the CED area,13,f7,Physical access control,
+,,,,,f7.1,Checkpoint at the main entrance,
+,,,,,f7.2,Checkpoint at secondary entrances,
+,,,,,f7.3,Checkpoint at individual floors or offices,
+,,,,,f7.4,Bars on the windows,
+,,,,,f7.5,Armored doors,
+,,,,,f7.6,Combination locks,
+,,,,,f7.8,Vents and ventilation paths narrow enough to prevent intruders from passing through,
+,,,,,f7.9,Installation of devices on the locks of panic doors of emergency exits that activate an alarm in the event of opening,
+,,,,,f7.10,Lack of windows in the CED area,
+,,,,,f7.11,Via badge reader,
+,,,,,f7.12,Via microprocessor board,
+,,,,,f7.13,Via identification code on keyboard,
+,,,,,f7.14,Via a card with visible barcode,
+,,,,,h12,Biometric recognition,X
+,,,,,h12.1,Retina Reading,X
+,,,,,h12.2,Fingerprint reading,X
+,,,,,h12.3,Hand shape reading,X
+,,,,,h12.4,Voice Print Recognition,X
+,,,,,h12.5,Signature recognition,X
+,,,,,h12.6,Keystroke rhythm recognition,X
+,,,,,pe8,Personal recognition of employees,
+,,,,,pe8.1,"Assignment to authorized personnel of a badge with photograph, personal data and identification code",
+,,,,,pe8.2,Periodic inspection of the times and names of those who have access to restricted areas,
+,,,,,pe9,Accompaniment of all visitors,
+,,,,,pe9.1,Visitors must leave an identity document at the checkpoint,
+,,,,,pe9.2,Visitors are picked up by the staff and accompanied to the destination office,
+,,,,,pe9.3,Presence of a visitor log,
+,,,,,pe9.4,"Numbered pass release with ""Visitor"" indication",
+,,,,,pe9.5,Visitors are never left alone or free to roam the offices unaccompanied.,
+,,,,,pe9.6,Visitors are escorted back to the exit by the staff,
+,,,,,pe10,Surveillance staff present after working hours,
+,,,,,pe10.1,24/7 duty shifts,
+,,,,,pe10.2,Attendance shifts,
+,,,,,pe10.3,Armed surveillance,
+,,,,,pe10.4,Checking the premises and closing the doors and windows,
+,,V14,Inadequate supervision,1,s11,Trusted path,X
+,,,,,s12,Trusted recovery capability,X
+,,,,,s12.1,Restarting the system in single-user mode,X
+,,,,,s12.2,Recovering files that were active at the time of system failure,X
+,,,,,s12.3,Recovering damaged files using previously made backups,X
+,,,,,s12.4,"Check critical files, associated with passwords",X
+M26,Unnoticed data theft,V4,Failure to periodically check the procedures installed on the system,3,pr21,Hardware and software inventory,
+,,,,,pr26,Configuration Management,
+,,,,,pr26.1,Assigning a unique identifier to each entry,
+,,,,,pr26.2,Developing a Configuration Management Plan,
+,,,,,pr26.3,Recording all changes to a system's configuration,
+,,,,,pr26.4,Implementing a configuration control plan,
+,,,,,pr26.5,Life cycle assurance,
+,,,,,s7,Software for controlling system hardware/software configurations,X
+,,,,,s7.1,Central Processing Unit Configuration Control,X
+,,,,,s7.2,Check communication ports connected to the network,X
+,,,,,s11,Trusted path,X
+,,,,,s13,RAM resident application control program,X
+,,,,,s14,Antivirus applications,X
+,,,,,s14.1,Control of major operating system calls or specific malicious actions via TSR procedures,X
+,,,,,s14.2,"Programs for scanning files, identifying the virus strain, identifying the type of infection, deleting infected files",X
+,,V7,Untested software applications,2,pr9,Software development/update control,
+,,,,,pr9.1,Setting the gold standard for software development,
+,,,,,pr9.2,"Maintain a log of software changes, implementations, and the reasons for those changes",
+,,,,,pr9.3,Definition of system security features,
+,,,,,pr9.4,Establish control measures to ensure that approval and verification procedures are not circumvented,
+,,,,,pr9.5,Assignment of authorized personnel to develop safety procedures,
+,,,,,pr9.6,Perform file access controls for analysts and programmers,
+,,,,,pr9.7,"Periodically check software libraries, verify correspondence between source programs and objects",
+,,,,,pr9.8,Functional tests on the correct functioning of safety procedures,
+,,,,,pr9.9,Functional testing of security procedure vulnerabilities,
+,,,,,pr9.10,Simulations of system errors that can reduce the effectiveness of the measures taken,
+,,,,,pr9.11,System Penetration Test,
+,,,,,pr9.12,"Identify all possible ""trap doors"" and use them to check the risk of penetration",
+,,,,,pr9.13,Formal demonstrations of how the software works,
+#REF!,,V21,Insufficient separation of logical work areas,2,s3,Logical work area separation,X
+,,,,,s3.1,RAM memory area separation,X
+,,,,,s3.2,Partitioning work areas on mass storage devices,X
+,,,,,s3.3,"CPU operation in ""protected mode""",X
+,,,,,s4,Reusing objects,X
+,,,,,s4.1,Erasing blocks or pages of memory before they are allocated to another program or data,X
+,,,,,s4.2,Erase disk blocks when a file is deleted or before they are allocated to a new file,X
+,,,,,s4.3,Deleting objects from a graphical environment before allocating them to another user,X
+,,,,,s4.4,Clearing the keyboard buffer or buffer containing the password after logging in,X
+,,,,,s4.5,Deleting work pages and display pages from a terminal,X
+,,,,,s4.6,Clearing the printer buffer,X
+,,,,,s4.7,Deleting or reassigning access to information entered/processed by a user who no longer works on the system,X
+,,,,,s9,"Implementation of ""discretionary access control""",X
+,,,,,s10,"Implementation of ""mandatory access control""",X
+#REF!,,V25,Insufficient information surveillance,3,f15,Terminal/Printer Positioning,
+,,,,,f15.1,Not facing passageways (inaccessible to direct view),
+,,,,,f15.2,Not facing the window (inaccessible to direct view),
+,,,,,pr31,"Control of documentation exiting the CED, with recording of the date, time and employee",
+,,,,,pr32,Procedure of marking tapes and disks with labels that can be detected by special sensors to prevent information theft,
+,,,,,pr34,Cross-checking of entered data (only for high ranking),
+,,V14,Inadequate supervision,1,s11,Trusted path,X
+,,,,,s12,Trusted recovery capability,X
+,,,,,s12.1,Restarting the system in single-user mode,X
+,,,,,s12.2,Recovering files that were active at the time of system failure,X
+,,,,,s12.3,Recovering damaged files using previously made backups,X
+,,,,,s12.4,"Check critical files, associated with passwords",X
+,,V23,Unauthorized software applications,2,pe3,Instructions on safety and personnel management,
+,,,,,pe3.1,Motivate staff to follow the company's safety policy,
+,,,,,pe3.2,Educate staff on possible threats and how to limit their extent by implementing mitigation measures.,
+,,,,,pe3.3,"Maintain constant attention to safety regulations by adopting posters, circular letters, educational videos",
+,,,,,pe3.4,Avoid situations of discontent on the part of employees,
+,,,,,pe3.5,Regularly review staff safety training,
+,,,,,pe3.6,Keep staff informed of safety news,
+,,,,,pe3.7,Maintain a climate of serenity within the company,
+,,,,,pe5,Establish a user support staff to perform security checks and provide assistance with security issues,
+,,,,,pr21,Hardware and software inventory,
+,,,,,pr22,Assigning access to application software and operating system according to need-to-know and qualification,
+,,,,,pr26,Configuration Management,
+,,,,,pr26.1,Assigning a unique identifier to each entry,
+,,,,,pr26.2,Developing a Configuration Management Plan,
+,,,,,pr26.3,Recording all changes to a system's configuration,
+,,,,,pr26.4,Implementing a configuration control plan,
+,,,,,pr26.5,Life cycle assurance,
+,,V17,Misuse of information by end users,3,pe3,Instructions on safety and personnel management,
+,,,,,pe3.1,Motivate staff to follow the company's safety policy,
+,,,,,pe3.2,Educate staff on possible threats and how to limit their extent by implementing mitigation measures.,
+,,,,,pe3.3,"Maintain constant attention to safety regulations by adopting posters, circular letters, educational videos",
+,,,,,pe3.4,Avoid situations of discontent on the part of employees,
+,,,,,pe3.5,Regularly review staff safety training,
+,,,,,pe3.6,Keep staff informed of safety news,
+,,,,,pe3.7,Maintain a climate of serenity within the company,
+,,V15,Ignorance of safety procedures,2,pe3,Instructions on safety and personnel management,
+,,,,,pe3.1,Motivate staff to follow the company's safety policy,
+,,,,,pe3.2,Educate staff on possible threats and how to limit their extent by implementing mitigation measures.,
+,,,,,pe3.3,"Maintain constant attention to safety regulations by adopting posters, circular letters, educational videos",
+,,,,,pe3.4,Avoid situations of discontent on the part of employees,
+,,,,,pe3.5,Regularly review staff safety training,
+,,,,,pe3.6,Keep staff informed of safety news,
+,,,,,pe3.7,Maintain a climate of serenity within the company,
+M27,Violation of login procedures,V2,Uncontrolled changes to the operating system,3,pr9,Software development/update control,
+,,,,,pr9.1,Setting the gold standard for software development,
+,,,,,pr9.2,"Maintain a log of software changes, implementations, and the reasons for those changes",
+,,,,,pr9.3,Definition of system security features,
+,,,,,pr9.4,Establish control measures to ensure that approval and verification procedures are not circumvented,
+,,,,,pr9.5,Assignment of authorized personnel to develop safety procedures,
+,,,,,pr9.6,Perform file access controls for analysts and programmers,
+,,,,,pr9.7,"Periodically check software libraries, verify correspondence between source programs and objects",
+,,,,,pr9.8,Functional tests on the correct functioning of safety procedures,
+,,,,,pr9.9,Functional testing of security procedure vulnerabilities,
+,,,,,pr9.10,Simulations of system errors that can reduce the effectiveness of the measures taken,
+,,,,,pr9.11,System Penetration Test,
+,,,,,pr9.12,"Identify all possible ""trap doors"" and use them to check the risk of penetration",
+,,,,,pr9.13,Formal demonstrations of how the software works,
+,,,,,pr22,Assigning access to application software and operating system according to need-to-know and qualification,
+,,,,,s9,"Implementation of ""discretionary access control""",X
+,,,,,s10,"Implementation of ""mandatory access control""",X
+,,V3,Uncontrolled changes to the application software,2,pr9,Software development/update control,
+,,,,,pr9.1,Setting the gold standard for software development,
+,,,,,pr9.2,"Maintain a log of software changes, implementations, and the reasons for those changes",
+,,,,,pr9.3,Definition of system security features,
+,,,,,pr9.4,Establish control measures to ensure that approval and verification procedures are not circumvented,
+,,,,,pr9.5,Assignment of authorized personnel to develop safety procedures,
+,,,,,pr9.6,Perform file access controls for analysts and programmers,
+,,,,,pr9.7,"Periodically check software libraries, verify correspondence between source programs and objects",
+,,,,,pr9.8,Functional tests on the correct functioning of safety procedures,
+,,,,,pr9.9,Functional testing of security procedure vulnerabilities,
+,,,,,pr9.10,Simulations of system errors that can reduce the effectiveness of the measures taken,
+,,,,,pr9.11,System Penetration Test,
+,,,,,pr9.12,"Identify all possible ""trap doors"" and use them to check the risk of penetration",
+,,,,,pr9.13,Formal demonstrations of how the software works,
+,,,,,pr22,Assigning access to application software and operating system according to need-to-know and qualification,
+,,,,,s9,"Implementation of ""discretionary access control""",X
+,,,,,s10,"Implementation of ""mandatory access control""",X
+,,V5,"Exploiting operating system ""holes""",4,pr9,Software development/update control,
+,,,,,pr9.1,Setting the gold standard for software development,
+,,,,,pr9.2,"Maintain a log of software changes, implementations, and the reasons for those changes",
+,,,,,pr9.3,Definition of system security features,
+,,,,,pr9.4,Establish control measures to ensure that approval and verification procedures are not circumvented,
+,,,,,pr9.5,Assignment of authorized personnel to develop safety procedures,
+,,,,,pr9.6,Perform file access controls for analysts and programmers,
+,,,,,pr9.7,"Periodically check software libraries, verify correspondence between source programs and objects",
+,,,,,pr9.8,Functional tests on the correct functioning of safety procedures,
+,,,,,pr9.9,Functional testing of security procedure vulnerabilities,
+,,,,,pr9.10,Simulations of system errors that can reduce the effectiveness of the measures taken,
+,,,,,pr9.11,System Penetration Test,
+,,,,,pr9.12,"Identify all possible ""trap doors"" and use them to check the risk of penetration",
+,,,,,pr9.13,Formal demonstrations of how the software works,
+,,,,,pr22,Assigning access to application software and operating system according to need-to-know and qualification,
+,,V7,Untested software applications,2,pr9,Software development/update control,
+,,,,,pr9.1,Setting the gold standard for software development,
+,,,,,pr9.2,"Maintain a log of software changes, implementations, and the reasons for those changes",
+,,,,,pr9.3,Definition of system security features,
+,,,,,pr9.4,Establish control measures to ensure that approval and verification procedures are not circumvented,
+,,,,,pr9.5,Assignment of authorized personnel to develop safety procedures,
+,,,,,pr9.6,Perform file access controls for analysts and programmers,
+,,,,,pr9.7,"Periodically check software libraries, verify correspondence between source programs and objects",
+,,,,,pr9.8,Functional tests on the correct functioning of safety procedures,
+,,,,,pr9.9,Functional testing of security procedure vulnerabilities,
+,,,,,pr9.10,Simulations of system errors that can reduce the effectiveness of the measures taken,
+,,,,,pr9.11,System Penetration Test,
+,,,,,pr9.12,"Identify all possible ""trap doors"" and use them to check the risk of penetration",
+,,,,,pr9.13,Formal demonstrations of how the software works,
+#REF!,,V23,Unauthorized software applications,2,pe3,Instructions on safety and personnel management,
+,,,,,pe3.1,Motivate staff to follow the company's safety policy,
+,,,,,pe3.2,Educate staff on possible threats and how to limit their extent by implementing mitigation measures.,
+,,,,,pe3.3,"Maintain constant attention to safety regulations by adopting posters, circular letters, educational videos",
+,,,,,pe3.4,Avoid situations of discontent on the part of employees,
+,,,,,pe3.5,Regularly review staff safety training,
+,,,,,pe3.6,Keep staff informed of safety news,
+,,,,,pe3.7,Maintain a climate of serenity within the company,
+,,,,,pe5,Establish a user support staff to perform security checks and provide assistance with security issues,
+,,,,,pr21,Hardware and software inventory,
+,,,,,pr22,Assigning access to application software and operating system according to need-to-know and qualification,
+,,,,,pr26,Configuration Management,
+,,,,,pr26.1,Assigning a unique identifier to each entry,
+,,,,,pr26.2,Developing a Configuration Management Plan,
+,,,,,pr26.3,Recording all changes to a system's configuration,
+,,,,,pr26.4,Implementing a configuration control plan,
+,,,,,pr26.5,Life cycle assurance,
+,,V8,Inadequate logical access control,4,s1,Identification and authentication,X
+,,,,,s1.1,Password is not displayed on screen as you type,X
+,,,,,s1.2,The password is case sensitive.,X
+,,,,,s1.3,Password requires special characters,X
+,,,,,s1.4,Password must contain at least one numeric character,X
+,,,,,s1.5,Password must contain at least one alphabetic character,X
+,,,,,s1.6,The password must not contain more than three consecutive numbers or letters,X
+,,,,,s1.7,The password must not contain more than two consecutive identical numbers or letters,X
+,,,,,s1.8,New passwords must always be entered twice to verify correct typing.,X
+,,,,,s1.9,Encryption of passwords in transit on the network,X
+,,,,,s1.10,Encryption of passwords stored on the host,X
+,,,,,s1.11,Access blocked after n failed login attempts,X
+,,,,,s1.12,Time-limited access,X
+,,,,,s1.13,Viewing Last Login Messages,X
+,,,,,s1.14,Disabling system messages,X
+,,,,,s1.15,Periodic password change request,X
+,,,,,s1.16,Request for a different password from the previous one each time it is changed,X
+,,,,,s1.17,Creation of pronounceable passwords by the system,X
+,,,,,s1.18,Password expiration control,X
+,,,,,s1.19,Minimum password length assignment,X
+,,,,,s1.20,Consecutive request for multiple passwords after entering userid,X
+,,,,,s1.21,Check new user-generated passwords,X
+,,,,,s1.22,Stop requesting the userid for a certain period of time after n failed login attempts,X
+,,,,,s1.23,Identification of a user with a unique personal code,X
+,,,,,s1.24,Inactive terminals lock the screen or log off after a predetermined period of time,X
+,,,,,s1.25,Proxy account routing,X
+,,,,,s1.26,User account routing,X
+,,,,,s1.27,"The system does not warn the user that the userid is incorrect and still allows the password to be entered. After the password has been entered, it generically communicates that access has not been permitted",X
+,,,,,s9,"Implementation of ""discretionary access control""",X
+,,,,,s10,"Implementation of ""mandatory access control""",X
+M28,Network worm,V3,Uncontrolled changes to the application software,2,pr9,Software development/update control,
+,,,,,pr9.1,Setting the gold standard for software development,
+,,,,,pr9.2,"Maintain a log of software changes, implementations, and the reasons for those changes",
+,,,,,pr9.3,Definition of system security features,
+,,,,,pr9.4,Establish control measures to ensure that approval and verification procedures are not circumvented,
+,,,,,pr9.5,Assignment of authorized personnel to develop safety procedures,
+,,,,,pr9.6,Perform file access controls for analysts and programmers,
+,,,,,pr9.7,"Periodically check software libraries, verify correspondence between source programs and objects",
+,,,,,pr9.8,Functional tests on the correct functioning of safety procedures,
+,,,,,pr9.9,Functional testing of security procedure vulnerabilities,
+,,,,,pr9.10,Simulations of system errors that can reduce the effectiveness of the measures taken,
+,,,,,pr9.11,System Penetration Test,
+,,,,,pr9.12,"Identify all possible ""trap doors"" and use them to check the risk of penetration",
+,,,,,pr9.13,Formal demonstrations of how the software works,
+,,,,,pr22,Assigning access to application software and operating system according to need-to-know and qualification,
+,,,,,s9,"Implementation of ""discretionary access control""",X
+,,,,,s10,"Implementation of ""mandatory access control""",X
+,,V4,Failure to periodically check the procedures installed on the system,3,pr21,Hardware and software inventory,
+,,,,,pr26,Configuration Management,
+,,,,,pr26.1,Assigning a unique identifier to each entry,
+,,,,,pr26.2,Developing a Configuration Management Plan,
+,,,,,pr26.3,Recording all changes to a system's configuration,
+,,,,,pr26.4,Implementing a configuration control plan,
+,,,,,pr26.5,Life cycle assurance,
+,,,,,s7,Software for controlling system hardware/software configurations,X
+,,,,,s7.1,Central Processing Unit Configuration Control,X
+,,,,,s7.2,Check communication ports connected to the network,X
+,,,,,s11,Trusted path,X
+,,,,,s13,RAM resident application control program,X
+,,,,,s14,Antivirus applications,X
+,,,,,s14.1,Control of major operating system calls or specific malicious actions via TSR procedures,X
+,,,,,s14.2,"Programs for scanning files, identifying the virus strain, identifying the type of infection, deleting infected files",X
+,,V7,Untested software applications,2,pr9,Software development/update control,
+,,,,,pr9.1,Setting the gold standard for software development,
+,,,,,pr9.2,"Maintain a log of software changes, implementations, and the reasons for those changes",
+,,,,,pr9.3,Definition of system security features,
+,,,,,pr9.4,Establish control measures to ensure that approval and verification procedures are not circumvented,
+,,,,,pr9.5,Assignment of authorized personnel to develop safety procedures,
+,,,,,pr9.6,Perform file access controls for analysts and programmers,
+,,,,,pr9.7,"Periodically check software libraries, verify correspondence between source programs and objects",
+,,,,,pr9.8,Functional tests on the correct functioning of safety procedures,
+,,,,,pr9.9,Functional testing of security procedure vulnerabilities,
+,,,,,pr9.10,Simulations of system errors that can reduce the effectiveness of the measures taken,
+,,,,,pr9.11,System Penetration Test,
+,,,,,pr9.12,"Identify all possible ""trap doors"" and use them to check the risk of penetration",
+,,,,,pr9.13,Formal demonstrations of how the software works,
+,,V9,Non-existent logical access procedures,4,s1,Identification and authentication,X
+,,,,,s1.1,Password is not displayed on screen as you type,X
+,,,,,s1.2,The password is case sensitive.,X
+,,,,,s1.3,Password requires special characters,X
+,,,,,s1.4,Password must contain at least one numeric character,X
+,,,,,s1.5,Password must contain at least one alphabetic character,X
+,,,,,s1.6,The password must not contain more than three consecutive numbers or letters,X
+,,,,,s1.7,The password must not contain more than two consecutive identical numbers or letters,X
+,,,,,s1.8,New passwords must always be entered twice to verify correct typing.,X
+,,,,,s1.9,Encryption of passwords in transit on the network,X
+,,,,,s1.10,Encryption of passwords stored on the host,X
+,,,,,s1.11,Access blocked after n failed login attempts,X
+,,,,,s1.12,Time-limited access,X
+,,,,,s1.13,Viewing Last Login Messages,X
+,,,,,s1.14,Disabling system messages,X
+,,,,,s1.15,Periodic password change request,X
+,,,,,s1.16,Request for a different password from the previous one each time it is changed,X
+,,,,,s1.17,Creation of pronounceable passwords by the system,X
+,,,,,s1.18,Password expiration control,X
+,,,,,s1.19,Minimum password length assignment,X
+,,,,,s1.20,Consecutive request for multiple passwords after entering userid,X
+,,,,,s1.21,Check new user-generated passwords,X
+,,,,,s1.22,Stop requesting the userid for a certain period of time after n failed login attempts,X
+,,,,,s1.23,Identification of a user with a unique personal code,X
+,,,,,s1.24,Inactive terminals lock the screen or log off after a predetermined period of time,X
+,,,,,s1.25,Proxy account routing,X
+,,,,,s1.26,User account routing,X
+,,,,,s1.27,"The system does not warn the user that the userid is incorrect and still allows the password to be entered. After the password has been entered, it generically communicates that access has not been permitted",X
+,,,,,s9,"Implementation of ""discretionary access control""",X
+,,,,,s10,"Implementation of ""mandatory access control""",X
+,,V8,Inadequate logical access control,4,s1,Identification and authentication,X
+,,,,,s1.1,Password is not displayed on screen as you type,X
+,,,,,s1.2,The password is case sensitive.,X
+,,,,,s1.3,Password requires special characters,X
+,,,,,s1.4,Password must contain at least one numeric character,X
+,,,,,s1.5,Password must contain at least one alphabetic character,X
+,,,,,s1.6,The password must not contain more than three consecutive numbers or letters,X
+,,,,,s1.7,The password must not contain more than two consecutive identical numbers or letters,X
+,,,,,s1.8,New passwords must always be entered twice to verify correct typing.,X
+,,,,,s1.9,Encryption of passwords in transit on the network,X
+,,,,,s1.10,Encryption of passwords stored on the host,X
+,,,,,s1.11,Access blocked after n failed login attempts,X
+,,,,,s1.12,Time-limited access,X
+,,,,,s1.13,Viewing Last Login Messages,X
+,,,,,s1.14,Disabling system messages,X
+,,,,,s1.15,Periodic password change request,X
+,,,,,s1.16,Request for a different password from the previous one each time it is changed,X
+,,,,,s1.17,Creation of pronounceable passwords by the system,X
+,,,,,s1.18,Password expiration control,X
+,,,,,s1.19,Minimum password length assignment,X
+,,,,,s1.20,Consecutive request for multiple passwords after entering userid,X
+,,,,,s1.21,Check new user-generated passwords,X
+,,,,,s1.22,Stop requesting the userid for a certain period of time after n failed login attempts,X
+,,,,,s1.23,Identification of a user with a unique personal code,X
+,,,,,s1.24,Inactive terminals lock the screen or log off after a predetermined period of time,X
+,,,,,s1.25,Proxy account routing,X
+,,,,,s1.26,User account routing,X
+,,,,,s1.27,"The system does not warn the user that the userid is incorrect and still allows the password to be entered. After the password has been entered, it generically communicates that access has not been permitted",X
+,,,,,s9,"Implementation of ""discretionary access control""",X
+,,,,,s10,"Implementation of ""mandatory access control""",X
+,,V14,Inadequate supervision,1,s11,Trusted path,X
+,,,,,s12,Trusted recovery capability,X
+,,,,,s12.1,Restarting the system in single-user mode,X
+,,,,,s12.2,Recovering files that were active at the time of system failure,X
+,,,,,s12.3,Recovering damaged files using previously made backups,X
+,,,,,s12.4,"Check critical files, associated with passwords",X
+,,V16,Untrained staff,3,pe4,Staff training,
+,,,,,pe4.1,Test to assess the level of computer literacy of staff,
+,,,,,pe4.2,Internal course on the use of procedures based on tests carried out,
+,,,,,pe4.3,Final exams to evaluate the level of knowledge acquired,
+,,,,,pe4.4,Periodic knowledge checks,
+,,,,,pe4.5,Creation of working groups according to specific expertise,
+,,V23,Unauthorized software applications,2,pe3,Instructions on safety and personnel management,
+,,,,,pe3.1,Motivate staff to follow the company's safety policy,
+,,,,,pe3.2,Educate staff on possible threats and how to limit their extent by implementing mitigation measures.,
+,,,,,pe3.3,"Maintain constant attention to safety regulations by adopting posters, circular letters, educational videos",
+,,,,,pe3.4,Avoid situations of discontent on the part of employees,
+,,,,,pe3.5,Regularly review staff safety training,
+,,,,,pe3.6,Keep staff informed of safety news,
+,,,,,pe3.7,Maintain a climate of serenity within the company,
+,,,,,pe5,Establish a user support staff to perform security checks and provide assistance with security issues,
+,,,,,pr21,Hardware and software inventory,
+,,,,,pr22,Assigning access to application software and operating system according to need-to-know and qualification,
+,,,,,pr26,Configuration Management,
+,,,,,pr26.1,Assigning a unique identifier to each entry,
+,,,,,pr26.2,Developing a Configuration Management Plan,
+,,,,,pr26.3,Recording all changes to a system's configuration,
+,,,,,pr26.4,Implementing a configuration control plan,
+,,,,,pr26.5,Life cycle assurance,
