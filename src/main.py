@@ -28,12 +28,6 @@ def get_models():
 models = get_models()
 print(models)
 
-
-
-import requests
-
-import requests
-
 def analyze_scenarios(scenarios, model_id):
     """
     Analyze scenarios using the selected LRM to obtain predicted remediation strategies and reasoning.
@@ -71,7 +65,7 @@ def analyze_scenarios(scenarios, model_id):
             print(f"An error occurred: {e}")
     return analysis_results
 
-# Example scenarios (replace with actual data)
+# Example scenarios to analyze
 scenarios = [
     {"ID": "V1", "DESCRIPTION": "Communication channels not adequately protected"},
     {"ID": "V2", "DESCRIPTION": "Uncontrolled changes to the operating system"}
