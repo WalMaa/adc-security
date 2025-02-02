@@ -10,7 +10,7 @@ scenarios = [
 
 # analysis_results = call_lm_studio(scenarios, "deepseek-r1-distill-qwen-7b")
 
-analysis_results = call_transformer(scenarios[0]["DESCRIPTION"], "facebook/opt-125m")
+analysis_results = call_transformer(scenarios[0]["DESCRIPTION"])
 
 
 
