@@ -1,7 +1,11 @@
 import requests
 import csv
-import time
 import json
+import configparser
+
+config = configparser.ConfigParser()
+config.read('config.ini')
+scenario_file = config['files']['scenario_file']
 
 # Define the base URL for the LM Studio API
 base_url = "http://127.0.0.1:1234"
@@ -9,90 +13,104 @@ base_url = "http://127.0.0.1:1234"
 # Endpoint to get the list of available models
 models_endpoint = "/v1/models"
 
-def get_models():
-    """
-    Fetch the list of available models from LM Studio.
-    """
-    try:
-        response = requests.get(base_url + models_endpoint)
-        if response.status_code == 200:
-            return response.json()
-        else:
-            print(f"Failed to fetch models. Status code: {response.status_code}")
-            print(response.text)
-    except Exception as e:
-        print(f"An error occurred: {e}")
-
 def read_scenarios(filename):
     """
     Read scenarios from a CSV file.
     """
     scenarios = []
-    with open(filename, mode='r', newline='', encoding='ISO-8859-1') as file:
+    with open(filename, mode='r', newline='', encoding='utf-8-sig') as file:
         reader = csv.DictReader(file, delimiter=';')
         for row in reader:
             scenarios.append(row)
     return scenarios
 
 def analyze_scenarios(scenarios, model_id):
-    analysis_results = []
+    
     for scenario in scenarios:
+        print(f"Analyzing scenario: {scenario['Scenario ID']}")
         try:
-            start_time = time.time()
             response = requests.post(
                 f"{base_url}/v1/chat/completions",
                 json={
                     "model": model_id,
-                    "messages": [{"role": "user", "content": f"Analyze the following scenario and provide a summary, risks, and mitigations:\n\n{scenario['Assistant - Extended']}"}],
-                    "max_tokens": 150
+                    "messages": [
+                        {
+                            "role": "user",
+                            "content": f"Analyze the following scenario and provide a reasoning, description, threat_id, vulnerability_id and remediation_id in a json format:\n\n{scenario['User']}"}
+                        ],
+                    "response_format": {
+                        "type": "json_schema",
+                        "json_schema": {
+                            "name": "risk_analysis",
+                            "strict": "true",
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "reasoning": {"type": "string"},
+                                    "description": {"type": "string"},
+                                    "threat_id": {"type": "string"},
+                                    "vulnerability_id": {"type": "string"},
+                                    "remediation_id": {"type": "string"}
+                                },
+                                "required": ["reasoning", "description", "threat_id", "vulnerability_id", "remediation_id"]
+                            }
+                        },
+                    },
+                    "max_tokens": 300,
+                    # Low temperature to reduce randomness in the response
+                    "temperature": 0.2,
                 }
             )
 
             if response.status_code == 200:
                 result = response.json()
-                print("Response:", result)  # Debugging output
 
                 content = result.get("choices", [{}])[0].get("message", {}).get("content", "")
-                response_time = time.time() - start_time
-
-                # Parse the content to extract summary, risks, and mitigations
-                # This is a placeholder; you may need to adjust the parsing logic based on the actual response format
-                summary = content.split("\n")[0] if content else "No summary provided"
-                risks = ["Risk 1", "Risk 2"]  # Placeholder, adjust based on actual response
-                mitigations = ["Mitigation 1", "Mitigation 2"]  # Placeholder, adjust based on actual response
-
-                analysis_results.append({
-                    "summary": summary,
-                    "risks": json.dumps(risks),
-                    "mitigations": json.dumps(mitigations),
-                    "response_time": response_time,
+                
+                data = json.loads(content)
+                
+                reasoning = data["reasoning"]
+                description = data["description"]
+                threat_id = data["threat_id"]
+                vulnerability_id = data["vulnerability_id"]
+                remediation_id = data["remediation_id"]
+                
+                analysis_results = {
                     "scenario_id": scenario["Scenario ID"],
-                    "scenario": scenario["Assistant - Extended"]
-                })
+                    "reasoning": reasoning,
+                    "description": description,
+                    "threat_id": threat_id,
+                    "vulnerability_id": vulnerability_id,
+                    "remediation_id": remediation_id,
+                }
+                
+                save_to_csv(analysis_results, "analysis_results.csv")
 
-                time.sleep(1)  # Avoid spamming API calls
             else:
                 print(f"Failed to analyze scenario. Status code: {response.status_code}")
                 print(response.text)
         except Exception as e:
             print(f"An error occurred: {e}")
 
-    return analysis_results
 
-def save_to_csv(analysis_results, filename):
+def save_to_csv(analysis_result, filename):
     """
     Save the analysis results to a CSV file.
     """
+    print(f"Saving analysis results to {filename}")
+    with open(filename, mode='a', newline='') as file:
+        writer = csv.DictWriter(file, fieldnames=["scenario_id", "reasoning", "description", "threat_id", "vulnerability_id", "remediation_id"])
+        writer.writerow(analysis_result)
+            
+def create_csv(filename):
+    """
+    Create a new results CSV file.
+    """
     with open(filename, mode='w', newline='') as file:
-        writer = csv.DictWriter(file, fieldnames=["summary", "risks", "mitigations", "response_time", "scenario_id", "scenario"])
+        writer = csv.DictWriter(file, fieldnames=["scenario_id", "reasoning", "description", "threat_id", "vulnerability_id", "remediation_id"])
         writer.writeheader()
-        for result in analysis_results:
-            writer.writerow(result)
 
-# Example usage
-models = get_models()
-print(models)
 
-scenarios = read_scenarios('F:/Gitlabrepo/ASQAS-Project/adc-quality-security/src/files/Scenarios_test.csv')
+scenarios = read_scenarios(scenario_file)
 analysis_results = analyze_scenarios(scenarios, "deepseek-r1-distill-qwen-7b")
 save_to_csv(analysis_results, "analysis_results.csv")
