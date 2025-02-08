@@ -1,11 +1,9 @@
 import requests
 import csv
 import json
-import configparser
 
-config = configparser.ConfigParser()
-config.read('config.ini')
-scenario_file = config['files']['scenario_file']
+
+scenario_file = "C:/Code/Python/advanced_quality_and_security/src/files/Scenarios_test.csv"
 
 # Define the base URL for the LM Studio API
 base_url = "http://127.0.0.1:1234"
@@ -83,7 +81,7 @@ def analyze_scenarios(scenarios, model_id):
                     "vulnerability_id": vulnerability_id,
                     "remediation_id": remediation_id,
                 }
-                
+                print(analysis_results)
                 save_to_csv(analysis_results, "analysis_results.csv")
 
             else:

@@ -1,8 +1,5 @@
 # Getting started
 
-Make a config.ini file in the root directory of the project with the required fields.
+replace the scenario_file path to your corrent one
 
-```ini
-[files]
-scenario_file = C:/Code/Python/advanced_quality_and_security/src/files/Scenarios_test.csv # Path to your scenario file
-```
+    scenario_file = C:/Code/Python/advanced_quality_and_security/src/files/Scenarios_test.csv
