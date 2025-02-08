@@ -69,7 +69,9 @@ def analyze_scenarios(scenarios, model_id):
                 
                 reasoning = data["reasoning"]
                 description = data["description"]
+                # for example M1
                 threat_id = data["threat_id"]
+                # for example V1
                 vulnerability_id = data["vulnerability_id"]
                 remediation_id = data["remediation_id"]
                 
