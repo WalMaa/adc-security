@@ -1,38 +1,36 @@
-from langchain_community.document_loaders import TextLoader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_ollama import OllamaEmbeddings
 from langchain_chroma import Chroma
 from langchain_ollama import OllamaLLM
 from langchain.chains import RetrievalQA
 from langchain_community.document_loaders import CSVLoader
-from langchain.output_parsers import StructuredOutputParser, ResponseSchema
+from langchain_core.output_parsers import PydanticOutputParser
 from langchain.prompts import PromptTemplate
+from pydantic import BaseModel
 import os
+
+class Scenario(BaseModel):
+    reasoning: str
+    description: str
+    threat_id: str
+    vulnerability_id: str
+    remediation_id: str
 
 model_name = "deepseek-r1:7b"
 files = [
     "C:/Code/Python/advanced_quality_and_security/sheets/scenarios_threats.csv",
     "C:/Code/Python/advanced_quality_and_security/sheets/scenarios_vulnerability.csv",
     "C:/Code/Python/advanced_quality_and_security/sheets/scenarios_examples.csv",
-    
 ]
 
-response_schemas = [
-    ResponseSchema(name="reasoning", description="Detailed reasoning about the threat."),
-    ResponseSchema(name="description", description="Detailed description of the threat."),
-    ResponseSchema(name="threat_id", description="Unique identifier for the threat."),
-    ResponseSchema(name="vulnerability_id", description="Unique identifier for the associated vulnerability."),
-    ResponseSchema(name="remediation_id", description="Unique identifier for the remediation."),
-]
 
-output_parser = StructuredOutputParser.from_response_schemas(response_schemas)
-format_instructions = output_parser.get_format_instructions()
+parser = PydanticOutputParser(pydantic_object=Scenario)
 
 # Defining a structured prompt template so that we can analyze the outputs structurally
 prompt = PromptTemplate(
     template="Answer the following question strictly in JSON format:\n\n{format_instructions}\n\nQuestion: {query}",
     input_variables=["query"],
-    partial_variables={"format_instructions": format_instructions},
+    partial_variables={"format_instructions": parser.get_format_instructions()},
 )
 
 
@@ -74,9 +72,9 @@ print("Initializing QA chain...")
 qa_chain = RetrievalQA.from_chain_type(llm=llm, retriever=retriever)
 print("QA chain initialized.")
 
-query = "What is the threat and description of threat id M1"
+query = "I have a case where my server room is in a basement and we have structural damage in the building."
 formatted_prompt = prompt.format(query=query)
 print("Querying:", query)
-response = qa_chain.run(query)
+response = qa_chain.invoke(formatted_prompt)
 
 print("Response:", response)
