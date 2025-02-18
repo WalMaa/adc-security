@@ -1,17 +1,11 @@
-import requests
 import csv
 import json
-import configparser
+from llama_cpp import Llama
 
-config = configparser.ConfigParser()
-config.read('config.ini')
-scenario_file = config['files']['scenario_file']
 
-# Define the base URL for the LM Studio API
-base_url = "http://127.0.0.1:1234"
+deepseek_model_path = "src/files/DeepSeek-R1.gguf"
 
-# Endpoint to get the list of available models
-models_endpoint = "/v1/models"
+llm = Llama(model_path=deepseek_model_path, n_ctx=4096)
 
 def read_scenarios(filename):
     """
@@ -24,93 +18,83 @@ def read_scenarios(filename):
             scenarios.append(row)
     return scenarios
 
-def analyze_scenarios(scenarios, model_id):
-    
+def analyze_scenarios(scenarios):
+    """
+    Analyze scenarios using the DeepSeek model.
+    """
+    results = []
+
     for scenario in scenarios:
         print(f"Analyzing scenario: {scenario['Scenario ID']}")
+
+        # Create the model prompt
+        prompt = f"""Analyze the following scenario and provide a reasoning, description, threat_id, vulnerability_id, and remediation_id in JSON format:
+        
+        Scenario: {scenario['User']}
+        
+        Response (JSON):
+        """
+
+        # Run DeepSeek model
+        output = llm(
+            prompt,
+            max_tokens=300,
+            temperature=0.2,
+            stop=["\n\n"]
+        )
+
         try:
-            response = requests.post(
-                f"{base_url}/v1/chat/completions",
-                json={
-                    "model": model_id,
-                    "messages": [
-                        {
-                            "role": "user",
-                            "content": f"Analyze the following scenario and provide a reasoning, description, threat_id, vulnerability_id and remediation_id in a json format:\n\n{scenario['User']}"}
-                        ],
-                    "response_format": {
-                        "type": "json_schema",
-                        "json_schema": {
-                            "name": "risk_analysis",
-                            "strict": "true",
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "reasoning": {"type": "string"},
-                                    "description": {"type": "string"},
-                                    "threat_id": {"type": "string"},
-                                    "vulnerability_id": {"type": "string"},
-                                    "remediation_id": {"type": "string"}
-                                },
-                                "required": ["reasoning", "description", "threat_id", "vulnerability_id", "remediation_id"]
-                            }
-                        },
-                    },
-                    "max_tokens": 300,
-                    # Low temperature to reduce randomness in the response
-                    "temperature": 0.2,
-                }
-            )
-
-            if response.status_code == 200:
-                result = response.json()
-
-                content = result.get("choices", [{}])[0].get("message", {}).get("content", "")
-                
+            # Parse JSON output
+            content = output["choices"][0]["text"].strip()
+            # Clean up the output to ensure it is a valid JSON object
+            json_start = content.find("{")
+            json_end = content.rfind("}") + 1
+            if json_start != -1 and json_end != -1:
+                content = content[json_start:json_end]
                 data = json.loads(content)
-                
-                reasoning = data["reasoning"]
-                description = data["description"]
-                threat_id = data["threat_id"]
-                vulnerability_id = data["vulnerability_id"]
-                remediation_id = data["remediation_id"]
-                
+
                 analysis_results = {
                     "scenario_id": scenario["Scenario ID"],
-                    "reasoning": reasoning,
-                    "description": description,
-                    "threat_id": threat_id,
-                    "vulnerability_id": vulnerability_id,
-                    "remediation_id": remediation_id,
+                    "reasoning": data.get("reasoning", ""),
+                    "description": data.get("description", ""),
+                    "threat_id": data.get("threat_id", ""),
+                    "vulnerability_id": data.get("vulnerability_id", ""),
+                    "remediation_id": data.get("remediation_id", ""),
                 }
-                
+
+                results.append(analysis_results)
                 save_to_csv(analysis_results, "analysis_results.csv")
-
             else:
-                print(f"Failed to analyze scenario. Status code: {response.status_code}")
-                print(response.text)
-        except Exception as e:
-            print(f"An error occurred: {e}")
+                print(f"Invalid JSON output for scenario {scenario['Scenario ID']}:\n{content}")
 
+        except json.JSONDecodeError:
+            print(f"Error parsing JSON output for scenario {scenario['Scenario ID']}:\n{content}")
+
+    return results
 
 def save_to_csv(analysis_result, filename):
     """
     Save the analysis results to a CSV file.
     """
     print(f"Saving analysis results to {filename}")
-    with open(filename, mode='a', newline='') as file:
+    with open(filename, mode='a', newline='', encoding='utf-8') as file:
         writer = csv.DictWriter(file, fieldnames=["scenario_id", "reasoning", "description", "threat_id", "vulnerability_id", "remediation_id"])
+        
+        # Write header only if the file is empty
+        if file.tell() == 0:
+            writer.writeheader()
+        
         writer.writerow(analysis_result)
-            
+
 def create_csv(filename):
     """
     Create a new results CSV file.
     """
-    with open(filename, mode='w', newline='') as file:
+    with open(filename, mode='w', newline='', encoding='utf-8') as file:
         writer = csv.DictWriter(file, fieldnames=["scenario_id", "reasoning", "description", "threat_id", "vulnerability_id", "remediation_id"])
         writer.writeheader()
 
-
-scenarios = read_scenarios(scenario_file)
-analysis_results = analyze_scenarios(scenarios, "deepseek-r1-distill-qwen-7b")
-save_to_csv(analysis_results, "analysis_results.csv")
+if __name__ == "__main__":
+    create_csv("analysis_results.csv")
+    scenarios = read_scenarios("src/files/Scenarios_test.csv")
+    analyze_scenarios(scenarios)
