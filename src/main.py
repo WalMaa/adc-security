@@ -2,9 +2,10 @@ import csv
 import json
 from llama_cpp import Llama
 
-
+# Path to DeepSeek model file (Make sure this path is correct on Puhti)
 deepseek_model_path = "src/files/DeepSeek-R1.gguf"
 
+# Load the model
 llm = Llama(model_path=deepseek_model_path, n_ctx=4096)
 
 def read_scenarios(filename):
@@ -23,9 +24,14 @@ def analyze_scenarios(scenarios):
     Analyze scenarios using the DeepSeek model.
     """
     results = []
+    processed_scenario_ids = set()
 
     for scenario in scenarios:
-        print(f"Analyzing scenario: {scenario['Scenario ID']}")
+        scenario_id = scenario["Scenario ID"]
+        if scenario_id in processed_scenario_ids:
+            continue
+
+        print(f"Analyzing scenario: {scenario_id}")
 
         # Create the model prompt
         prompt = f"""Analyze the following scenario and provide a reasoning, description, threat_id, vulnerability_id, and remediation_id in JSON format:
@@ -54,7 +60,7 @@ def analyze_scenarios(scenarios):
                 data = json.loads(content)
 
                 analysis_results = {
-                    "scenario_id": scenario["Scenario ID"],
+                    "scenario_id": scenario_id,
                     "reasoning": data.get("reasoning", ""),
                     "description": data.get("description", ""),
                     "threat_id": data.get("threat_id", ""),
@@ -64,11 +70,12 @@ def analyze_scenarios(scenarios):
 
                 results.append(analysis_results)
                 save_to_csv(analysis_results, "analysis_results.csv")
+                processed_scenario_ids.add(scenario_id)
             else:
-                print(f"Invalid JSON output for scenario {scenario['Scenario ID']}:\n{content}")
+                print(f"Invalid JSON output for scenario {scenario_id}:\n{content}")
 
         except json.JSONDecodeError:
-            print(f"Error parsing JSON output for scenario {scenario['Scenario ID']}:\n{content}")
+            print(f"Error parsing JSON output for scenario {scenario_id}:\n{content}")
 
     return results
 
