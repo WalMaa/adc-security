@@ -1,13 +1,14 @@
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_ollama import OllamaEmbeddings
 from langchain_chroma import Chroma
-from langchain_ollama import OllamaLLM
-from langchain.chains import RetrievalQA
+from langchain_ollama import ChatOllama
 from langchain_community.document_loaders import CSVLoader
 from langchain_core.output_parsers import PydanticOutputParser
 from langchain.prompts import PromptTemplate
 from pydantic import BaseModel
 import os
+from langchain.chains import create_retrieval_chain
+from langchain.chains.combine_documents import create_stuff_documents_chain
 
 class Scenario(BaseModel):
     reasoning: str
@@ -16,7 +17,7 @@ class Scenario(BaseModel):
     vulnerability_id: str
     remediation_id: str
 
-model_name = "deepseek-r1:7b"
+model_name = "mistral"
 files = [
     "C:/Code/Python/advanced_quality_and_security/sheets/scenarios_threats.csv",
     "C:/Code/Python/advanced_quality_and_security/sheets/scenarios_vulnerability.csv",
@@ -24,13 +25,20 @@ files = [
 ]
 
 
-parser = PydanticOutputParser(pydantic_object=Scenario)
+
+template = """
+Analyze the following scenario and provide reasoning, description, threat_id, vulnerability_id, remediation_id in JSON. If an appropriate value is not available, please set it as null but always include the keys.
+Context:
+{context}
+Scenario:
+{input}
+"""
+
 
 # Defining a structured prompt template so that we can analyze the outputs structurally
 prompt = PromptTemplate(
-    template="Answer the following question strictly in JSON format:\n\n{format_instructions}\n\nQuestion: {query}",
-    input_variables=["query"],
-    partial_variables={"format_instructions": parser.get_format_instructions()},
+    template=template,
+    input_variables=["input"],
 )
 
 
@@ -65,16 +73,17 @@ else:
 retriever = vectorstore.as_retriever()
 
 # Load DeepSeek-R1 model via Ollama
-llm = OllamaLLM(model=model_name)
+llm = ChatOllama(model=model_name, temperature=0.4, num_predict=1000)
+structured_llm = llm.with_structured_output(Scenario)
 
 # Create Retrieval-Augmented Generation (RAG) system
 print("Initializing QA chain...")
-qa_chain = RetrievalQA.from_chain_type(llm=llm, retriever=retriever)
+question_answer_chain = create_stuff_documents_chain(structured_llm, prompt)
+chain = create_retrieval_chain(retriever, question_answer_chain)
 print("QA chain initialized.")
 
 query = "I have a case where my server room is in a basement and we have structural damage in the building."
-formatted_prompt = prompt.format(query=query)
 print("Querying:", query)
-response = qa_chain.invoke(formatted_prompt)
+response = chain.invoke({"input": query})
 
 print("Response:", response)
