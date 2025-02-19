@@ -10,13 +10,6 @@ import os
 from langchain.chains import create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
 
-class Scenario(BaseModel):
-    reasoning: str
-    description: str
-    threat_id: str
-    vulnerability_id: str
-    remediation_id: str
-
 model_name = "mistral"
 files = [
     "C:/Code/Python/advanced_quality_and_security/sheets/scenarios_threats.csv",
@@ -27,20 +20,27 @@ files = [
 
 
 template = """
-Analyze the following scenario and provide reasoning, description, threat_id, vulnerability_id, remediation_id in JSON. If an appropriate value is not available, please set it as null but always include the keys.
-Context:
+You are an expert analyst. Using the context provided below only as background information, analyze the following scenario and produce a new JSON output with the following keys: 
+- reasoning
+- description: a description that corresponds with the threat ID
+- threat_id: starts with "M" and is followed by a number
+- vulnerability_id: starts with "V" and is followed by a number
+- remediation_id: Assign a unique identifier to the remediation.
+
+Do not simply return or repeat the context. If a value is not applicable, set it to null.
+
+Get the applicable ids from the following lists:
 {context}
+
 Scenario:
-{input}
+{question}
 """
+
+query = "What is the description of threat id m2"
 
 
 # Defining a structured prompt template so that we can analyze the outputs structurally
-prompt = PromptTemplate(
-    template=template,
-    input_variables=["input"],
-)
-
+prompt_template = PromptTemplate.from_template(template)
 
 documents = []
 print("Loading documents...")
@@ -69,21 +69,20 @@ else:
     print("Storing new document embeddings in ChromaDB...")
     vectorstore = Chroma.from_documents(docs, embeddings, persist_directory=persist_directory)
     print("Document embeddings stored.")
+    
 
+# Create a retrieval chain
 retriever = vectorstore.as_retriever()
+relevant_docs = retriever.get_relevant_documents(query)
+context_text = "\n".join([doc.page_content for doc in relevant_docs])
+
+
+
+prompt = prompt_template.format(context=context_text, question=query)
 
 # Load DeepSeek-R1 model via Ollama
-llm = ChatOllama(model=model_name, temperature=0.4, num_predict=1000)
-structured_llm = llm.with_structured_output(Scenario)
+llm = ChatOllama(model=model_name, temperature=0.4, format="json")
 
-# Create Retrieval-Augmented Generation (RAG) system
-print("Initializing QA chain...")
-question_answer_chain = create_stuff_documents_chain(structured_llm, prompt)
-chain = create_retrieval_chain(retriever, question_answer_chain)
-print("QA chain initialized.")
+response_text = llm.invoke(prompt)
 
-query = "I have a case where my server room is in a basement and we have structural damage in the building."
-print("Querying:", query)
-response = chain.invoke({"input": query})
-
-print("Response:", response)
+print(response_text)
