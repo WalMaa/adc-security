@@ -1,5 +1,4 @@
 ﻿Threat-Vulnerability Relationship Matrix,,,,,,,
-,,,,,,,
 THREAT ID,THREAT,VULNERABILITY ID,VULNERABILITY,VTHE,COUNTERMEASURE ID,COUNTERMEASURE,TECHNICAL NATURE
 M1,Queuing access,V8,Inadequate logical access control,4,s1,Identification and authentication,X
 ,,,,,s1.1,Password is not displayed on screen as you type,X
