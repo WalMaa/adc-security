@@ -4,7 +4,7 @@ from langchain.output_parsers import StructuredOutputParser, ResponseSchema
 from langchain.prompts import PromptTemplate
 from rag_loader import load_rag
 
-model_name = "deepseek-r1:7b"
+model_name = "mistral"
 
 response_schemas = [
     ResponseSchema(name="reasoning", description="Detailed reasoning about the threat."),
@@ -17,9 +17,25 @@ response_schemas = [
 output_parser = StructuredOutputParser.from_response_schemas(response_schemas)
 format_instructions = output_parser.get_format_instructions()
 
+template = """
+You are an assistant in security risk analysis.
+You need to determine if the current user message contains a security threat.
+If a security threat is present, please explain what the security threat is.
+Find the relevant threat, vulnerability, and remediation IDs for the security threat in the provided files.
+Find the relevant remediation ID in the remediation_table.csv under COUNTERMEASURE ID column, they generally start with s, pe, h or f.
+Under no circumstances can you make up any id's not provided in the documents.
+DO NOT HALLUCINATE.
+
+Answer the question strictly in JSON format specified below:
+{format_instructions}
+
+Question: {query}
+
+"""
+
 # Defining a structured prompt template so that we can analyze the outputs structurally
 prompt = PromptTemplate(
-    template="Answer the following question strictly in JSON format:\n\n{format_instructions}\n\nQuestion: {query}",
+    template=template,
     input_variables=["query"],
 )
 

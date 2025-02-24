@@ -1,6 +1,7 @@
 import csv
 from rag_implementation import prompt_llm
 import json
+from collections import OrderedDict
 
 scenario_file = "./sheets/scenarios_examples.csv"
 
@@ -16,9 +17,17 @@ def read_scenarios(filename):
     return scenarios
 
 def analyze_scenarios(scenarios):
+    # Use OrderedDict instead to preserve insertion order for easy analysis
+    unique_scenarios = OrderedDict()
     for scenario in scenarios:
-        print(f"Analyzing scenario: {scenario.get('Scenario ID', 'Unknown')}")
-        query = scenario.get('User', '')
+        unique_scenarios[scenario.get('Scenario ID')] = scenario.get('User', '')
+    print(f"Analyzing {len(unique_scenarios)} unique scenarios.")
+    
+    
+    for scenario in unique_scenarios:
+        scenario_id = scenario
+        query = unique_scenarios[scenario]
+        print(f"Analyzing scenario: {scenario_id}, Query: {query}")
         response = prompt_llm(query)
         print("Response:", response)
         try:
@@ -28,7 +37,7 @@ def analyze_scenarios(scenarios):
             continue
 
         analysis_result = {
-            "scenario_id": scenario.get("Scenario ID", ""),
+            "scenario_id": scenario_id,
             "reasoning": res_obj.get("reasoning", ""),
             "description": res_obj.get("description", ""),
             "threat_id": res_obj.get("threat_id", ""),
@@ -43,7 +52,7 @@ def save_to_csv(analysis_result, filename):
     Save the analysis results to a CSV file.
     """
     print(f"Saving analysis results to {filename}")
-    with open(filename, mode='a', newline='') as file:
+    with open(filename, mode='a', newline='', encoding='utf-8-sig') as file:
         writer = csv.DictWriter(file, fieldnames=["scenario_id", "reasoning", "description", "threat_id", "vulnerability_id", "remediation_id"])
         writer.writerow(analysis_result)
             
@@ -51,7 +60,7 @@ def create_csv(filename):
     """
     Create a new results CSV file.
     """
-    with open(filename, mode='w', newline='') as file:
+    with open(filename, mode='w', newline='', encoding='utf-8-sig') as file:
         writer = csv.DictWriter(file, fieldnames=["scenario_id", "reasoning", "description", "threat_id", "vulnerability_id", "remediation_id"])
         writer.writeheader()
 
