@@ -13,8 +13,8 @@ files = [
 "./sheets/scenarios_threats.csv",
 "./sheets/scenarios_vulnerability.csv",
 "./sheets/scenarios_examples.csv",
-"./sheets/remediation_table.csv"
 ]
+
 
 def load_rag(model_name):
     
@@ -50,5 +50,5 @@ def load_rag(model_name):
         print("Document embeddings stored.")
         
     # Load retriever
-    return vectorstore.as_retriever()
+    return vectorstore.as_retriever(search_kwargs={"k": 50})
     
