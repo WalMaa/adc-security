@@ -1,15 +1,49 @@
 from langchain_ollama import ChatOllama
 from langchain.chains import RetrievalQA
-from langchain.output_parsers import StructuredOutputParser, ResponseSchema
-from langchain.prompts import PromptTemplate
-from rag_loader import load_rag
 from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_community.document_loaders import CSVLoader
+from langchain.output_parsers import StructuredOutputParser, ResponseSchema
+from langchain.prompts import PromptTemplate
 import pandas as pd
 
+model_name = "llama3"
+
+template = """
+You are an assistant in security risk analysis.
+You need to determine if the current user message contains a security threat.
+If a security threat is present, please explain what the security threat is.
+Find the relevant threat, vulnerability, and remediation IDs for the security threat in the provided files.
+Find the relevant remediation ID in the remediation_table.csv under COUNTERMEASURE ID column, they generally start with s, pe, h or f.
+Under no circumstances can you make up any id's not provided in the documents.
+DO NOT HALLUCINATE.
+
+Answer the question strictly in JSON format specified below:
+{format_instructions}
+
+Respond only with valid JSON. Do not write an introduction or summary.
+Question: {query}
+
+"""
+
+response_schemas = [
+    ResponseSchema(name="reasoning", description="Detailed reasoning about the threat."),
+    ResponseSchema(name="description", description="Detailed description of the threat as described in scenarios_threats.csv."),
+    ResponseSchema(name="threat_id", description="Unique identifier for the threat starting with M and found in scenarios_threats.csv."),
+    ResponseSchema(name="vulnerability_id", description="Unique identifier for the associated vulnerability starting with V and found in scenarios_vulnerability.csv."),
+    ResponseSchema(name="remediation_id", description="Countermeasure ID in the remediation_table.csv."),
+]
+
+
+output_parser = StructuredOutputParser.from_response_schemas(response_schemas)
+format_instructions = output_parser.get_format_instructions()
+
+# Defining a structured prompt template so that we can analyze the outputs structurally
+prompt = PromptTemplate(
+    template=template,
+    input_variables=["query"],
+)
 
 def preprocess_remediation_table(file_path):
     df = pd.read_csv(file_path, encoding="utf-8-sig")
@@ -24,10 +58,8 @@ preprocessed_remediation_table_path = preprocess_remediation_table(remediation_t
 
 
 files = [
-"./sheets/Scenarios_Threats.csv",
-"./sheets/Scenarios_Vulnerability.csv",
-# "./sheets/scenarios_examples.csv",
-# "./sheets/remediation_table.csv"
+"./sheets/scenarios_threats.csv",
+"./sheets/scenarios_vulnerability.csv",
 preprocessed_remediation_table_path
 ]
 
@@ -38,9 +70,7 @@ for file in files:
     documents.extend(loader.load())
 print("Documents loaded.")
 
-# model_name = "llama3.1"
 
-model_name = "llama3"
 
 # Split the document into chunks
 text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=100, separator="\n")
@@ -68,12 +98,16 @@ retriever = persisted_vectorstore.as_retriever(search_kwargs={"k": 15})
 
 llm = ChatOllama(model=model_name, temperature=0.2,
     num_ctx=8000,
-    num_predict=2048)
+    num_predict=2048,
+    format="json",
+    )
 
 # Create Retrieval-Augmented Generation (RAG) system
 qa_chain = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff" , retriever=retriever)
 
+query = "I have system where anyone can access it, give a proper threat id, vulnerability id and countermeasure id for this"
 # result = qa_chain.invoke("I have flooding in my server room, give a proper threat id, vulnerability id and countermeasure id for this",)
-result = qa_chain.invoke("I have system where anyone can access it, give a proper threat id, vulnerability id and countermeasure id for this",)
+formatted_prompt = prompt.format(query=query, format_instructions=format_instructions)
+result = qa_chain.run(formatted_prompt)
 print(result)
 
