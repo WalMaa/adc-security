@@ -8,7 +8,7 @@ from langchain.output_parsers import StructuredOutputParser, ResponseSchema
 from langchain.prompts import PromptTemplate
 import pandas as pd
 
-model_name = "llama3"
+model_name = "llama3.1"
 
 template = """
 You are an assistant in security risk analysis.
@@ -94,7 +94,6 @@ persisted_vectorstore = FAISS.load_local("faiss_index_", embeddings, allow_dange
 
 # Create a retriever
 retriever = persisted_vectorstore.as_retriever(search_kwargs={"k": 15})
-# retriever = load_rag(model_name=model_name)
 
 llm = ChatOllama(model=model_name, temperature=0.2,
     num_ctx=8000,
@@ -105,9 +104,7 @@ llm = ChatOllama(model=model_name, temperature=0.2,
 # Create Retrieval-Augmented Generation (RAG) system
 qa_chain = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff" , retriever=retriever)
 
-query = "I have system where anyone can access it, give a proper threat id, vulnerability id and countermeasure id for this"
-# result = qa_chain.invoke("I have flooding in my server room, give a proper threat id, vulnerability id and countermeasure id for this",)
-formatted_prompt = prompt.format(query=query, format_instructions=format_instructions)
-result = qa_chain.run(formatted_prompt)
-print(result)
-
+def prompt_llm(query):
+    formatted_prompt = prompt.format(query=query, format_instructions=format_instructions)
+    print("Querying:", query)
+    return qa_chain.run(formatted_prompt)
