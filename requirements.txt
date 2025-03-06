@@ -1,6 +1,9 @@
-langchain 
-langchain_community 
-chromadb 
+langchain
+langchain_community
+chromadb
 langchain-chroma
 ollama
 langchain-ollama
+scikit-learn
+pytest
+requests
