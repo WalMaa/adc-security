@@ -4,6 +4,4 @@ chromadb
 langchain-chroma
 ollama
 langchain-ollama
-scikit-learn
-pytest
-requests
+pandas
