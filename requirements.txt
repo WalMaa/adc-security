@@ -5,3 +5,5 @@ langchain-chroma
 ollama
 langchain-ollama
 pandas
+pytest
+pytest-cov

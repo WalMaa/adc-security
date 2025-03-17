@@ -1,5 +1,5 @@
 import csv
-from rag_implementation import prompt_llm
+from src.rag_implementation import prompt_llm
 import json
 from collections import OrderedDict
 
