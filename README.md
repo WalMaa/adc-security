@@ -18,3 +18,10 @@ pip install -r requirements.txt
 ```
 
 Run main.py to start analysis
+
+# Testing
+
+Run tests in project root:
+```bash
+pytest src/tests --cov=src --cov-report=term-missing
+```
