@@ -152,6 +152,43 @@ The experiment showed that the language models using retrieval-augmented generat
 
 The research demonstrated the tendency of the RAG models towards generalization of the known truth by identifying risks not yet recognized. Our exploration identified many cases where the model recognized plausible but incorrect categories for threats and vulnerabilities. The process is a double-edged sword where the tendency of the model towards exploring beyond the context-specific details proves useful but also results in a high percentage of false positives. 5.4. Fine-tuning's Impact on Reasoning The most accurate results were gained by the study through the use of highly calibrated models. The results were lacking major features. Our findings suggest that the fine-tuning approach might help overcome the contradictory reasoning found by enhancing the logical coherence between the elements within the scenes and their respective labels. Yet the enhancement might inadvertently compromise the overall explanations for which the outputs are made plausible.
 
+\subsection{Quantitative Hallucination Metrics}
+The quantitative analysis of measurements regarding hallucinations reveals significant discrepancies in the performance of varying analytical methods. The VK method performed better than WM in all criteria that were analyzed with improvements in precision of +8.51\%, F1 score of +8.69\%, precision of +8.37\%, and recall of +9.00\%. These very high improvements highlight the superiority of the changes in methods incorporated within the VK system.
+
+The comparative evaluation with respect to integration of the TI-002 document authentication with other analytical methods shows that the VK + TI002 combination had the best overall performance metrics with accuracy of 87.54\%, precision of 87.00\%, and F1 score of 86.55\%. This is a significant performance improvement in relation to baseline WM analysis that had poor performance metrics with accuracy of 74.87\%, precision of 75.13\%, and F1 score of 74.06\%.
+
+Interestingly, the combination of the VK and WM approaches yielded a slight decrease in performance compared to the VK analysis alone (-4.26\% in accuracy), although it showed an improvement of +4.23\% compared to the WM analysis. This finding suggests that ensemble modeling strategies will not always yield additive benefits, particularly when combining methods with different levels of effectiveness.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{hallucination.png}
+    \caption{Criteria Used to Compare Hallucinations}
+    \label{fig:enter-label}
+\end{figure}
+
+The categorization of hallucination type reflected important trends with regard to each analytical technique that was used. The VK+TI002 model had the lowest rate of false threat identification hallucinations at 14.95\%, compared to 24.35\% in the baseline working memory model. Similarly, false vulnerability identification hallucinations were also considerably lower at 25.39\% in the working memory model compared to 13.92\% in VK+TI002. These improvements can be attributed to incorporating rational understanding frameworks and the application of TI-002 document validation that imposed rational constraints on threats being mapped to vulnerabilities.
+The validation with regard to TI-002 document yielded a significant result with regard to both analytical approaches. The integration of WM and TI-002 revealed a boost of +4.65\% in accuracy and +4.47\% in F1 score compared with evaluations performed using WM alone. The boost that this revealed was considerably lower than that seen with integration of VK and TI-002, which, unlike that with the VK baseline, had a +4.16\% increase in accuracy. This disparity suggests that validation using reference documents can create variable results that depend upon the quality of justification included in both analytical approaches.
+
+The strongest variation in performance was seen between the VK+TI002 and WM methods with a significant boost of +12.67\% in accuracy and a +12.49\% increase in F1 score. This result highlights the synergistic benefits of improvements in methods, especially when those improvements are rigorously verified against pre-existing reference standards.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{hallucination_gain.png}
+    \caption{Hallucination Gain Metrics}
+    \label{fig:enter-label}
+\end{figure}
+
+The comparative study of 193 entries in the analysis\_results\_wm\_06\_03\_2025 and 194 entries in VK has shed some light on enduring discrepancies regarding patterns of reason. The WM study suggested a very high incidence of context misconceptions at 18.65\%, together with a range of resolution to mappings at 21.76\%, compared to VK's. Such findings coincide with quantitative measurements and verify qualitative findings reported in Section 3.
+
+The detailed review of associations between reasoning approaches and types of hallucinations revealed significant ones. In particular, cases with erroneous patterns of reasoning revealed that VK led to a 62.4\% reduction in related hallucinations compared to WM. The effect was especially evident in cases with complicated technical backgrounds that required step-by-step reasoning. The performance gap observed here implies that formalized reasoning frameworks radically reduce the likelihood of hallucinations in situations with high threat estimations.
+
+The study of different hallucination types among different categories of security scenarios revealed additional information. In particular, authentication scenarios had the strongest improvement when using the VK+TI002 technique and had a 17.8\% reduction in hallucination rates compared to using the WM technique. In contrast to that, physical access control scenarios had relatively lower improvements of 9.3\%, indicating deviation in efficacy in a different range of security domains. Such deviation highlights that domain-specific calibration of LRM to perform security evaluations is required.
+
+Temporal evaluation of trends in hallucination observed over all test sessions reflected a general decrease in incidence of hallucination with the VK procedure that suggests learning curves or improvements in procedure over time. The WM procedure had a relatively stable incidence of hallucination over the testing session that suggests a more stable but ultimately lower precision performance trend. The enhanced efficiency of VK+TI002 technology highlights that complementarity between cutting-edge reasoning and robust validation techniques is important. The complementary strategy effectively minimizes hallucinations that typify single LRM implementation by coupling the framework of reasoning with proven security policies. The findings suggest that upcoming innovations in security risk estimation with artificial intelligence must consider both the quality of reasoning and context-specific validation of knowledge.
+
+In measuring comparative importance among performance indicators, our research demonstrates that precision vs. recall trade-offs are clearly defined through different approaches. The VK approach emphasized precision at a precision rate of 83.50\%, while that of WM measured 75.13\%. We speculate that such disparity in prioritization played a role in realizing a lower rate of hallucination with the VK approach at the expense of more comprehensive and possibly incorrect coverage. Such results chime with prevailing security best practice in that incorrect positives have the risk of causing incorrect allocation of resources and vulnerabilities to overall security stance.
+
+The application of the countermeasure recommendation analysis revealed additional deficiency in performance across different methodologies. The VK+TI002 methodology exhibited a significantly higher percentage of correct remediation ID assignments (84.02\%) compared to the WM methodology (76.68\%). This difference is of critical importance to application in practice since precise remediation direction has a direct impact upon security posture improvements. The VK+TI002 methodology's performance superiority in this regard highlights its operational value that goes beyond threat detection.
 
 \section{Discussion}
 Based on our analysis of irregularities and contrast with empirical study findings, we suggest several approaches designed to improve LRM effectiveness in the application of mission-critical risk analysis:
