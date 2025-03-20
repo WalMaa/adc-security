@@ -40,7 +40,7 @@
 \date{\today}
 
 \begin{abstract}
-  This study for the Advanced Software Quality and Security 2025 course performs a detailed scrutiny of the inaccuracies, untruths, contradictions, and discrepancies found in the results produced by the Large Reasoning Model (LRM) when faced with critical risk assessment circumstances. Based on the data found within the analysis\_results\_VK\_06\_03\_2025.csv, which was derived from the dataset compiled by Esposito et al. (2024) \citep{esposito2024dataset}, our research determines the validity and reliability of the risk assessments made by artificial intelligence against the standards set forth within the Risk Analysis Law TI-002 document and the findings reached within the "Beyond Words" study \citep{esposito2024beyond}.
+  This study for the Advanced Software Quality and Security 2025 course performs a detailed scrutiny of the inaccuracies, untruths, contradictions, and discrepancies found in the results produced by the Large Reasoning Model (LRM) when faced with critical risk assessment circumstances. Based on the data found within the analysis\allowbreak\_results\allowbreak\_VK\allowbreak\_06\allowbreak\_03\allowbreak\_2025.csv, which was derived from the dataset compiled by Esposito et al. (2024) \citep{esposito2024dataset}, our research determines the validity and reliability of the risk assessments made by artificial intelligence against the standards set forth within the Risk Analysis Law TI-002 document and the findings reached within the "Beyond Words" study \citep{esposito2024beyond}.
   
   Our study builds upon the methodology outlined in Beyond Words \citep{esposito2024beyond} by utilizing Retrieval-Augmented Generation (RAG) techniques and enhanced logical reasoning mechanisms to improve remediation accuracy. The results reveal key limitations of LRM-based models in mission-critical environments, shedding light on reasoning inconsistencies, hallucination frequency, and discrepancies in remediation recommendations.
 \end{abstract}
@@ -159,9 +159,9 @@ The comparative evaluation with respect to integration of the TI-002 document au
 
 Interestingly, the combination of the VK and WM approaches yielded a slight decrease in performance compared to the VK analysis alone (-4.26\% in accuracy), although it showed an improvement of +4.23\% compared to the WM analysis. This finding suggests that ensemble modeling strategies will not always yield additive benefits, particularly when combining methods with different levels of effectiveness.
 
-\begin{figure}
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\linewidth]{hallucination.png}
+    \includegraphics[width=0.7\linewidth]{hallucination.png}
     \caption{Criteria Used to Compare Hallucinations}
     \label{fig:enter-label}
 \end{figure}
@@ -171,14 +171,14 @@ The validation with regard to TI-002 document yielded a significant result with 
 
 The strongest variation in performance was seen between the VK+TI002 and WM methods with a significant boost of +12.67\% in accuracy and a +12.49\% increase in F1 score. This result highlights the synergistic benefits of improvements in methods, especially when those improvements are rigorously verified against pre-existing reference standards.
 
-\begin{figure}
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\linewidth]{hallucination_gain.png}
+    \includegraphics[width=0.7\linewidth]{hallucination_gain.png}
     \caption{Hallucination Gain Metrics}
     \label{fig:enter-label}
 \end{figure}
 
-The comparative study of 193 entries in the analysis\_results\_wm\_06\_03\_2025 and 194 entries in VK has shed some light on enduring discrepancies regarding patterns of reason. The WM study suggested a very high incidence of context misconceptions at 18.65\%, together with a range of resolution to mappings at 21.76\%, compared to VK's. Such findings coincide with quantitative measurements and verify qualitative findings reported in Section 3.
+The comparative study of 193 entries in the analysis\allowbreak\_results\allowbreak\_wm\allowbreak\_06\allowbreak\_03\allowbreak\_2025 and 194 entries in VK has shed some light on enduring discrepancies regarding patterns of reason. The WM study suggested a very high incidence of context misconceptions at 18.65\%, together with a range of resolution to mappings at 21.76\%, compared to VK's. Such findings coincide with quantitative measurements and verify qualitative findings reported in Section 3.
 
 The detailed review of associations between reasoning approaches and types of hallucinations revealed significant ones. In particular, cases with erroneous patterns of reasoning revealed that VK led to a 62.4\% reduction in related hallucinations compared to WM. The effect was especially evident in cases with complicated technical backgrounds that required step-by-step reasoning. The performance gap observed here implies that formalized reasoning frameworks radically reduce the likelihood of hallucinations in situations with high threat estimations.
 
