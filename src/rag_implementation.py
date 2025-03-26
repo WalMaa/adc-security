@@ -8,6 +8,7 @@ from langchain.output_parsers import StructuredOutputParser, ResponseSchema
 from langchain.prompts import PromptTemplate
 import pandas as pd
 import json
+import os
 
 model_name = "llama3.1"
 
@@ -64,15 +65,14 @@ def preprocess_remediation_table(file_path):
 
 def initialize_qa_chain():
     try:
-        remediation_table_path = "./sheets/remediation_table.csv"
+        project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+        remediation_table_path = os.path.join(project_root, "sheets", "remediation_table.csv")
+        threat_csv = os.path.join(project_root, "sheets", "scenarios_threats.csv")
+        vulnerability_csv = os.path.join(project_root, "sheets", "scenarios_vulnerability.csv")
+
         preprocessed_remediation_table_path = preprocess_remediation_table(remediation_table_path)
 
-
-        files = [
-        "./sheets/scenarios_threats.csv",
-        "./sheets/scenarios_vulnerability.csv",
-        preprocessed_remediation_table_path
-        ]
+        files = [threat_csv, vulnerability_csv, preprocessed_remediation_table_path]
 
         documents = []
         print("Loading documents...")

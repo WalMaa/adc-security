@@ -1,10 +1,13 @@
+import os
 import csv
-from src.rag_implementation import prompt_llm
 import json
 from collections import OrderedDict
+from src.rag_implementation import prompt_llm
 
-scenario_file = "./sheets/scenarios_examples.csv"
-analysis_results_file = "analysis_results.csv"
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+
+scenario_file = os.path.join(project_root, "sheets", "scenarios_examples.csv")
+analysis_results_file = os.path.join(project_root, "analysis_results.csv")
 
 
 def read_scenarios(filename):
