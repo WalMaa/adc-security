@@ -59,15 +59,15 @@ def test_prompt_llm(mocker):
     and returns a structured JSON response.
 
     Steps:
-    - Mocks the `qa_chain.invoke` method to return a predefined JSON response.
+    - Mocks the `qa_chain` method to return a predefined JSON response.
     - Calls `prompt_llm` with a test query.
-    - Asserts that `qa_chain.invoke` was called exactly once.
+    - Asserts that `qa_chain` was called exactly once.
     - Verifies that the returned response contains all expected fields.
 
     Args:
-        mocker (pytest fixture): Used to mock the `qa_chain.invoke` function.
+        mocker (pytest fixture): Used to mock the `qa_chain` function.
     """
-    mock_qa_chain = mocker.patch("src.rag_implementation.qa_chain.invoke",
+    mock_qa_chain = mocker.patch("src.rag_implementation.qa_chain",
                                  return_value='{"reasoning": "Test", '
                                               '"description": "Test Threat", '
                                               '"threat_id": "M1", '
@@ -86,7 +86,7 @@ def test_prompt_llm_json_error(monkeypatch):
     """
     Tests that prompt_llm handles malformed JSON gracefully.
     """
-    with patch("src.rag_implementation.qa_chain.invoke", return_value="{invalid json"):
+    with patch("src.rag_implementation.qa_chain", return_value="{invalid json"):
         response = prompt_llm("Test query")
         parsed = json.loads(response)
         assert parsed["reasoning"] == ""

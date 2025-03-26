@@ -126,7 +126,12 @@ def prompt_llm(query):
     try:
         formatted_prompt = prompt.format(query=query, format_instructions=format_instructions)
         print("Querying:", query)
-        return qa_chain.invoke(formatted_prompt)
+        result = qa_chain(formatted_prompt)
+        try:
+            json.loads(result)
+            return result
+        except json.JSONDecodeError:
+            raise ValueError("Invalid JSON returned by the model.")
     except Exception as e:
         print(f"Error during prompt invocation: {e}")
         return json.dumps({
