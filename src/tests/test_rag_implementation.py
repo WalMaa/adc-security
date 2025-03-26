@@ -7,6 +7,7 @@ from unittest.mock import patch
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 from src.rag_implementation import preprocess_remediation_table, prompt_llm
 
+
 @pytest.fixture
 def sample_csv(tmp_path):
     """
@@ -22,6 +23,7 @@ def sample_csv(tmp_path):
     df = pd.DataFrame({"COUNTERMEASURE ID": ["s1", "pe2", "h3", "f4"]})
     df.to_csv(csv_file, index=False, encoding="utf-8-sig")
     return csv_file
+
 
 def test_preprocess_remediation_table(sample_csv):
     """
@@ -42,12 +44,14 @@ def test_preprocess_remediation_table(sample_csv):
     assert "COUNTERMEASURE ID" in df.columns
     assert len(df) == 4
 
+
 def test_preprocess_remediation_table_file_not_found():
     """
     Tests that FileNotFoundError is raised when a nonexistent file is passed.
     """
     with pytest.raises(FileNotFoundError):
         preprocess_remediation_table("nonexistent_file.csv")
+
 
 def test_prompt_llm(mocker):
     """
@@ -76,6 +80,7 @@ def test_prompt_llm(mocker):
     assert "threat_id" in response
     assert "vulnerability_id" in response
     assert "remediation_id" in response
+
 
 def test_prompt_llm_json_error(monkeypatch):
     """

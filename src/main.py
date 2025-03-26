@@ -6,6 +6,7 @@ from collections import OrderedDict
 scenario_file = "./sheets/scenarios_examples.csv"
 analysis_results_file = "analysis_results.csv"
 
+
 def read_scenarios(filename):
     """
     Read scenarios from a CSV file.
@@ -19,6 +20,7 @@ def read_scenarios(filename):
     except FileNotFoundError:
         print(f"Scenario file not found: {filename}")
     return scenarios
+
 
 def analyze_scenarios(scenarios):
     """
@@ -64,7 +66,8 @@ def save_to_csv(analysis_result, filename):
             writer.writerow(analysis_result)
     except Exception as e:
         print(f"Error saving analysis results: {e}")
-            
+
+
 def create_csv(filename):
     """
     Create a new results CSV file.
@@ -72,6 +75,7 @@ def create_csv(filename):
     with open(filename, mode='w', newline='', encoding='utf-8-sig') as file:
         writer = csv.DictWriter(file, fieldnames=["scenario_id", "reasoning", "description", "threat_id", "vulnerability_id", "remediation_id"])
         writer.writeheader()
+
 
 if __name__ == "__main__":
     create_csv(analysis_results_file)

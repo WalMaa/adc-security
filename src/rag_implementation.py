@@ -46,6 +46,7 @@ prompt = PromptTemplate(
     input_variables=["query"],
 )
 
+
 def preprocess_remediation_table(file_path):
     """
     Preprocess the remediation table to fill missing values and save a new copy.
@@ -59,6 +60,7 @@ def preprocess_remediation_table(file_path):
     except Exception as e:
         print(f"Error processing remediation table: {e}")
         raise
+
 
 # Load and preprocess data
 try:
@@ -115,6 +117,7 @@ try:
 except Exception as e:
     print(f"Initialization failed: {e}")
     raise
+
 
 def prompt_llm(query):
     """

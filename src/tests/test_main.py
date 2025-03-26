@@ -5,6 +5,7 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 from src.main import read_scenarios, analyze_scenarios, save_to_csv, create_csv
 
+
 @pytest.fixture
 def sample_scenarios():
     """
@@ -14,6 +15,7 @@ def sample_scenarios():
         list: A list containing a single dictionary representing a scenario.
     """
     return [{"Scenario ID": "1", "User": "Test Query"}]
+
 
 def test_read_scenarios(monkeypatch, tmp_path):
     """
@@ -40,12 +42,14 @@ def test_read_scenarios(monkeypatch, tmp_path):
     assert scenarios[0]["Scenario ID"] == "1"
     assert scenarios[0]["User"] == "Test Query"
 
+
 def test_read_scenarios_file_not_found():
     """
     Tests that read_scenarios handles missing file gracefully.
     """
     scenarios = read_scenarios("nonexistent_file.csv")
     assert scenarios == []
+
 
 def test_analyze_scenarios(mocker, sample_scenarios):
     """
@@ -69,6 +73,7 @@ def test_analyze_scenarios(mocker, sample_scenarios):
     analyze_scenarios(sample_scenarios)
     mock_prompt.assert_called_once_with("Test Query")
 
+
 def test_analyze_scenarios_invalid_json(mocker, sample_scenarios):
     """
     Tests that analyze_scenarios handles JSON decoding errors gracefully.
@@ -77,6 +82,7 @@ def test_analyze_scenarios_invalid_json(mocker, sample_scenarios):
     result = analyze_scenarios(sample_scenarios)
     assert result is None
     mock_prompt.assert_called_once()
+
 
 def test_save_to_csv(tmp_path):
     """
@@ -111,6 +117,7 @@ def test_save_to_csv(tmp_path):
 
     assert len(rows) == 1
     assert rows[0]["scenario_id"] == "1"
+
 
 def test_create_csv(tmp_path):
     """
