@@ -98,7 +98,6 @@ def test_initialize_qa_chain_success(mocker):
     )
     mock_faiss.from_documents.assert_called_once_with(["chunk1", "chunk2"], mock_embedding_instance)
 
-    # Match full faiss_path, not just "faiss_index_"
     project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
     faiss_path = os.path.join(project_root, "faiss_index_")
 
@@ -154,16 +153,77 @@ def test_prompt_llm(mocker):
     assert parsed["remediation_id"] == "s1"
 
 
-def test_prompt_llm_json_error(mocker):
+def test_prompt_llm_dict_with_result(mocker):
     """
-    Tests that prompt_llm handles malformed JSON gracefully.
+    Test when raw_response is a dict with a 'result' key containing valid JSON.
     """
+    nested_json_str = json.dumps({
+        "reasoning": "Nested reasoning",
+        "description": "Nested description",
+        "threat_id": "M2",
+        "vulnerability_id": "V2",
+        "remediation_id": "s2"
+    })
+
     mock_chain = mocker.Mock()
-    mock_chain.return_value = "{invalid json"
+    mock_chain.return_value = {"result": nested_json_str}
 
     mocker.patch("src.rag_implementation.initialize_qa_chain", return_value=mock_chain)
 
-    response = prompt_llm("Some query")
+    response = prompt_llm("test query")
+    parsed = json.loads(response)
+
+    assert parsed["reasoning"] == "Nested reasoning"
+    assert parsed["threat_id"] == "M2"
+
+
+def test_prompt_llm_dict_result_invalid_json(mocker):
+    """
+    Test when raw_response is a dict with 'result' key containing invalid JSON.
+    Should raise ValueError.
+    """
+    mock_chain = mocker.Mock()
+    mock_chain.return_value = {"result": "{invalid json"}
+
+    mocker.patch("src.rag_implementation.initialize_qa_chain", return_value=mock_chain)
+
+    with pytest.raises(ValueError, match="Invalid nested JSON in 'result' field."):
+        prompt_llm("test query")
+
+
+def test_prompt_llm_dict_direct_return(mocker):
+    """
+    Test when raw_response is a direct dict (no 'result' key).
+    Should return the JSON-dumped version.
+    """
+    raw_dict = {
+        "reasoning": "Direct",
+        "description": "No nesting",
+        "threat_id": "M3",
+        "vulnerability_id": "V3",
+        "remediation_id": "s3"
+    }
+
+    mock_chain = mocker.Mock()
+    mock_chain.return_value = raw_dict
+
+    mocker.patch("src.rag_implementation.initialize_qa_chain", return_value=mock_chain)
+
+    response = prompt_llm("test query")
+    parsed = json.loads(response)
+
+    assert parsed["reasoning"] == "Direct"
+    assert parsed["remediation_id"] == "s3"
+
+
+def test_prompt_llm_generic_exception(mocker, capsys):
+    """
+    Tests that prompt_llm handles unexpected exceptions gracefully
+    and returns empty JSON values.
+    """
+    mocker.patch("src.rag_implementation.initialize_qa_chain", side_effect=RuntimeError("Unexpected error"))
+
+    response = prompt_llm("test query")
     parsed = json.loads(response)
 
     assert parsed["reasoning"] == ""
@@ -171,3 +231,6 @@ def test_prompt_llm_json_error(mocker):
     assert parsed["threat_id"] == ""
     assert parsed["vulnerability_id"] == ""
     assert parsed["remediation_id"] == ""
+
+    captured = capsys.readouterr()
+    assert "Error during prompt invocation: Unexpected error" in captured.out

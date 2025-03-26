@@ -123,27 +123,26 @@ def prompt_llm(query):
     """
     Formats and sends a query to the LLM via RetrievalQA.
     """
+    formatted_prompt = prompt.format(query=query, format_instructions=format_instructions)
+    print("Querying:", query)
+
     try:
-        formatted_prompt = prompt.format(query=query, format_instructions=format_instructions)
-        print("Querying:", query)
         qa_chain = initialize_qa_chain()
         raw_response = qa_chain(formatted_prompt)
 
-        if isinstance(raw_response, dict) and "result" in raw_response:
-            try:
-                result_json = json.loads(raw_response["result"])
-                return json.dumps(result_json)
-            except json.JSONDecodeError:
-                raise ValueError("Invalid nested JSON in 'result' field.")
-
         if isinstance(raw_response, dict):
+            if "result" in raw_response:
+                try:
+                    return json.dumps(json.loads(raw_response["result"]))
+                except json.JSONDecodeError:
+                    raise ValueError("Invalid nested JSON in 'result' field.")
             return json.dumps(raw_response)
 
-        try:
-            json.loads(raw_response)
-            return raw_response
-        except json.JSONDecodeError:
-            raise ValueError("Invalid JSON returned by the model.")
+        json.loads(raw_response)
+        return raw_response
+
+    except ValueError:
+        raise
     except Exception as e:
         print(f"Error during prompt invocation: {e}")
         return json.dumps({
@@ -153,3 +152,4 @@ def prompt_llm(query):
             "vulnerability_id": "",
             "remediation_id": ""
         })
+
