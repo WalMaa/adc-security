@@ -7,3 +7,4 @@ langchain-ollama
 pandas
 pytest
 pytest-cov
+pytest-mock
