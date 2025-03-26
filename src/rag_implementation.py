@@ -107,4 +107,4 @@ qa_chain = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff" , retriever=r
 def prompt_llm(query):
     formatted_prompt = prompt.format(query=query, format_instructions=format_instructions)
     print("Querying:", query)
-    return qa_chain.run(formatted_prompt)
+    return qa_chain.invoke(formatted_prompt)
