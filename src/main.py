@@ -11,23 +11,23 @@ def read_scenarios(filename):
     """
     Read scenarios from a CSV file.
     """
-    scenarios = []
+    scenario_list = []
     try:
         with open(filename, mode='r', newline='', encoding='utf-8-sig') as file:
             reader = csv.DictReader(file, delimiter=',')
             for row in reader:
-                scenarios.append(row)
+                scenario_list.append(row)
     except FileNotFoundError:
         print(f"Scenario file not found: {filename}")
-    return scenarios
+    return scenario_list
 
 
-def analyze_scenarios(scenarios):
+def analyze_scenarios(scenario_list):
     """
     Analyze each unique scenario and save the results.
     """
     unique_scenarios = OrderedDict()
-    for scenario in scenarios:
+    for scenario in scenario_list:
         unique_scenarios[scenario.get('Scenario ID')] = scenario.get('User', '')
     print(f"Analyzing {len(unique_scenarios)} unique scenarios.")
     

@@ -129,5 +129,10 @@ def prompt_llm(query):
         return qa_chain.invoke(formatted_prompt)
     except Exception as e:
         print(f"Error during prompt invocation: {e}")
-        return json.dumps(
-            {"reasoning": "", "description": "", "threat_id": "", "vulnerability_id": "", "remediation_id": ""})
+        return json.dumps({
+            "reasoning": "",
+            "description": "",
+            "threat_id": "",
+            "vulnerability_id": "",
+            "remediation_id": ""
+        })
