@@ -45,41 +45,46 @@ def test_initialize_qa_chain_success(mocker):
     """
     from src import rag_implementation
 
-    # Mock preprocess_remediation_table to avoid real file reads
+    # Patch preprocess_remediation_table
     mocker.patch("src.rag_implementation.preprocess_remediation_table", return_value="./fake.csv")
 
-    # Mock document loader
+    # Patch CSVLoader
     mock_loader = mocker.patch("src.rag_implementation.CSVLoader")
     mock_loader.return_value.load.return_value = [{"page_content": "test doc"}]
 
-    # Mock text splitter
+    # Patch CharacterTextSplitter
     mock_splitter = mocker.patch("src.rag_implementation.CharacterTextSplitter")
     mock_splitter.return_value.split_documents.return_value = ["chunk1", "chunk2"]
 
-    # Mock embeddings
+    # Patch HuggingFaceEmbeddings
     mock_embedding_instance = mocker.Mock()
     mock_embed = mocker.patch("src.rag_implementation.HuggingFaceEmbeddings", return_value=mock_embedding_instance)
 
-    # Mock FAISS
+    # Patch FAISS
     mock_vectorstore_instance = mocker.Mock()
     mock_faiss = mocker.patch("src.rag_implementation.FAISS")
     mock_faiss.from_documents.return_value = mock_vectorstore_instance
     mock_vectorstore_instance.save_local.return_value = None
-    mock_faiss.load_local.return_value.as_retriever.return_value = "mock_retriever"
 
-    # Mock LLM
+    mock_persisted_store = mocker.Mock()
+    mock_persisted_store.as_retriever.return_value = "mock_retriever"
+    mock_faiss.load_local.return_value = mock_persisted_store
+
+    # Patch ChatOllama
     mock_llm_instance = mocker.Mock()
     mock_llm = mocker.patch("src.rag_implementation.ChatOllama", return_value=mock_llm_instance)
 
-    # Mock RetrievalQA
+    # Patch RetrievalQA
     mock_qa = mocker.patch("src.rag_implementation.RetrievalQA")
     mock_qa.from_chain_type.return_value = "mock_qa_chain"
 
-    # Run function
+    # Run the function
     result = rag_implementation.initialize_qa_chain()
 
-    # Assertions
+    # Assertion
     assert result == "mock_qa_chain"
+
+    # Verify calls
     mock_embed.assert_called_once_with(
         model_name="sentence-transformers/all-mpnet-base-v2",
         model_kwargs={"device": "cuda"}
@@ -92,8 +97,17 @@ def test_initialize_qa_chain_success(mocker):
         format="json"
     )
     mock_faiss.from_documents.assert_called_once_with(["chunk1", "chunk2"], mock_embedding_instance)
-    mock_faiss.load_local.assert_called_once_with("faiss_index_", mock_embedding_instance,
-                                                  allow_dangerous_deserialization=True)
+
+    # Match full faiss_path, not just "faiss_index_"
+    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+    faiss_path = os.path.join(project_root, "faiss_index_")
+
+    mock_faiss.load_local.assert_called_once_with(
+        faiss_path,
+        mock_embedding_instance,
+        allow_dangerous_deserialization=True
+    )
+
     mock_qa.from_chain_type.assert_called_once_with(
         llm=mock_llm_instance,
         chain_type="stuff",

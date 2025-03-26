@@ -132,28 +132,20 @@ def test_main_flow(mocker, tmp_path):
     dummy_scenario_path = tmp_path / "scenarios.csv"
     dummy_result_path = tmp_path / "results.csv"
 
-    # Mock the file variables in the main module
+    # Patch file paths used in the main module
     mocker.patch("src.main.scenario_file", str(dummy_scenario_path))
     mocker.patch("src.main.analysis_results_file", str(dummy_result_path))
 
-    # Mock the actual logic functions
+    # Mock the core components
     mock_create = mocker.patch("src.main.create_csv")
-    mock_read = mocker.patch("src.main.read_scenarios", return_value=[{"Scenario ID": "1",
-                                                           "User": "test"}])
-    mock_analyze = mocker.patch("src.main.analyze_scenarios", return_value={"scenario_id": "1",
-                                                             "reasoning": "r",
-                                                             "description": "d",
-                                                             "threat_id": "M1",
-                                                             "vulnerability_id": "V1",
-                                                             "remediation_id": "s1"})
-
-    mock_save = mocker.patch("src.main.save_to_csv")
+    mock_read = mocker.patch("src.main.read_scenarios", return_value=[{"Scenario ID": "1", "User": "test"}])
+    mock_analyze = mocker.patch("src.main.analyze_scenarios")
 
     # Run main()
     from src.main import main
     main()
 
+    # Assertions
     mock_create.assert_called_once_with(str(dummy_result_path))
     mock_read.assert_called_once_with(str(dummy_scenario_path))
-    mock_analyze.assert_called_once()
-    mock_save.assert_called_once()
+    mock_analyze.assert_called_once_with([{"Scenario ID": "1", "User": "test"}])
