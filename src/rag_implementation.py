@@ -99,8 +99,9 @@ def initialize_qa_chain():
         vectorstore = FAISS.from_documents(docs, embeddings)
 
         # Save and reload the vector store
-        vectorstore.save_local("faiss_index_")
-        persisted_vectorstore = FAISS.load_local("faiss_index_", embeddings, allow_dangerous_deserialization=True)
+        faiss_path = os.path.join(project_root, "faiss_index_")
+        vectorstore.save_local(faiss_path)
+        persisted_vectorstore = FAISS.load_local(faiss_path, embeddings, allow_dangerous_deserialization=True)
 
         # Create a retriever
         retriever = persisted_vectorstore.as_retriever(search_kwargs={"k": 15})
@@ -126,10 +127,21 @@ def prompt_llm(query):
         formatted_prompt = prompt.format(query=query, format_instructions=format_instructions)
         print("Querying:", query)
         qa_chain = initialize_qa_chain()
-        result = qa_chain(formatted_prompt)
+        raw_response = qa_chain(formatted_prompt)
+
+        if isinstance(raw_response, dict) and "result" in raw_response:
+            try:
+                result_json = json.loads(raw_response["result"])
+                return json.dumps(result_json)
+            except json.JSONDecodeError:
+                raise ValueError("Invalid nested JSON in 'result' field.")
+
+        if isinstance(raw_response, dict):
+            return json.dumps(raw_response)
+
         try:
-            json.loads(result)
-            return result
+            json.loads(raw_response)
+            return raw_response
         except json.JSONDecodeError:
             raise ValueError("Invalid JSON returned by the model.")
     except Exception as e:

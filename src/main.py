@@ -85,8 +85,7 @@ def create_csv(filename):
 def main():
     create_csv(analysis_results_file)
     scenarios = read_scenarios(scenario_file)
-    analysis_results = analyze_scenarios(scenarios)
-    save_to_csv(analysis_results, analysis_results_file)
+    analyze_scenarios(scenarios)
 
 
 if __name__ == "__main__":

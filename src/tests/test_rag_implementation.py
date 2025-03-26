@@ -130,12 +130,14 @@ def test_prompt_llm(mocker):
 
     mocker.patch("src.rag_implementation.initialize_qa_chain", return_value=mock_chain)
     response = prompt_llm("Test Query")
+    assert isinstance(response, str)
 
-    assert "reasoning" in response
-    assert "description" in response
-    assert "threat_id" in response
-    assert "vulnerability_id" in response
-    assert "remediation_id" in response
+    parsed = json.loads(response)
+    assert parsed["reasoning"] == "Test"
+    assert parsed["description"] == "Test Threat"
+    assert parsed["threat_id"] == "M1"
+    assert parsed["vulnerability_id"] == "V1"
+    assert parsed["remediation_id"] == "s1"
 
 
 def test_prompt_llm_json_error(mocker):
