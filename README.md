@@ -23,5 +23,5 @@ Run main.py to start analysis
 
 Run tests in project root:
 ```bash
-pytest src/tests --cov=src --cov-report=term-missing
+pytest src/tests --cov=src --cov-report=term-missing --tb=short -v
 ```
