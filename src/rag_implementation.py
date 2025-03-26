@@ -7,6 +7,7 @@ from langchain_community.document_loaders import CSVLoader
 from langchain.output_parsers import StructuredOutputParser, ResponseSchema
 from langchain.prompts import PromptTemplate
 import pandas as pd
+import json
 
 model_name = "llama3.1"
 
@@ -46,65 +47,84 @@ prompt = PromptTemplate(
 )
 
 def preprocess_remediation_table(file_path):
-    df = pd.read_csv(file_path, encoding="utf-8-sig")
-    df.ffill(inplace=True)
-    preprocessed_path = file_path.replace(".csv", "_preprocessed.csv")
-    df.to_csv(preprocessed_path, index=False, encoding="utf-8-sig")
-    return preprocessed_path
+    """
+    Preprocess the remediation table to fill missing values and save a new copy.
+    """
+    try:
+        df = pd.read_csv(file_path, encoding="utf-8-sig")
+        df.ffill(inplace=True)
+        preprocessed_path = file_path.replace(".csv", "_preprocessed.csv")
+        df.to_csv(preprocessed_path, index=False, encoding="utf-8-sig")
+        return preprocessed_path
+    except Exception as e:
+        print(f"Error processing remediation table: {e}")
+        raise
+
+# Load and preprocess data
+try:
+    remediation_table_path = "./sheets/remediation_table.csv"
+    preprocessed_remediation_table_path = preprocess_remediation_table(remediation_table_path)
 
 
-remediation_table_path = "./sheets/remediation_table.csv"
-preprocessed_remediation_table_path = preprocess_remediation_table(remediation_table_path)
+    files = [
+    "./sheets/scenarios_threats.csv",
+    "./sheets/scenarios_vulnerability.csv",
+    preprocessed_remediation_table_path
+    ]
+
+    documents = []
+    print("Loading documents...")
+    for file in files:
+        loader = CSVLoader(file_path=file, encoding="utf-8-sig")
+        documents.extend(loader.load())
+    print("Documents loaded.")
 
 
-files = [
-"./sheets/scenarios_threats.csv",
-"./sheets/scenarios_vulnerability.csv",
-preprocessed_remediation_table_path
-]
-
-documents = []
-print("Loading documents...")
-for file in files:
-    loader = CSVLoader(file_path=file, encoding="utf-8-sig")
-    documents.extend(loader.load())
-print("Documents loaded.")
+    # Split the document into chunks
+    text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=100, separator="\n")
+    docs = text_splitter.split_documents(documents=documents)
 
 
-
-# Split the document into chunks
-text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=100, separator="\n")
-docs = text_splitter.split_documents(documents=documents)
-
-
-# Load embedding model
-embedding_model_name = "sentence-transformers/all-mpnet-base-v2"
-model_kwargs = {"device": "cuda"}
-embeddings = HuggingFaceEmbeddings(
-    model_name=embedding_model_name,
-    model_kwargs=model_kwargs
-)
-
-# Create FAISS vector store
-vectorstore = FAISS.from_documents(docs, embeddings)
-
-# Save and reload the vector store
-vectorstore.save_local("faiss_index_")
-persisted_vectorstore = FAISS.load_local("faiss_index_", embeddings, allow_dangerous_deserialization=True)
-
-# Create a retriever
-retriever = persisted_vectorstore.as_retriever(search_kwargs={"k": 15})
-
-llm = ChatOllama(model=model_name, temperature=0.2,
-    num_ctx=8000,
-    num_predict=2048,
-    format="json",
+    # Load embedding model
+    embedding_model_name = "sentence-transformers/all-mpnet-base-v2"
+    model_kwargs = {"device": "cuda"}
+    embeddings = HuggingFaceEmbeddings(
+        model_name=embedding_model_name,
+        model_kwargs=model_kwargs
     )
 
-# Create Retrieval-Augmented Generation (RAG) system
-qa_chain = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff" , retriever=retriever)
+    # Create FAISS vector store
+    vectorstore = FAISS.from_documents(docs, embeddings)
+
+    # Save and reload the vector store
+    vectorstore.save_local("faiss_index_")
+    persisted_vectorstore = FAISS.load_local("faiss_index_", embeddings, allow_dangerous_deserialization=True)
+
+    # Create a retriever
+    retriever = persisted_vectorstore.as_retriever(search_kwargs={"k": 15})
+
+    llm = ChatOllama(model=model_name, temperature=0.2,
+        num_ctx=8000,
+        num_predict=2048,
+        format="json",
+        )
+
+    # Create Retrieval-Augmented Generation (RAG) system
+    qa_chain = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff" , retriever=retriever)
+
+except Exception as e:
+    print(f"Initialization failed: {e}")
+    raise
 
 def prompt_llm(query):
-    formatted_prompt = prompt.format(query=query, format_instructions=format_instructions)
-    print("Querying:", query)
-    return qa_chain.invoke(formatted_prompt)
+    """
+    Formats and sends a query to the LLM via RetrievalQA.
+    """
+    try:
+        formatted_prompt = prompt.format(query=query, format_instructions=format_instructions)
+        print("Querying:", query)
+        return qa_chain.invoke(formatted_prompt)
+    except Exception as e:
+        print(f"Error during prompt invocation: {e}")
+        return json.dumps(
+            {"reasoning": "", "description": "", "threat_id": "", "vulnerability_id": "", "remediation_id": ""})
