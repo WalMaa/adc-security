@@ -30,8 +30,7 @@ def analyze_scenarios(scenario_list):
     for scenario in scenario_list:
         unique_scenarios[scenario.get('Scenario ID')] = scenario.get('User', '')
     print(f"Analyzing {len(unique_scenarios)} unique scenarios.")
-    
-    
+
     for scenario in unique_scenarios:
         scenario_id = scenario
         query = unique_scenarios[scenario]
@@ -62,7 +61,8 @@ def save_to_csv(analysis_result, filename):
     print(f"Saving analysis results to {filename}")
     try:
         with open(filename, mode='a', newline='', encoding='utf-8-sig') as file:
-            writer = csv.DictWriter(file, fieldnames=["scenario_id", "reasoning", "description", "threat_id", "vulnerability_id", "remediation_id"])
+            writer = csv.DictWriter(file, fieldnames=["scenario_id", "reasoning", "description", "threat_id",
+                                                      "vulnerability_id", "remediation_id"])
             writer.writerow(analysis_result)
     except Exception as e:
         print(f"Error saving analysis results: {e}")
@@ -73,12 +73,18 @@ def create_csv(filename):
     Create a new results CSV file.
     """
     with open(filename, mode='w', newline='', encoding='utf-8-sig') as file:
-        writer = csv.DictWriter(file, fieldnames=["scenario_id", "reasoning", "description", "threat_id", "vulnerability_id", "remediation_id"])
+        writer = csv.DictWriter(file,
+                                fieldnames=["scenario_id", "reasoning", "description", "threat_id", "vulnerability_id",
+                                            "remediation_id"])
         writer.writeheader()
 
 
-if __name__ == "__main__":
+def main():
     create_csv(analysis_results_file)
     scenarios = read_scenarios(scenario_file)
     analysis_results = analyze_scenarios(scenarios)
     save_to_csv(analysis_results, analysis_results_file)
+
+
+if __name__ == "__main__":
+    main()
