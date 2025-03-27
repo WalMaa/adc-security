@@ -17,8 +17,21 @@ Install the required libraries using the following command:
 pip install -r requirements.txt
 ```
 
-Run main.py to start analysis
+# Environment Setup
 
+Before running the application, you need add your project absolute path to the `.env` file.
+
+For example:
+```bash
+PYTHONPATH=C:/Users/yourname/path/to/adc-security
+```
+
+# Run the Analysis
+
+Run `main.py` to start analysis:
+```bash
+python main.py
+```
 # Testing
 
 Run tests in project root:
