@@ -1,3 +1,5 @@
+import json
+
 import pytest
 import csv
 import sys
@@ -44,23 +46,39 @@ def test_analyze_scenarios(mocker, sample_scenarios):
     Tests the `analyze_scenarios` function to ensure it calls the
     `prompt_llm` function with the correct query.
     """
-    mock_prompt = mocker.patch("src.main.prompt_llm", return_value='{"reasoning": "test", '
-                                                                   '"description": "test", '
-                                                                   '"threat_id": "M1", '
-                                                                   '"vulnerability_id": "V1", '
-                                                                   '"remediation_id": "s1"}')
-    analyze_scenarios(sample_scenarios)
-    mock_prompt.assert_called_once_with("Test Query")
+    mock_chain = mocker.Mock()
+
+    mock_prompt = mocker.patch(
+        "src.main.prompt_llm",
+        return_value=json.dumps({
+            "reasoning": "test",
+            "description": "test",
+            "threat_id": "M1",
+            "vulnerability_id": "V1",
+            "remediation_id": "s1"
+        })
+    )
+
+    mock_save = mocker.patch("src.main.save_to_csv")
+
+    from src.main import analyze_scenarios
+    analyze_scenarios(sample_scenarios, mock_chain)
+
+    mock_prompt.assert_called_once_with("Test Query", mock_chain)
+    mock_save.assert_called_once()
 
 
 def test_analyze_scenarios_invalid_json(mocker, sample_scenarios):
     """
     Tests that analyze_scenarios handles JSON decoding errors gracefully.
     """
-    mock_prompt = mocker.patch("src.main.prompt_llm", return_value="{invalid json")
-    result = analyze_scenarios(sample_scenarios)
+    mock_chain = mocker.Mock()
+    mocker.patch("src.main.prompt_llm", return_value="{invalid json}")
+    mock_save = mocker.patch("src.main.save_to_csv")
+
+    result = analyze_scenarios(sample_scenarios, mock_chain)
     assert result is None
-    mock_prompt.assert_called_once()
+    mock_save.assert_not_called()
 
 
 def test_save_to_csv(tmp_path):
@@ -139,6 +157,8 @@ def test_main_flow(mocker, tmp_path):
     # Mock the core components
     mock_create = mocker.patch("src.main.create_csv")
     mock_read = mocker.patch("src.main.read_scenarios", return_value=[{"Scenario ID": "1", "User": "test"}])
+    mock_qa_chain = mocker.Mock(name="MockQAChain")
+    mock_initialize = mocker.patch("src.main.initialize_qa_chain", return_value=mock_qa_chain)
     mock_analyze = mocker.patch("src.main.analyze_scenarios")
 
     # Run main()
@@ -148,4 +168,5 @@ def test_main_flow(mocker, tmp_path):
     # Assertions
     mock_create.assert_called_once_with(str(dummy_result_path))
     mock_read.assert_called_once_with(str(dummy_scenario_path))
-    mock_analyze.assert_called_once_with([{"Scenario ID": "1", "User": "test"}])
+    mock_initialize.assert_called_once()
+    mock_analyze.assert_called_once_with([{"Scenario ID": "1", "User": "test"}], mock_qa_chain)

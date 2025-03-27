@@ -3,7 +3,6 @@ import pytest
 import sys
 import os
 import pandas as pd
-from unittest.mock import patch
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 from src.rag_implementation import preprocess_remediation_table, prompt_llm
 
@@ -37,6 +36,7 @@ def test_preprocess_remediation_table_file_not_found():
     """
     with pytest.raises(FileNotFoundError):
         preprocess_remediation_table("nonexistent_file.csv")
+
 
 def test_initialize_qa_chain_success(mocker):
     """
@@ -142,7 +142,7 @@ def test_prompt_llm(mocker):
                                '"remediation_id": "s1"}')
 
     mocker.patch("src.rag_implementation.initialize_qa_chain", return_value=mock_chain)
-    response = prompt_llm("Test Query")
+    response = prompt_llm("Test Query", mock_chain)
     assert isinstance(response, str)
 
     parsed = json.loads(response)
@@ -170,7 +170,7 @@ def test_prompt_llm_dict_with_result(mocker):
 
     mocker.patch("src.rag_implementation.initialize_qa_chain", return_value=mock_chain)
 
-    response = prompt_llm("test query")
+    response = prompt_llm("test query", mock_chain)
     parsed = json.loads(response)
 
     assert parsed["reasoning"] == "Nested reasoning"
@@ -188,7 +188,7 @@ def test_prompt_llm_dict_result_invalid_json(mocker):
     mocker.patch("src.rag_implementation.initialize_qa_chain", return_value=mock_chain)
 
     with pytest.raises(ValueError, match="Invalid nested JSON in 'result' field."):
-        prompt_llm("test query")
+        prompt_llm("test query", mock_chain)
 
 
 def test_prompt_llm_dict_direct_return(mocker):
@@ -209,7 +209,7 @@ def test_prompt_llm_dict_direct_return(mocker):
 
     mocker.patch("src.rag_implementation.initialize_qa_chain", return_value=mock_chain)
 
-    response = prompt_llm("test query")
+    response = prompt_llm("test query", mock_chain)
     parsed = json.loads(response)
 
     assert parsed["reasoning"] == "Direct"
@@ -221,9 +221,10 @@ def test_prompt_llm_generic_exception(mocker, capsys):
     Tests that prompt_llm handles unexpected exceptions gracefully
     and returns empty JSON values.
     """
-    mocker.patch("src.rag_implementation.initialize_qa_chain", side_effect=RuntimeError("Unexpected error"))
+    mock_chain = mocker.Mock()
+    mock_chain.side_effect = RuntimeError("Unexpected error")
 
-    response = prompt_llm("test query")
+    response = prompt_llm("test query", mock_chain)
     parsed = json.loads(response)
 
     assert parsed["reasoning"] == ""
