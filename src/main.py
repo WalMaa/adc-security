@@ -1,7 +1,12 @@
+import sys
 import os
 import csv
 import json
 from collections import OrderedDict
+from dotenv import load_dotenv
+
+load_dotenv()
+sys.path.append(os.getenv("PYTHONPATH"))
 from src.rag_implementation import prompt_llm, initialize_qa_chain
 
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
