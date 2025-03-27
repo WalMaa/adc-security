@@ -5,26 +5,31 @@ Requirements:
 - Pip
 - ollama
 
-Install mistral using the following command:
+Install dependencies:
+```bash
+pip install -r requirements.txt
+```
 
+Install LLaMA 3.1 model:
 ```bash
 ollama pull llama3.1
 ```
 
-Install the required libraries using the following command:
-
+Start the Ollama server (this must be running to interact with the model):
 ```bash
-pip install -r requirements.txt
+ollama serve
 ```
 
 # Environment Setup
 
 Before running the application, you need add your project absolute path to the `.env` file.
 
-For example:
+1. Create a `.env` file in the project root (if it doesn't exist).
+2. Add the following line inside the file:
 ```bash
 PYTHONPATH=C:/Users/yourname/path/to/adc-security
 ```
+3. Replace the example path with the full path to your local project folder.
 
 # Run the Analysis
 
