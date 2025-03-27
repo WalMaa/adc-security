@@ -119,7 +119,7 @@ def initialize_qa_chain():
         raise
 
 
-def prompt_llm(query):
+def prompt_llm(query, qa_chain):
     """
     Formats and sends a query to the LLM via RetrievalQA.
     """
@@ -127,7 +127,6 @@ def prompt_llm(query):
     print("Querying:", query)
 
     try:
-        qa_chain = initialize_qa_chain()
         raw_response = qa_chain(formatted_prompt)
 
         if isinstance(raw_response, dict):
@@ -152,4 +151,3 @@ def prompt_llm(query):
             "vulnerability_id": "",
             "remediation_id": ""
         })
-

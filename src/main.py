@@ -2,7 +2,7 @@ import os
 import csv
 import json
 from collections import OrderedDict
-from src.rag_implementation import prompt_llm
+from src.rag_implementation import prompt_llm, initialize_qa_chain
 
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
@@ -25,7 +25,7 @@ def read_scenarios(filename):
     return scenario_list
 
 
-def analyze_scenarios(scenario_list):
+def analyze_scenarios(scenario_list, qa_chain):
     """
     Analyze each unique scenario and save the results.
     """
@@ -34,11 +34,9 @@ def analyze_scenarios(scenario_list):
         unique_scenarios[scenario.get('Scenario ID')] = scenario.get('User', '')
     print(f"Analyzing {len(unique_scenarios)} unique scenarios.")
 
-    for scenario in unique_scenarios:
-        scenario_id = scenario
-        query = unique_scenarios[scenario]
+    for scenario_id, query in unique_scenarios.items():
         print(f"Analyzing scenario: {scenario_id}, Query: {query}")
-        response = prompt_llm(query)
+        response = prompt_llm(query, qa_chain)
         print("Response:", response)
         try:
             res_obj = json.loads(response)
@@ -85,7 +83,8 @@ def create_csv(filename):
 def main():
     create_csv(analysis_results_file)
     scenarios = read_scenarios(scenario_file)
-    analyze_scenarios(scenarios)
+    qa_chain = initialize_qa_chain()
+    analyze_scenarios(scenarios, qa_chain)
 
 
 if __name__ == "__main__": # pragma: no cover
