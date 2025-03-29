@@ -15,7 +15,7 @@ def sample_scenarios():
     return [{"Scenario ID": "1", "User": "Test Query"}]
 
 
-def test_read_scenarios(monkeypatch, tmp_path):
+def test_read_scenarios(tmp_path):
     """
     Tests the `read_scenarios` function to ensure it correctly reads
     scenarios from a CSV file
