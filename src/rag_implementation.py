@@ -127,7 +127,7 @@ def prompt_llm(query, qa_chain):
     print("Querying:", query)
 
     try:
-        raw_response = qa_chain(formatted_prompt)
+        raw_response = qa_chain.invoke(formatted_prompt)
 
         if isinstance(raw_response, dict):
             if "result" in raw_response:

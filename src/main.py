@@ -67,8 +67,12 @@ def save_to_csv(analysis_result, filename):
     print(f"Saving analysis results to {filename}")
     try:
         with open(filename, mode='a', newline='', encoding='utf-8-sig') as file:
-            writer = csv.DictWriter(file, fieldnames=["scenario_id", "reasoning", "description", "threat_id",
-                                                      "vulnerability_id", "remediation_id"])
+            writer = csv.DictWriter(file, fieldnames=["scenario_id",
+                                                      "reasoning",
+                                                      "description",
+                                                      "threat_id",
+                                                      "vulnerability_id",
+                                                      "remediation_id"])
             writer.writerow(analysis_result)
     except Exception as e:
         print(f"Error saving analysis results: {e}")
@@ -78,11 +82,18 @@ def create_csv(filename):
     """
     Create a new results CSV file.
     """
-    with open(filename, mode='w', newline='', encoding='utf-8-sig') as file:
-        writer = csv.DictWriter(file,
-                                fieldnames=["scenario_id", "reasoning", "description", "threat_id", "vulnerability_id",
-                                            "remediation_id"])
-        writer.writeheader()
+    try:
+        with open(filename, mode='w', newline='', encoding='utf-8-sig') as file:
+            writer = csv.DictWriter(file,
+                                    fieldnames=["scenario_id",
+                                                "reasoning",
+                                                "description",
+                                                "threat_id",
+                                                "vulnerability_id",
+                                                "remediation_id"])
+            writer.writeheader()
+    except Exception as e:
+        print(f"Error creating CSV file: {e}")
 
 
 def main():

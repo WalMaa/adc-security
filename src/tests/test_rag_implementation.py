@@ -135,7 +135,7 @@ def test_prompt_llm(mocker):
     Tests that prompt_llm returns a valid JSON object when QA chain works correctly.
     """
     mock_chain = mocker.Mock()
-    mock_chain.return_value = ('{"reasoning": "Test", '
+    mock_chain.invoke.return_value = ('{"reasoning": "Test", '
                                '"description": "Test Threat", '
                                '"threat_id": "M1", '
                                '"vulnerability_id": "V1", '
@@ -166,7 +166,7 @@ def test_prompt_llm_dict_with_result(mocker):
     })
 
     mock_chain = mocker.Mock()
-    mock_chain.return_value = {"result": nested_json_str}
+    mock_chain.invoke.return_value = {"result": nested_json_str}
 
     mocker.patch("src.rag_implementation.initialize_qa_chain", return_value=mock_chain)
 
@@ -183,7 +183,7 @@ def test_prompt_llm_dict_result_invalid_json(mocker):
     Should raise ValueError.
     """
     mock_chain = mocker.Mock()
-    mock_chain.return_value = {"result": "{invalid json"}
+    mock_chain.invoke.return_value = {"result": "{invalid json"}
 
     mocker.patch("src.rag_implementation.initialize_qa_chain", return_value=mock_chain)
 
@@ -205,7 +205,7 @@ def test_prompt_llm_dict_direct_return(mocker):
     }
 
     mock_chain = mocker.Mock()
-    mock_chain.return_value = raw_dict
+    mock_chain.invoke.return_value = raw_dict
 
     mocker.patch("src.rag_implementation.initialize_qa_chain", return_value=mock_chain)
 
@@ -222,7 +222,7 @@ def test_prompt_llm_generic_exception(mocker, capsys):
     and returns empty JSON values.
     """
     mock_chain = mocker.Mock()
-    mock_chain.side_effect = RuntimeError("Unexpected error")
+    mock_chain.invoke.side_effect = RuntimeError("Unexpected error")
 
     response = prompt_llm("test query", mock_chain)
     parsed = json.loads(response)

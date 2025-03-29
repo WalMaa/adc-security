@@ -139,6 +139,16 @@ def test_create_csv(tmp_path):
     assert headers == ["scenario_id", "reasoning", "description", "threat_id", "vulnerability_id", "remediation_id"]
 
 
+def test_create_csv_exception_handling(capsys, mocker, tmp_path):
+    """
+    Tests that create_csv handles exceptions gracefully when file creation fails.
+    """
+    mocker.patch("builtins.open", side_effect=IOError("Mocked create error"))
+    create_csv(tmp_path / "failing_create.csv")
+    captured = capsys.readouterr()
+    assert "Error creating CSV file: Mocked create error" in captured.out
+
+
 def test_main_flow(mocker, tmp_path):
     """
     Tests the main flow by mocking all subcomponents to ensure the pipeline runs without error.
