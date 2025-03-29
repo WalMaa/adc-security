@@ -59,8 +59,6 @@ def test_analyze_scenarios(mocker, sample_scenarios):
     )
 
     mock_save = mocker.patch("src.main.save_to_csv")
-
-    from src.main import analyze_scenarios
     analyze_scenarios(sample_scenarios, mock_chain)
 
     mock_prompt.assert_called_once_with("Test Query", mock_chain)
