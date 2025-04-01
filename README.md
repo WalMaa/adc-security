@@ -22,7 +22,7 @@ ollama serve
 
 # Environment Setup
 
-Before running the application, you need add your project absolute path to the `.env` file.
+Before running the application, you need to add your project absolute path to the `.env` file.
 
 1. Create a `.env` file in the project root (if it doesn't exist).
 2. Add the following line inside the file:
