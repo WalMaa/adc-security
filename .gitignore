@@ -2,3 +2,5 @@
 .vscode
 chroma
 __pycache__
+.env
+.coverage

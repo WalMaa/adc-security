@@ -1,34 +1,47 @@
+import sys
+import os
 import csv
-from src.rag_implementation import prompt_llm
 import json
 from collections import OrderedDict
+from dotenv import load_dotenv
 
-scenario_file = "./sheets/scenarios_examples.csv"
+load_dotenv()
+sys.path.append(os.getenv("PYTHONPATH"))
+from src.rag_implementation import prompt_llm, initialize_qa_chain
+
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+
+scenario_file = os.path.join(project_root, "sheets", "scenarios_examples.csv")
+analysis_results_file = os.path.join(project_root, "analysis_results.csv")
+
 
 def read_scenarios(filename):
     """
     Read scenarios from a CSV file.
     """
-    scenarios = []
-    with open(filename, mode='r', newline='', encoding='utf-8-sig') as file:
-        reader = csv.DictReader(file, delimiter=',')
-        for row in reader:
-            scenarios.append(row)
-    return scenarios
+    scenario_list = []
+    try:
+        with open(filename, mode='r', newline='', encoding='utf-8-sig') as file:
+            reader = csv.DictReader(file, delimiter=',')
+            for row in reader:
+                scenario_list.append(row)
+    except FileNotFoundError:
+        print(f"Scenario file not found: {filename}")
+    return scenario_list
 
-def analyze_scenarios(scenarios):
-    # Use OrderedDict instead to preserve insertion order for easy analysis
+
+def analyze_scenarios(scenario_list, qa_chain):
+    """
+    Analyze each unique scenario and save the results.
+    """
     unique_scenarios = OrderedDict()
-    for scenario in scenarios:
+    for scenario in scenario_list:
         unique_scenarios[scenario.get('Scenario ID')] = scenario.get('User', '')
     print(f"Analyzing {len(unique_scenarios)} unique scenarios.")
-    
-    
-    for scenario in unique_scenarios:
-        scenario_id = scenario
-        query = unique_scenarios[scenario]
+
+    for scenario_id, query in unique_scenarios.items():
         print(f"Analyzing scenario: {scenario_id}, Query: {query}")
-        response = prompt_llm(query)
+        response = prompt_llm(query, qa_chain)
         print("Response:", response)
         try:
             res_obj = json.loads(response)
@@ -44,7 +57,7 @@ def analyze_scenarios(scenarios):
             "vulnerability_id": res_obj.get("vulnerability_id", ""),
             "remediation_id": res_obj.get("remediation_id", "")
         }
-        save_to_csv(analysis_result, "analysis_results.csv")
+        save_to_csv(analysis_result, analysis_results_file)
 
 
 def save_to_csv(analysis_result, filename):
@@ -52,20 +65,43 @@ def save_to_csv(analysis_result, filename):
     Save the analysis results to a CSV file.
     """
     print(f"Saving analysis results to {filename}")
-    with open(filename, mode='a', newline='', encoding='utf-8-sig') as file:
-        writer = csv.DictWriter(file, fieldnames=["scenario_id", "reasoning", "description", "threat_id", "vulnerability_id", "remediation_id"])
-        writer.writerow(analysis_result)
-            
+    try:
+        with open(filename, mode='a', newline='', encoding='utf-8-sig') as file:
+            writer = csv.DictWriter(file, fieldnames=["scenario_id",
+                                                      "reasoning",
+                                                      "description",
+                                                      "threat_id",
+                                                      "vulnerability_id",
+                                                      "remediation_id"])
+            writer.writerow(analysis_result)
+    except Exception as e:
+        print(f"Error saving analysis results: {e}")
+
+
 def create_csv(filename):
     """
     Create a new results CSV file.
     """
-    with open(filename, mode='w', newline='', encoding='utf-8-sig') as file:
-        writer = csv.DictWriter(file, fieldnames=["scenario_id", "reasoning", "description", "threat_id", "vulnerability_id", "remediation_id"])
-        writer.writeheader()
+    try:
+        with open(filename, mode='w', newline='', encoding='utf-8-sig') as file:
+            writer = csv.DictWriter(file,
+                                    fieldnames=["scenario_id",
+                                                "reasoning",
+                                                "description",
+                                                "threat_id",
+                                                "vulnerability_id",
+                                                "remediation_id"])
+            writer.writeheader()
+    except Exception as e:
+        print(f"Error creating CSV file: {e}")
 
 
-create_csv("analysis_results.csv")
-scenarios = read_scenarios(scenario_file)
-analysis_results = analyze_scenarios(scenarios)
-save_to_csv(analysis_results, "analysis_results.csv")
+def main():
+    create_csv(analysis_results_file)
+    scenarios = read_scenarios(scenario_file)
+    qa_chain = initialize_qa_chain()
+    analyze_scenarios(scenarios, qa_chain)
+
+
+if __name__ == "__main__": # pragma: no cover
+    main()
