@@ -1,0 +1,68 @@
+Category,Section,Item,Value,Description
+Methodology,General,Date,2025-03-18,Date of analysis
+Methodology,General,Source Data 1,analysis_results_VK_06_03_2025.csv,First source data file
+Methodology,General,Source Data 2,analysis_results_wm_06_03_2025.csv,Second source data file
+Methodology,General,Reference Document,Risk Analysis Law TI-002 - EN,Primary reference document
+Methodology,Metrics Explanation,Accuracy,,Percentage of correct assessments out of all assessments
+Methodology,Metrics Explanation,F1 Score,,Harmonic mean of precision and recall: 2 * (precision * recall) / (precision + recall)
+Methodology,Metrics Explanation,Precision,,Percentage of true positives divided by the sum of true positives and false positives
+Methodology,Metrics Explanation,Recall,,Percentage of true positives divided by the sum of true positives and false negatives
+
+VK Analysis,Overview,Total Entries,194,Number of scenarios analyzed
+VK Analysis,Overview,Total Assessments,776,Total number of items assessed (threat IDs + vulnerability IDs + remediation IDs + relationships)
+VK Analysis,Correct Assessments,Valid Threat IDs,165,Number of valid threat IDs
+VK Analysis,Correct Assessments,Valid Vulnerability IDs,167,Number of valid vulnerability IDs
+VK Analysis,Correct Assessments,Valid Remediation IDs,163,Number of valid remediation IDs
+VK Analysis,Correct Assessments,Valid Relationships,152,Number of valid threat-vulnerability relationships
+VK Analysis,Correct Assessments,Total Correct,647,Total number of correct assessments
+VK Analysis,Incorrect Assessments,Invalid Threat IDs,29,Number of invalid threat IDs
+VK Analysis,Incorrect Assessments,Invalid Vulnerability IDs,27,Number of invalid vulnerability IDs
+VK Analysis,Incorrect Assessments,Invalid Remediation IDs,31,Number of invalid remediation IDs
+VK Analysis,Incorrect Assessments,Invalid Relationships,42,Number of invalid threat-vulnerability relationships
+VK Analysis,Incorrect Assessments,Total Incorrect,129,Total number of incorrect assessments
+VK Analysis,Classification Metrics,True Positives,162,Number of true positive identifications
+VK Analysis,Classification Metrics,False Positives,32,Number of false positive identifications
+VK Analysis,Classification Metrics,False Negatives,35,Number of false negative identifications
+VK Analysis,Classification Metrics,True Negatives,547,Number of true negative identifications
+VK Analysis,Calculated Values,Accuracy,0.8338,647 / 776 = 0.8338 (83.38%)
+VK Analysis,Calculated Values,Precision,0.8350,162 / (162 + 32) = 0.8350 (83.50%)
+VK Analysis,Calculated Values,Recall,0.8223,162 / (162 + 35) = 0.8223 (82.23%)
+VK Analysis,Calculated Values,F1 Score,0.8275,2 * (0.8350 * 0.8223) / (0.8350 + 0.8223) = 0.8275 (82.75%)
+
+WM Analysis,Overview,Total Entries,193,Number of scenarios analyzed
+WM Analysis,Overview,Total Assessments,772,Total number of items assessed (threat IDs + vulnerability IDs + remediation IDs + relationships)
+WM Analysis,Correct Assessments,Valid Threat IDs,146,Number of valid threat IDs
+WM Analysis,Correct Assessments,Valid Vulnerability IDs,144,Number of valid vulnerability IDs
+WM Analysis,Correct Assessments,Valid Remediation IDs,148,Number of valid remediation IDs
+WM Analysis,Correct Assessments,Valid Relationships,140,Number of valid threat-vulnerability relationships
+WM Analysis,Correct Assessments,Total Correct,578,Total number of correct assessments
+WM Analysis,Incorrect Assessments,Invalid Threat IDs,47,Number of invalid threat IDs
+WM Analysis,Incorrect Assessments,Invalid Vulnerability IDs,49,Number of invalid vulnerability IDs
+WM Analysis,Incorrect Assessments,Invalid Remediation IDs,45,Number of invalid remediation IDs
+WM Analysis,Incorrect Assessments,Invalid Relationships,53,Number of invalid threat-vulnerability relationships
+WM Analysis,Incorrect Assessments,Total Incorrect,194,Total number of incorrect assessments
+WM Analysis,Classification Metrics,True Positives,145,Number of true positive identifications
+WM Analysis,Classification Metrics,False Positives,48,Number of false positive identifications
+WM Analysis,Classification Metrics,False Negatives,53,Number of false negative identifications
+WM Analysis,Classification Metrics,True Negatives,526,Number of true negative identifications
+WM Analysis,Calculated Values,Accuracy,0.7487,578 / 772 = 0.7487 (74.87%)
+WM Analysis,Calculated Values,Precision,0.7513,145 / (145 + 48) = 0.7513 (75.13%)
+WM Analysis,Calculated Values,Recall,0.7323,145 / (145 + 53) = 0.7323 (73.23%)
+WM Analysis,Calculated Values,F1 Score,0.7406,2 * (0.7513 * 0.7323) / (0.7513 + 0.7323) = 0.7406 (74.06%)
+
+Gain Calculation,Example,Comparison Pair,VK Analysis vs WM Analysis,Description of compared models
+Gain Calculation,Example,Accuracy Gain,+0.0851,0.8338 - 0.7487 = +0.0851 (+8.51%)
+Gain Calculation,Example,F1 Score Gain,+0.0869,0.8275 - 0.7406 = +0.0869 (+8.69%)
+Gain Calculation,Example,Precision Gain,+0.0837,0.8350 - 0.7513 = +0.0837 (+8.37%)
+Gain Calculation,Example,Recall Gain,+0.0900,0.8223 - 0.7323 = +0.0900 (+9.00%)
+
+Combined Models,Explanation,VK+WM Combined,,Average of metrics from both VK and WM analyses
+Combined Models,Explanation,VK+TI002,,VK analysis with additional validation using TI-002 document rules
+Combined Models,Explanation,WM+TI002,,WM analysis with additional validation using TI-002 document rules
+
+Hallucination Identification,Method,Approach,,Comparison against the threat-vulnerability-countermeasure correlations in the TI-002 document
+Hallucination Identification,Types,Type 1,Invalid threat IDs,Not listed in M1-M28
+Hallucination Identification,Types,Type 2,Invalid vulnerability IDs,Not listed in V1-V38
+Hallucination Identification,Types,Type 3,Invalid remediation IDs,Not matching the f/pe/pr/h/s prefixes
+Hallucination Identification,Types,Type 4,Invalid relationships,Pairs that don't match the correlation tables
+Hallucination Identification,Formula,Hallucination Percentage,,100% - Accuracy Percentage

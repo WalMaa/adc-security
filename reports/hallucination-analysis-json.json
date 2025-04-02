@@ -1,0 +1,150 @@
+{
+  "analysis_summary": {
+    "date": "2025-03-16",
+    "files_analyzed": [
+      "analysis_results_VK_06_03_2025.csv",
+      "analysis_results_wm_06_03_2025.csv"
+    ],
+    "analysis_method": "Risk Analysis based on TI-002 document"
+  },
+  "vk_analysis": {
+    "dataset": "VK Analysis",
+    "total_entries": 194,
+    "accuracy": {
+      "valid_threat_ids": {
+        "count": 165,
+        "percentage": "85.05"
+      },
+      "valid_vulnerability_ids": {
+        "count": 167,
+        "percentage": "86.08"
+      },
+      "valid_remediation_ids": {
+        "count": 163,
+        "percentage": "84.02"
+      },
+      "valid_relationships": {
+        "count": 152,
+        "percentage": "78.35"
+      }
+    },
+    "overall": {
+      "accuracy_percentage": "83.38",
+      "hallucination_percentage": "16.62"
+    },
+    "errors": {
+      "invalid_threat_ids": {
+        "count": 29
+      },
+      "invalid_vulnerability_ids": {
+        "count": 27
+      },
+      "invalid_remediation_ids": {
+        "count": 31
+      },
+      "invalid_relationships": {
+        "count": 42
+      }
+    }
+  },
+  "wm_analysis": {
+    "dataset": "WM Analysis",
+    "total_entries": 193,
+    "accuracy": {
+      "valid_threat_ids": {
+        "count": 146,
+        "percentage": "75.65"
+      },
+      "valid_vulnerability_ids": {
+        "count": 144,
+        "percentage": "74.61"
+      },
+      "valid_remediation_ids": {
+        "count": 148,
+        "percentage": "76.68"
+      },
+      "valid_relationships": {
+        "count": 140,
+        "percentage": "72.54"
+      }
+    },
+    "overall": {
+      "accuracy_percentage": "74.87",
+      "hallucination_percentage": "25.13"
+    },
+    "errors": {
+      "invalid_threat_ids": {
+        "count": 47
+      },
+      "invalid_vulnerability_ids": {
+        "count": 49
+      },
+      "invalid_remediation_ids": {
+        "count": 45
+      },
+      "invalid_relationships": {
+        "count": 53
+      }
+    }
+  },
+  "comparison": {
+    "total_entries": {
+      "vk": 194,
+      "wm": 193,
+      "difference": 1
+    },
+    "accuracy_percentages": {
+      "vk": 83.38,
+      "wm": 74.87,
+      "difference": "8.51"
+    },
+    "hallucination_percentages": {
+      "vk": 16.62,
+      "wm": 25.13,
+      "difference": "-8.51"
+    },
+    "error_counts": {
+      "vk": {
+        "invalid_threat_ids": 29,
+        "invalid_vulnerability_ids": 27,
+        "invalid_remediation_ids": 31,
+        "invalid_relationships": 42,
+        "total_errors": 129
+      },
+      "wm": {
+        "invalid_threat_ids": 47,
+        "invalid_vulnerability_ids": 49,
+        "invalid_remediation_ids": 45,
+        "invalid_relationships": 53,
+        "total_errors": 194
+      }
+    },
+    "prediction_types": {
+      "vk": {
+        "TP": 162,
+        "FP": 32,
+        "actionable_percentage": 83
+      },
+      "wm": {
+        "TP": 145,
+        "FP": 48,
+        "actionable_percentage": 75
+      }
+    }
+  },
+  "format_compatibility": {
+    "explanation": "This analysis follows the structure 0001.xlsx template with sections for scenario ID, threat ID, vulnerability ID, risk type, prediction type, and actionable data",
+    "fields_included": [
+      "ID Scenario", 
+      "Scenario Description",
+      "RiskID (Threat ID)",
+      "RiskDesc",
+      "VulnID",
+      "VulnDesc",
+      "RiskType",
+      "Prediction Type (TP/FP/TN/FN)",
+      "Actionable",
+      "Hallucination"
+    ]
+  }
+}
